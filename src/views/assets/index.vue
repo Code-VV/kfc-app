@@ -17,7 +17,7 @@
                 <div>
                     <div class="marks" v-show="isShowAsset">{{assetList.usdtPrice|SubString(8)}} USDT</div>
                     <div class="marks" v-show="!isShowAsset">******** USDT</div>
-                    <div class="size13 mar_t_5" v-show="isShowAsset">≈{{assetList.cnyPrice|SubString(2)}} USD</div>
+                    <div class="size13 mar_t_5" v-show="isShowAsset">≈{{assetList.usdtPrice|SubString(2)}} USD</div>
                     <div class="size13 mar_t_5" v-show="!isShowAsset">≈******** USD</div>
                 </div>
             </div>

@@ -39,7 +39,7 @@
                                     </div>
                                     <div v-show="!isPhone" class="size18 bold">
                                         {{userAccount}}
-                                        <van-icon class="io" name="eye-o" @click="closeAsset()" />
+                                        <van-icon class="io" name="closed-eye" @click="closeAsset()" />
                                         <!-- <van-icon name="closed-eye" /> -->
                                     </div>
                                 </div>
