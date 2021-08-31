@@ -1,0 +1,62 @@
+// 主色调 背景
+// 默认主题
+$default-theme: ( base-color: #fff, border-color: #fff);
+//夜晚主题
+$night-theme: ( base-color: #272A3F, border-color:#272A3F);
+//定义映射集合
+$themes: ( default-theme: $default-theme, night-theme: $night-theme);
+@mixin base-background() {
+    @each $themename,
+    $theme in $themes {
+        [data-theme='#{$themename}'] & {
+            background: map-get($map: $theme, $key: base-color)
+        }
+    }
+}
+
+// 副色调
+// 默认主题
+$default-theme-sec: ( base-color: #fff, border-color: #fff);
+//夜晚主题
+$night-theme-sec: ( base-color: #272e48, border-color:#272e48);
+//定义映射集合
+$themes1: ( default-theme: $default-theme-sec, night-theme: $night-theme-sec);
+@mixin base-background-second() {
+    @each $themename,
+    $theme in $themes1 {
+        [data-theme='#{$themename}'] & {
+            background: map-get($map: $theme, $key: base-color)
+        }
+    }
+}
+
+// 搜索头背景色
+$default-theme-serch: ( base-color: #f8f7fd, border-color: #f8f7fd);
+//夜晚主题
+$night-theme-serch: ( base-color: #292c38, border-color:#292c38);
+//定义映射集合
+$themes2: ( default-theme: $default-theme-serch, night-theme: $night-theme-serch);
+@mixin base-background-serch() {
+    @each $themename,
+    $theme in $themes2 {
+        [data-theme='#{$themename}'] & {
+            background: map-get($map: $theme, $key: base-color)
+        }
+    }
+}
+
+// base-background-exit
+//  设置页码背景
+$default-theme-exit: ( base-color: #f8f7fd, border-color: #f8f7fd);
+//夜晚主题
+$night-theme-exit: ( base-color: #272e48, border-color:#272e48);
+//定义映射集合
+$themes4: ( default-theme: $default-theme-exit, night-theme: $night-theme-exit);
+@mixin base-background-exit() {
+    @each $themename,
+    $theme in $themes4 {
+        [data-theme='#{$themename}'] & {
+            background: map-get($map: $theme, $key: base-color)
+        }
+    }
+}

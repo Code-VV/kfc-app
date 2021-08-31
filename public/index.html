@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <!-- <link rel="icon" href="./favicon.ico"> -->
+    <!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
+    <script src="<%= BASE_URL %>tradeview/charting_library/charting_library.min.js"></script>
+    <link rel="icon" href="<%= BASE_URL %>./favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+
+    <script src="https://cdn.jsdelivr.net/pako/1.0.3/pako.min.js"></script>
+
+    <!-- <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=39cb9799-422b-4595-9a58-941383003c31"> -->
+    </script>
+
+    <title>NASDAQ</title>
+</head>
+
+
+<body>
+    <div id="app"></div>
+    <script>
+        // if ('addEventListener' in document) {
+        //     document.addEventListener('DOMContentLoaded', function() {
+        //         FastClick.attach(document.body);
+        //     }, false);
+        //     // 解决fastclick  input获取焦点Bug
+        //     FastClick.prototype.onTouchEnd = function(event) {
+        //         if (event.target.hasAttribute("type") && event.target.getAttribute("type") == "date") {
+        //             return false;
+        //         }
+        //     }
+        // }
+        // ;
+        (function() {
+            let touchStartEvent = null
+            let isMove = false
+            let touchStartTime = 0
+            let excluderTags = ['input', 'textarea']
+            document.addEventListener('touchstart', function(e) {
+                if (typeof api == 'object' && api.deviceModel.toLocaleLowerCase().indexOf('iphone') == -1 &&
+                    api.deviceModel.toLocaleLowerCase().indexOf('ipad') == -1) {
+                    return
+                }
+                touchStartEvent = e.targetTouches[0]
+                touchStartTime = Date.now()
+                isMove = false
+            }, true)
+
+            document.addEventListener('touchmove', function(e) {
+                isMove = true
+            }, true)
+
+            document.addEventListener('touchend', function(e) {
+                // time1=Date.now()
+                if (!isMove && Date.now() - touchStartTime < 200) {
+                    if (excluderTags.indexOf(touchStartEvent.target.tagName.toLocaleLowerCase()) == -1) {
+                        touchStartEvent.target.click()
+                        e.preventDefault()
+                    }
+                }
+            }, true)
+        })();
+        // // 是否显示chat
+        // let iframeChatTimer = null;
+        // // 打开/关闭 所有iframe
+        // function setIframe(dis = "none") {
+        //     // 清空之前定時器
+        //     iframeChatTimer && clearInterval(iframeChatTimer);
+        //     iframeChatTimer = setInterval(() => {
+        //         let iframes = document.getElementsByTagName("iframe");
+        //         if (iframes.length) {
+        //             for (let temp of iframes) {
+        //                 temp.style.display = dis;
+        //             }
+        //         }
+        //         if (iframes.length > 2) {
+        //             clearInterval(iframeChatTimer);
+        //             let embed = document.getElementById("launcher").contentWindow.document.getElementById(
+        //                 "Embed");
+        //             if (embed) {
+        //                 embed.addEventListener("click", setIframeStyle);
+        //             }
+        //         }
+        //     }, 100);
+        // }
+        // // 修改iframe 框架样式
+        // function setIframeStyle() {
+        //     let setStyleTimer = setInterval(() => {
+        //         let webWidgetIframe = document.getElementById("webWidget");
+        //         if (webWidgetIframe.style.top) {
+        //             clearInterval(setStyleTimer);
+        //         }
+        //         webWidgetIframe.style.height = "80vh";
+        //         webWidgetIframe.style.top = "unset";
+        //         webWidgetIframe.style.bottom = "0";
+
+        //     }, 100);
+        // }
+        // setIframe();
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+<!-- 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>ubcoin</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <script src="./static/chartTool/static/charting_library.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pako/1.0.3/pako.min.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+
+</html> -->
