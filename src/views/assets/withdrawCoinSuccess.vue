@@ -3,7 +3,7 @@
     <div class="success_bg">
       <div class="center_text size12  pad_l_15 pad_r_15">{{$t('tbcg.dzsj')}}</div>
     </div>
-    <van-cell :title="$t('dzcg.sjdz')" class="money">
+    <van-cell :title="$t('tbcg.sjdz')" class="money">
       <span slot="default" class="size15 orange_text">{{coinNum|toFixed(4)}} {{currency}}</span>
     </van-cell>
   </div>
@@ -33,7 +33,7 @@ export default {
       "setStatusBar"
     ]),
     init() {
-      this.setnavTitle(this.$t('dzcg.tbcg'));
+      this.setnavTitle(this.$t('tbtbcgcg.tbcg'));
       this.setbackRouter("");
       this.setnavBarState(true);
       this.settabBarState(false);

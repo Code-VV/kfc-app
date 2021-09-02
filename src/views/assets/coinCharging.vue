@@ -225,6 +225,8 @@ export default {
       }, 100)
     },
       ssaveAudit(){
+        // 判断账号是否冻结
+        this.changeData("Recharge")
           if(this.amount==0 || this.amount<0){
               alert(this.$t('coin.czslbn'));
               return;

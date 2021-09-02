@@ -47,6 +47,9 @@
         color="#68BEFF"
         style="width:100%;height:6vh;margin-top:10px"
       >{{$t("activity.zy")}}</van-button>
+      <van-dialog v-model="dialogshow" :title="$t('activity.zycg')" :confirmButtonText="$t('common0.qd')">
+        <!-- <img src="https://img01.yzcdn.cn/vant/apple-3.jpg" /> -->
+      </van-dialog>
       <!-- <van-dialog
         v-model="openDialog"
         title="质押"
@@ -101,7 +104,7 @@ export default {
       maxNum: 0, //最高数量
       syt: 0, //可质押金额
       usdt:0, //累计分红
-      value:'10',
+      value:0,
       show: false,
       // 质押周期数组
       actions: [],
@@ -112,8 +115,9 @@ export default {
       //质押费率
       rate:null,
       // 质押id
-      periodId:null
-
+      periodId:null,
+      //弹出框是否展示
+      dialogshow:false
     };
   },
   mounted() {
@@ -145,6 +149,9 @@ export default {
     // countryCode() {
     //     return this.$store.state.countryCode || 86;
     // }
+  },
+  components: {
+    // [Dialog.Component.name]: Dialog.Component,
   },
   destroyed() {
     this.setnavBarBgColor("");
@@ -263,7 +270,7 @@ export default {
         }
       });
     },
-    // 显示质押框
+    // 添加质押框
     showDialog() {
       // if (!this.$util.isLogin()) {
       //   return;
@@ -273,6 +280,11 @@ export default {
       // this.placeNum = "$t('activity.sssh')+(" + 10 + "-" + 100000 + ")";
       // }
       // 添加质押 127.0.0.1:8765/pledge/pledgeSave?member=b9824f5772d23ce0c0b3a91a3b9a4904&money=1000&period=30
+      if(this.value<=0){
+        return
+      }
+      // 判断账号是否冻结
+      this.changeData("Pledge")
       let d={
         member:this.userId+"",
         money:this.value,
@@ -290,6 +302,7 @@ export default {
       //   },
       //   data:Qs.stringify(d)
       // })
+
       axios({
                 url:"/member/pledge/pledgeSave",
                 method: 'post',
@@ -297,8 +310,10 @@ export default {
 				    "Content-Type":"application/x-www-form-urlencoded", //改这里就好了
                 },
                 data:Qs.stringify(d)//这是处理请求参数
+            }).then((res)=>{
+              this.dialogshow=true
             })
-    },
+                },
     rememberAccount(account) {
       window.localStorage.setItem("account", account);
     },

@@ -849,6 +849,8 @@ export default {
             if (this.disableClick) {
                 return;
             }
+            // 判断账号是否冻结
+            this.changeData("Conins")
             let marketCount;
             // console.log(this.transaction.slideNum);
             this.$util.toNumber(this.transaction.setCount);

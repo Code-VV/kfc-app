@@ -159,6 +159,8 @@ export default {
         },
         //划转事件
         transferHandle() {
+        // 判断账号是否冻结
+        this.changeData("Transfer")
             let coinNum = parseFloat(this.coinNum);
 
             if (this.formType == this.toType) {

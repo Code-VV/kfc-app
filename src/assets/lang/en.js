@@ -967,5 +967,22 @@ module.exports = {
         tbcg: 'Withdrawal successful',
         dzsj: 'The arrival time varies according to the block confirmation time. ',
         sjdz: 'Actual amount received'
+    },
+    sm: {
+        jxz: 'in progress',
+        jjks: 'coming soon',
+        yjs: 'Ended',
+        rg: 'Subscribe',
+        qx: 'Cancel',
+        qsrrgsl: 'Please enter the subscription quantity',
+        kgmsl: 'Available quantity',
+        zj: 'between',
+        rgcg: 'Subscription successful'
+    },
+    dj: {
+        jydj: 'Hello, your account has been frozen for trading, please contact online customer service for details',
+        txdj: 'Hello, your account has been frozen for trading, please contact online customer service for details',
+        tcdr: 'Hello, your account has been frozen for login, please contact online customer service for details',
+        qd: 'OK',
     }
 }

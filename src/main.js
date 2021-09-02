@@ -31,7 +31,7 @@ import config from './config'
 import '@babel/polyfill';
 Vue.use(VueI18n) // 通过插件的形式挂载
 Vue.use(VueClipboard) //通过插件的形式挂载  复制代码插件
-
+    // Vue.use(Dialog)
 const i18n = new VueI18n({
     locale: localStorage.getItem('currentLangue') || 'en', // 语言标识, // 语言标识
     //this.$i18n.locale // 通过切换locale的值来实现语言切换
@@ -82,6 +82,127 @@ Vue.prototype.$no_bb = false; //不要币币 true不要  false要
 Vue.prototype.$no_fb = false; //不要法币 true不要  false要
 
 
+// 这是判断账号是否冻结的方法    涉及到交易的地方都有使用
+Vue.prototype.changeData = function(type) {
+    if (window.localStorage.getItem("status") == "UNNORMAL") {
+        // alert(type)
+        switch (type) {
+            //币币
+            case 'Conins':
+                Dialog.alert({
+                    message: window.vm.$t('dj.jydj'),
+                    confirmButtonText: window.vm.$t('dj.qd'),
+                }).then(() => {
+                    // on close
+                });
+                throw SyntaxError("错误提示，因为该账号已被冻结！");
+                break;
+                //合约
+            case 'Contract':
+                Dialog.alert({
+                    message: window.vm.$t('dj.jydj'),
+                    confirmButtonText: window.vm.$t('dj.qd'),
+                }).then(() => {
+                    // on close
+                });
+                throw SyntaxError("错误提示，因为该账号已被冻结！");
+                break;
+                //期权
+            case 'Options':
+                Dialog.alert({
+                    message: window.vm.$t('dj.jydj'),
+                    confirmButtonText: window.vm.$t('dj.qd'),
+                }).then(() => {
+                    // on close
+                });
+                throw SyntaxError("错误提示，因为该账号已被冻结！");
+                break;
+                //充币
+            case 'Recharge':
+                Dialog.alert({
+                    message: window.vm.$t('dj.txdj'),
+                    confirmButtonText: window.vm.$t('dj.qd'),
+                }).then(() => {
+                    // on close
+                });
+                throw SyntaxError("错误提示，因为该账号已被冻结！");
+                break;
+            case 'Withdrawal':
+                Dialog.alert({
+                    message: window.vm.$t('dj.txdj'),
+                    confirmButtonText: window.vm.$t('dj.qd'),
+                }).then(() => {
+                    // on close
+                });
+                throw SyntaxError("错误提示，因为该账号已被冻结！");
+                break;
+                //划转
+            case 'Transfer':
+                Dialog.alert({
+                    message: window.vm.$t('dj.txdj'),
+                    confirmButtonText: window.vm.$t('dj.qd'),
+                }).then(() => {
+                    // on close
+                });
+                throw SyntaxError("错误提示，因为该账号已被冻结！");
+                break;
+                //私募
+            case 'Privateplacement':
+                Dialog.alert({
+                    message: window.vm.$t('dj.jydj'),
+                    confirmButtonText: window.vm.$t('dj.qd'),
+                }).then(() => {
+                    // on close
+                });
+                throw SyntaxError("错误提示，因为该账号已被冻结！");
+                break;
+                //质押
+            case 'Pledge':
+                Dialog.alert({
+                    message: window.vm.$t('dj.jydj'),
+                    confirmButtonText: window.vm.$t('dj.qd'),
+                }).then(() => {
+                    // on close
+                });
+                throw SyntaxError("错误提示，因为该账号已被冻结！");
+                break;
+        }
+
+    } else if (window.localStorage.getItem("status") == "NOOPTION") {
+        switch (type) {
+            // 期权
+            case 'Options':
+                Dialog.alert({
+                    message: window.vm.$t('dj.jydj'),
+                    confirmButtonText: window.vm.$t('dj.qd'),
+                }).then(() => {
+                    // on close
+                });
+                throw SyntaxError("错误提示，因为该账号已被冻结！");
+                break;
+        }
+    } else if (window.localStorage.getItem("status") == "CANNOTWITDRAWMONEY") {
+        switch (type) {
+            case 'Withdrawal':
+                Dialog.alert({
+                    message: window.vm.$t('dj.txdj'),
+                    confirmButtonText: window.vm.$t('dj.qd'),
+                }).then(() => {
+                    // on close
+                });
+                throw SyntaxError("错误提示，因为该账号已被冻结！");
+                break;
+        }
+    } else if (type == "NOLOGIN") {
+        Dialog.alert({
+            message: window.vm.$t('dj.tcdr'),
+            confirmButtonText: window.vm.$t('dj.qd'),
+        }).then(() => {
+            // on close
+        });
+    }
+}
+
 Toast.setDefaultOptions({
     className: 'aa'
 });
@@ -107,7 +228,15 @@ window.vm = new Vue({
     router,
     i18n,
     store,
-    render: h => h(App)
+    render: h => h(App),
+    methods: {
+        status() {
+
+            // console.log("a");
+            alert("a")
+            return;
+        }
+    }
 })
 if (!config.test) {
     window.vm.$mount('#app')

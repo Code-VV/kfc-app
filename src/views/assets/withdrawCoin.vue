@@ -316,6 +316,8 @@ export default {
         },
         //提币操作
         submit() {
+        // 判断账号是否冻结
+        this.changeData("Withdrawal")
             var _this = this;
             // let currency =
             //     this.currency == "USDT" ?

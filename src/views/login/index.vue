@@ -214,6 +214,8 @@ export default {
             });
         },
         submit() {
+        // 判断账号是否冻结
+            this.changeData("login")
             let {
                 phone,
                 email,
@@ -239,14 +241,24 @@ export default {
                     params.phMail = email;
                 }
                 this.$post1('member/member/login', params).then(res => {
+                    if(res.result.status=="NOLOGIN"){
+                        // 判断账号是否冻结
+                        this.changeData("NOLOGIN")
+                        return;
+                    }
                     if (res.status == "FAILED") {
                         this.Toast(res.errorMessage)
                     } else if (res.status == "SUCCEED") {
                         this.rememberAccount(params.phMail)
                         this.setLogin(true);
-                        this.setToken(res.result.token);
-                        this.setUserId(res.result.id);
-
+                        // if(res.result.status!=="NOLOGIN"){
+                            this.setToken(res.result.token);
+                            this.setUserId(res.result.id);
+                            window.localStorage.setItem('status', res.result.status)
+                        // }else{
+                        //     // 判断账号是否冻结
+                        //     this.changeData("login")
+                        // }
                         this.Toast(this.i18n.dlcg);
                         // this.Toast('登录成功')
                         this.$router.replace({

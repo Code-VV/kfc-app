@@ -1464,6 +1464,9 @@ export default {
         submit(n) {
             //  延时3秒点击
             if (this.isclick) {
+                // 判断账号是否冻结
+                this.changeData("Contract")
+                
                 this.isclick = false;
                 // console.log(111)
                 // 1开多 2 开空 3 平多 4平空

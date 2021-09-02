@@ -149,7 +149,8 @@ export default {
         },
         // 通过 add 来发送看涨看跌请求
         add(da){
-            // this.langs()
+        // 判断账号是否冻结
+        this.changeData("Options")
         switch (this.lang) {
                 case 'en':
                     this.lang = "en_US";

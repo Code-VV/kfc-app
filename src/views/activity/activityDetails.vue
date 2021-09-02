@@ -101,7 +101,7 @@
                 </div>
                 <div class="row">
                     <div class="label">{{$t("activity.zt")}}:</div>
-                    <div class="value">{{detail.status=="ING"?"进行中":detail.status=="WAIT"?"即将开始":"已结束"}}</div>
+                    <div class="value">{{detail.status=="ING"?$t('sm.jxz'):detail.status=="WAIT"?$t('sm.jjks'):$t('sm.yjs')}}</div>
                 </div>
                 <div class="row">
                     <div class="label">{{$t("activity.cjsj")}}:</div>
@@ -121,7 +121,7 @@
             </div>
         </div>
     </div>
-    <van-dialog v-model="openDialog" title="认购" class="dialog" show-cancel-button cancel-button-color="#ccc" confirm-button-text="认购" confirm-button-color="#fbc400" @confirm="buy">
+    <van-dialog v-model="openDialog" :title="$t('sm.rg')" class="dialog" show-cancel-button cancel-button-color="#ccc" :confirm-button-text="$t('sm.rg')" :cancelButtonText="$t('sm.qx')" confirm-button-color="#fbc400" @confirm="buy">
         <div class="dialog-content">
             <input type="Number" v-model="count" :placeholder="placeNum" class="input"/>
         </div>
@@ -212,7 +212,7 @@ export default {
                     let temp = res.result.filter(elem => elem.id == this.id);
                     if (temp.length) {
                         this.detail = temp[0];
-                        this.placeNum = "请输入认购数量("+this.detail.minNum+"-"+this.detail.maxNum+")"
+                        this.placeNum = this.$t('sm.qsrrgsl')+"("+this.detail.minNum+"-"+this.detail.maxNum+")"
                     }
                 } else {
                     this.Toast(res.errorMessage);
@@ -221,6 +221,8 @@ export default {
         },
         // 显示认购框
         showDialog(id) {
+        // 判断账号是否冻结
+        this.changeData("Privateplacement")
             if (!this.$util.isLogin()) {
                 return;
             } else {
@@ -232,7 +234,7 @@ export default {
         // 认购
         buy() {
             if (this.count < this.detail.minNum || this.count > this.detail.maxNum) {
-                 this.Toast(`可购买数量${this.detail.minNum}-${this.detail.maxNum}之间`);
+                 this.Toast(this.$t('sm.kgmsl')+`${this.detail.minNum}-${this.detail.maxNum}`+this.$t('sm.zj'));
                 return;
             }
             this.$util.showLoading();
@@ -243,7 +245,7 @@ export default {
             }).then(res => {
                 this.Toast.clear();
                 if (res.status === "SUCCEED") {
-                    this.Toast("认购成功");
+                    this.Toast(this.$t('sm.rgcg'));
                 } else {
                     this.Toast(res.errorMessage);
                 }
