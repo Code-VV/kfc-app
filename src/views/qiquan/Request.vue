@@ -128,8 +128,9 @@ export default {
             // let nowtime = new Date()
               let data={
                 //  开始到现在经过了多久d
-                 time:60-(Date.parse(new Date())-(res.data[0].openTime))/1000,
+                 time:this.closeTimeGap-(Date.parse(new Date())-(res.data[0].openTime))/1000,
              }
+             console.log("a");
              return data
          });
         },
@@ -270,7 +271,7 @@ export default {
             }
             console.log("a");
             return axios({
-                url:"/option/order/history?symbol=BTC/USDT&pageNo=0&pageSize=10",
+                url:"/option/order/history?symbol="+this.trade+"&pageNo=0&pageSize=10",
                 method: 'get',
                 // headers:{
 				// "Content-Type":"application/x-www-form-urlencoded" //改这里就好了
@@ -304,7 +305,7 @@ export default {
     watch:{
         // 控制时间倒计时，倒计时为0的时候 发送请求获取历史订单 并且重置时间
         Time:function(){
-            if(this.Time===-1){
+            if(this.Time===0){
                 this.Time=this.closeTimeGap
 
                 this.History().then((res)=>{
@@ -314,6 +315,14 @@ export default {
                 this.Balances=res.balance
                 console.log(res.balance);
                 })
+            }
+            if(this.Time<0){
+            this.opening(data).then((res) => {
+                // 开始了多久
+                this.Time=res.time
+                // console.log(res.time,"!!!!!!!!!!!!!!!");
+                
+        });
             }
         }
         }

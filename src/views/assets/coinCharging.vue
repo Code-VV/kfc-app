@@ -56,7 +56,10 @@ v-clipboard:error="onError" -->
         <!-- <van-field v-model.trim="fromAddress" center clearable :label="i18n.dz" :placeholder="i18n.myNdcbdzPlaceholder"></van-field> -->
         <span class="Font">{{$t('add.qscpz')}}</span>
         <div class="addressPic">
-          <img class="img" v-if="imgshow" :src="img" alt="">
+          <div v-if="imgshow" class="boxpzimg">
+            <img class="pzimg" :src="img" alt="" @click="showbigimg()">
+            <van-popup v-model="bigImgShow"><img class="pzimg" :src="img" alt=""></van-popup>
+          </div>
           <van-uploader v-else :after-read="afterRead" />
           <!-- <img :src="" alt=""> -->
         </div>
@@ -105,6 +108,7 @@ import {
 import assetItem from '../../components/assetItem'
 import vueQr from 'vue-qr'
 import axios from "../../axios/index";
+import { ImagePreview } from 'vant';
 export default {
   components: {
     assetItem,
@@ -115,6 +119,8 @@ export default {
     return {
       //上传成功后显示对应的图片
       imgshow:false,
+      //大图是否展示
+      bigImgShow:false,
       //上传成功后返回img地址
       img:null,
       // 显示大图
@@ -205,6 +211,10 @@ export default {
                 console.log("!!!!!!!!!!!!!");
             })
             console.log(this.img);
+    },
+    showbigimg(){
+      console.log("s");
+      this.bigImgShow=true
     },
     //拷贝成功
     onCopy(){
@@ -587,5 +597,19 @@ export default {
             width: 300px;
             height: 300px;
         }
+    }
+    .boxpzimg{
+      width: 300px;
+      height: 200px;
+    }
+    .pzimg{
+      width: 100%;
+      height: 100%;
+      // width: 300px;
+      // height: 200px;
+    }
+    .bigpz{
+      width: 100%;
+      height: 100%;
     }
 </style>

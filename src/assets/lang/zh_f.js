@@ -488,6 +488,7 @@ module.exports = {
         Invitation_code: "邀請碼",
         Read_and_agree: "已閱讀並同意",
         User_Registration_Agreement: "《用戶註冊協議》",
+        Switchlanguage: '切換語言',
     },
     //谷歌驗證器
     googleAuthenticator: {

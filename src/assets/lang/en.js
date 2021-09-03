@@ -423,7 +423,8 @@ module.exports = {
         enter_invitation_code: 'Please enter the invitation code (optional)',
         Invitation_code: 'Invitation Code',
         Read_and_agree: 'Have read and agreed',
-        User_Registration_Agreement: 'User Registration Agreement'
+        User_Registration_Agreement: 'User Registration Agreement',
+        Switchlanguage: 'Switch language',
     },
     googleAuthenticator: {
         InstallVerifier: 'Install Verifier',
@@ -578,8 +579,8 @@ module.exports = {
         mhy: 'second contract',
         kyye: 'Balance',
         kcsj: 'Time',
-        kz: 'Bullish',
-        kd: 'Bearish',
+        kz: 'buy',
+        kd: 'sell',
         qxdr: 'Please login first',
         zwsj: 'No data',
         kcje: 'Open amount',

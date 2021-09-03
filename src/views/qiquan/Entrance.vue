@@ -46,7 +46,7 @@ export default {
       
   },
   created(){
-      console.log("进入改路由!!!!!!");
+    //   console.log("进入改路由!!!!!!");
       axios.post("/option/coin/coin-list").then((res)=>{
           this.currencys=res.data
           console.log(res);

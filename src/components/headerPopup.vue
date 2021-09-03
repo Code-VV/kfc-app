@@ -85,8 +85,13 @@
                 />-->
                             <span class="copyText">{{userId}}</span>
                         </div>
-                        <button class="copyUid" data-clipboard-action="copy" data-clipboard-target="#target" v-if="userId" @click="copythat(userId)"></button>
-                        <button class="copyUid" v-else></button>
+                        <!-- <button class="copyUid" data-clipboard-action="copy" data-clipboard-target=".pad_r_8" v-if="userId" @click="copythat(userId)"></button>
+                        <button class="copyUid" v-else></button> -->
+                        
+                    <button class="copyUid" v-clipboard="userId"
+                        v-clipboard:success="clipboardSuccessHandler" 
+                        v-clipboard:error="clipboardErrorHandler">
+                </button>
                         <!-- <img
                 class="wid10 hei11 inline a_center"
                 src="./../../src/assets/images/user/uid.png"
@@ -204,11 +209,10 @@ import {
     mapActions,
     mapMutations
 } from "vuex";
-
 export default {
     props: {},
     components: {
-        shareBox
+        shareBox,
     },
     data() {
         return {
@@ -315,6 +319,15 @@ export default {
                     }
                 }
             );
+        },
+        clipboardSuccessHandler(){
+            // alert("f")
+            // Dialog.alert({
+            //     message: '弹窗内容',
+            //     }).then(() => {
+                // on close
+            // });
+            this.Toast(this.$t('coin.fzcg'));
         },
         closed(type) {
             this.$emit("closeHeadPopup");

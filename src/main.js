@@ -29,6 +29,7 @@ import VueI18n from 'vue-i18n'
 import global from './api/global'
 import config from './config'
 import '@babel/polyfill';
+Vue.use(Dialog)
 Vue.use(VueI18n) // 通过插件的形式挂载
 Vue.use(VueClipboard) //通过插件的形式挂载  复制代码插件
     // Vue.use(Dialog)

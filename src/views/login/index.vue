@@ -1,5 +1,6 @@
 <template>
 <div class="login a_title" id='login'>
+    <div class="Switchlanguage" @click="changeLogin()">{{$t('login.Switchlanguage')}}</div>
     <div class="logo pad_l_r_60 a_center size16 c222">
         <div class="logo_img">
             <img src="./../../assets/images/logo.png" alt="">
@@ -164,6 +165,11 @@ export default {
             // }
 
         }, // 初始化页面
+        changeLogin(){
+        this.$router.push({
+          path: `/langue`,
+        });
+        },
         sec(n) {
             this.index = n
         },
@@ -292,7 +298,13 @@ export default {
         color: #333;
 
     }
-
+    .Switchlanguage{
+        float: right;
+        padding-right: 10px;
+        position: relative;
+        // top: -10px;
+        // z-index: 10;
+    }
     .title {
         margin-top: 30px;
         height: 40px;
