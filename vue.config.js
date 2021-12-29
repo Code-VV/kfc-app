@@ -14,16 +14,17 @@ module.exports = {
     devServer: {
         open: true,
         host: '0.0.0.0',
-        port: 8080,
+        port: 8089,
         https: false,
         hotOnly: false,
         proxy: {
             // 设置代理
             '/api': {
                 //target: 'https://api.sytog.me/', //线上SYTOG',
-                 target: 'http://127.0.0.1:8760/', //本地测试',
+                target: 'http://192.168.1.115:8765', //本地测试',
+                //target: 'http://192.168.1.115:8760', //本地测试',
                 ws: true,
-                changeOrigin: true,
+                changeOrigin: false,
                 pathRewrite: {
                     '^/api': ''
                 }

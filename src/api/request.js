@@ -1,8 +1,17 @@
 import axios from '../axios';
-import Qs from 'qs'
+import Qs from 'qs';
+//Vue.http.headers.common['token'] = ff2d9ba0b706429ba1d91b54c0c55cef;
 export function Get(url, params) {
+
     return axios.get(url, {
         params
+    },
+    {
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded", //改这里就好了
+            'token':this.$store.state.token,
+            'userId':this.$store.state.userId
+        }
     });
     // return new Promise(function (resolve, reject) {
     //     // 提交JSON数据
@@ -91,7 +100,9 @@ export function Post2(url, data) {
 export function Post3(url, data) {
     return axios.post(url, data, {
         headers: {
-            "Content-Type": "application/x-www-form-urlencoded" //改这里就好了
+            "Content-Type": "application/x-www-form-urlencoded", //改这里就好了
+            'token':this.$store.state.token,
+            'userId':this.$store.state.userId
         },
     });
 }

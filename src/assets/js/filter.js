@@ -145,7 +145,7 @@ let SubString1 = (val, n) => {
         return SubString(val, n);
     } else if (val < 100000000) {
         // (parseFloat(val) / 10000).toFixed(n)
-        val = SubString(parseFloat(val) / 10000, n) + '万'
+        val = SubString(parseFloat(val) , n) + ''
         return val;
     } else {
         // val = (parseFloat(val) / 100000000).toFixed(n) + '亿'

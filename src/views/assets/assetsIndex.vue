@@ -198,12 +198,12 @@ export default {
 <style lang="scss">
 .assets {
     .van-tabs__line {
-        background-color: #fbc400;
+        background-color: #39BB97;
         height: 2px;
     }
 
     .van-tab--active {
-        color: #fbc400;
+        color: #39BB97;
     }
 }
 </style><style lang="scss" scoped>

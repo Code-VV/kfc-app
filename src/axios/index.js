@@ -8,7 +8,8 @@ import config from '../config'
 axios.defaults.baseURL = config.baseURL;
 
 axios.defaults.headers['Content-Type'] = 'application/json';
-
+// axios.defaults.headers['token'] = 'ff2d9ba0b706429ba1d91b54c0c55cef';
+// axios.defaults.headers['userId'] = '44efcf605afad2f820da8ca9e007fdf6';
 // 响应拦截
 axios.interceptors.response.use((res) => {
     setTimeout(() => {
@@ -30,7 +31,7 @@ axios.interceptors.response.use((res) => {
                 window.localStorage.removeItem('userId');
                 window.localStorage.removeItem('token');
                 store.dispatch('setLogin', false);
-                Toast(window.vm.$t('xylj.drgq'))
+                // Toast(window.vm.$t('xylj.drgq'))
                 store.dispatch('setShowHeadPopup', false);
                 setTimeout(() => {
                     router.push('/login');
@@ -53,11 +54,11 @@ axios.interceptors.response.use((res) => {
             window.localStorage.removeItem('token');
 
             store.dispatch('setLogin', false);
-            Toast(window.vm.$t('xylj.drgq'))
+            // Toast(window.vm.$t('xylj.drgq'))
             store.dispatch('setShowHeadPopup', false);
-            setTimeout(res => {
-                router.push('/login');
-            }, 500)
+            // setTimeout(res => {
+            //     router.push('/login');
+            // }, 500)
             break;
         default:
             // Toast('服务器异常，请稍后重试')

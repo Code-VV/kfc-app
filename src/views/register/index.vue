@@ -41,7 +41,7 @@
         </van-cell-group>
 
         <div class="btn pad_t_60">
-            <van-button @click="submit" style="width:100%;background-color:#fbc400;font-weight:400;" type="info">{{i18n.zc}}</van-button>
+            <van-button @click="submit" style="width:100%;background-color:#499C7A;font-weight:400;" type="info">{{i18n.zc}}</van-button>
         </div>
 
         <div class="size11 a_center pad_t_30 flex-center">
@@ -92,7 +92,7 @@
         </van-cell-group>
 
         <div class="btn pad_t_60">
-            <van-button @click="submit" style="width:100%;background-color:#fbc400" type="info">{{i18n.zc}}</van-button>
+            <van-button @click="submit" style="width:100%;background-color:#499C7A" type="info">{{i18n.zc}}</van-button>
         </div>
 
         <div class="size11 a_center pad_t_30">
@@ -203,7 +203,7 @@ export default {
             return this.$t("form");
         },
         countryCode() {
-            return this.$store.state.countryCode || 1;
+            return this.$store.state.countryCode || 86;
         }
     },
     methods: {
@@ -425,7 +425,7 @@ export default {
 
 .register .van-picker__cancel,
 .register .van-picker__confirm {
-    color: #fbc400 !important;
+    color: #499C7A !important;
 }
 </style><style lang="scss" scoped>
 @import '@/assets/scss/theme.scss';
@@ -455,7 +455,7 @@ export default {
         line-height: 40px;
 
         .bottom1 {
-            border-bottom: 2px solid $blue;
+            border-bottom: 2px solid #499C7A;
             position: absolute;
             width: 40px;
             left: 0;

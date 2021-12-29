@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <img src="../../assets/images/home/helpDetail1.png" alt class="wid00"/>
   </div>
 </template>

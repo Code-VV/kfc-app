@@ -16,7 +16,7 @@
         </div>
 
         <div class="btn mar_t_60" @click="submit">
-            <van-button style="width:100%;background-color:#fbc400" type="info">{{$t('add.wc')}}</van-button>
+            <van-button style="width:100%;background-color:#499C7A" type="info">{{$t('add.wc')}}</van-button>
         </div>
 
         <div class="size12 c_red pad_t_20">{{$t('add.xgmmh')}}</div>

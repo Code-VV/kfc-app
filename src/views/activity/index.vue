@@ -1,36 +1,53 @@
 <template>
-  <div class="activity container_common1">
-    <header class="header" :style="{ paddingTop: safeTop+'px',height:46+safeTop+'px'}">
+  <div class="activity">
+    <header
+      class="header"
+      :style="{ paddingTop: safeTop + 'px', height: 46 + safeTop + 'px' }"
+    >
       <div class="header_custom">
         <div class="left font1">
-          <span class="nav-title">{{$t("activity.hd")}}</span>
+          <span class="nav-title">{{ $t("activity.hd") }}</span>
         </div>
         <div class="right c444" @click="toViewLogin">
-          {{$t("activity.smjr")}}
-          <van-icon name="notes-o" size="20px" style="margin-top:-5px" />
+          <van-icon name="notes-o" size="20px" style="margin-top: -5px" />
         </div>
       </div>
     </header>
-    <div class="nav">
+    <img src="@/assets/images/activity/banner.png" alt="" class="banner" />
+    <div
+      class="list"
+      v-for="(v, k) in dataList"
+      :key="k"
+      @click="xiangqing(v.id, v.currencyName)"
+    >
+      <img src="@/assets/images/activity/t.png" alt="" />
+      <span class="span1">{{ v.currencyName }}</span>
+      <div>
+        <p class="p1">{{ i18n.zgkd }}</p>
+        <p class="p2">{{ v.timeF * 100 + ".00%" }}</p>
+      </div>
+    </div>
+
+    <!-- <div class="nav">
       <van-row gutter="100" class="accountBox">
         <van-col span="4">
-          <div class="items" style="color:#FBC400;font-size:15px">
+          <div class="items" style="color:#39BB97;font-size:15px">
             {{$t("activity.sm")}}
-            <!-- <i class="borders"></i> -->
           </div>
         </van-col>
+        
         <van-col span="4">
           <div class="items" @click="goMortgage" style="font-size:15px">
             {{$t("activity.zy")}}
             <i class="borders"></i>
           </div>
         </van-col>
-        <!-- <van-col span="5">
+        <van-col span="5">
           <div class="items" @click="goRedeem">
             赎回
             <i class="borders"></i>
           </div>
-        </van-col>-->
+        </van-col>
       </van-row>
     </div>
     <div class="nav">
@@ -69,8 +86,8 @@
           </div>
         </van-col>
       </van-row>
-    </div>
-    <mescroll-vue ref="mescroll" :down="mescrollDown" class="content" @init="mescrollInit">
+    </div> -->
+    <!-- <mescroll-vue ref="mescroll" :down="mescrollDown" class="content" @init="mescrollInit">
       <div
         class="item"
         v-for="item in dataList"
@@ -80,7 +97,7 @@
         <img :src="item.projectImg" class="img" />
         <div class="bottom">
           <div class="title c000">{{item.projectName}}</div>
-          <!-- <div class="desc">{{item.projectName}}</div>
+          <div class="desc">{{item.projectName}}</div>
                 <div class="thumbs-up">
                     <van-slider v-model="slider" bar-height="10px" active-color="#fbc400">
                         <template #button>
@@ -91,14 +108,14 @@
                         <img src="../../assets/images/activity/dz.png" class="img" />
                         <div class="count">333</div>
                     </div>
-          </div>-->
+          </div>
           <div class="percentage">
             <div class="name c111">USDT(ERC20)</div>
             <van-slider
               class="slider"
               :value="(item.nowNum/item.sumNum)*100"
               bar-height="10px"
-              active-color="#fbc400"
+              active-color="#39BB97"
             >
               <template #button>
                 <div></div>
@@ -109,14 +126,13 @@
         </div>
       </div>
       <div class="footer c111">{{$t("activity.mygd")}}</div>
-    </mescroll-vue>
+    </mescroll-vue> -->
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
 export default {
-  name: "activity",
   computed: {
     ...mapState(["nowThemeInfo"]),
     safeTop() {
@@ -138,13 +154,14 @@ export default {
       mescrollDown: {
         offset: 46,
         callback: this.downCallback,
-        textInOffset:this.$t('add.xlsx'),
-        textOutOffset:this.$t('add.sfgx'),
-        textLoading:this.$t('add.jzz'),
+        textInOffset: this.$t("add.xlsx"),
+        textOutOffset: this.$t("add.sfgx"),
+        textLoading: this.$t("add.jzz"),
         auto: false, //是否在初始化完毕之后自动执行下拉回调callback; 默认true
       }, //下拉刷新的配置. (如果下拉刷新和上拉加载处理的逻辑是一样的,则mescrollDown可不用写了)
     };
   },
+
   activated() {
     this.init();
     // document.body.addEventListener(
@@ -156,6 +173,7 @@ export default {
     //   { passive: false }
     // );
   },
+  created() {},
   deactivated() {},
   methods: {
     ...mapActions([
@@ -177,11 +195,16 @@ export default {
       this.settabBarState(true);
       this.setnavBarArrow(false);
       this.setCurrency("");
-      this.getPeList();
       if (this.nowThemeInfo !== "night-theme") {
         document.querySelector(".nav-title").style.color = "#323233";
       } else {
         document.querySelector(".nav-title").style.color = "#fff";
+      }
+      if (this.$store.state.token != "") {
+        this.$get("/entrust/arbirtage/getWealth", {}).then((res) => {
+          console.log(res);
+          this.dataList = res.result.wList;
+        });
       }
     },
     // 去质押
@@ -213,15 +236,7 @@ export default {
       }); //要执行的脚本字符串
     },
     // 获取列表
-    getPeList() {
-      this.$get(`/otc/ieo/peList?status=${this.curType}`).then((res) => {
-        if (res.status === "SUCCEED") {
-          this.dataList = res.result;
-        } else {
-          this.Toast(res.errorMessage);
-        }
-      });
-    },
+
     //切换
     switchTab(type) {
       // console.log(1);
@@ -242,7 +257,15 @@ export default {
         this.$router.push("/activityHistory");
       }
     },
-
+    xiangqing(v, k) {
+      this.$router.push({
+        path: "/activityDetails",
+        query: {
+          id: v,
+          name: k,
+        },
+      });
+    },
     // mescroll组件初始化的回调,可获取到mescroll对象
     mescrollInit(mescroll) {
       this.mescroll = mescroll; // 如果this.mescroll对象没有使用到,则mescrollInit可以不用配置
@@ -262,7 +285,7 @@ export default {
 
 .activity {
   @include base-background();
-
+  font-family: "JDZY";
   .dialog {
     .dialog-content {
       width: 100%;
@@ -279,7 +302,48 @@ export default {
       }
     }
   }
-
+  .banner {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5px;
+  }
+  .list {
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    margin-top: 10px;
+    background-color: #1f2630;
+    width: 92%;
+    height: 75px;
+    .span1 {
+      line-height: 75px;
+      margin-right: 90px;
+      font-size: 20px;
+      color: #fff;
+    }
+    .p1 {
+      margin-right: 20px;
+      margin-top: 18px;
+      font-size: 14px;
+      color: #999999;
+      height: 13px;
+    }
+    .p2 {
+      margin-right: 20px;
+      margin-top: 13px;
+      font-size: 18px;
+      color: #ffffff;
+      width: 85px;
+      overflow: hidden;
+    }
+    img {
+      width: 65px;
+      height: 65px;
+      margin-top: 5px;
+      margin-left: 5px;
+    }
+  }
   .content {
     width: 100vw !important;
     height: calc(100vh - 180px);
@@ -346,7 +410,7 @@ export default {
         height: 40px;
         line-height: 40px;
         text-align: center;
-        background-color: #fbc400;
+        background-color: #39bb97;
         color: #fff;
         border-radius: 5px;
       }
@@ -394,10 +458,10 @@ export default {
       }
 
       .cur {
-        color: #fbc400;
+        color: #39bb97;
 
         .borders {
-          background: #fbc400;
+          background: #39bb97;
         }
       }
     }
@@ -448,5 +512,8 @@ export default {
       }
     }
   }
+}
+.nav-title {
+  color: #fff;
 }
 </style>

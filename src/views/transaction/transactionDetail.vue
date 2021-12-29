@@ -410,12 +410,12 @@ export default {
 <style lang="scss">
 .transactionDetail {
     .van-tabs__line {
-        background-color: #fbc400;
+        background-color: #499C7A;
         height: 2px;
     }
 
     .van-tab--active {
-        color: #fbc400;
+        color: #499C7A;
     }
 
     .submit {
@@ -465,7 +465,7 @@ export default {
 
     .van-button--info {
         color: #fff;
-        background-color: #fbc400;
+        background-color: #499C7A;
         border: 1px solid transparent;
     }
 }

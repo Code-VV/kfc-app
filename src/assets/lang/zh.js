@@ -18,12 +18,37 @@ module.exports = {
         tip12: "http版本不支持该请求",
         tip13: "连接服务器失败"
     },
+    // 神兽
+    shens:{
+        hzz:'合资者',
+        hyzh:'好友账号',
+        fz:'复制',
+        yqm:"我的邀请码",
+        yqlj:'我的邀请链接',
+        jysxf:'交易手续费',
+        jl:'好友奖励提成',
+        dqhysm:'当前好友数目',
+        yrz:'已认证',
+        jysxf:'交易手续费',
+        hyjyjc:'好友奖励加成',
+        tlhy:'认证套利好友',
+        wzzd:'王者之巅',
+        zjzd:'终极之巅',
+        bhwz:'白虎王者',
+        bj:'铂金',
+        hj:'黄金',
+        by:'白银',
+        qt:'青铜',
+        shens:'神兽',
+        pt:'普通',
+    },
     // 通用
     common: {
+     
         home: "首页",
-        Markets: "行情",
+        Markets: "现货",
         trading: "交易",
-        activity: "活动",
+        activity: "赚币",
         balance: "资产",
         my: "我的",
         deposit: "充币",
@@ -77,7 +102,7 @@ module.exports = {
     },
     // 首页
     home: {
-        kjmb: "客服咨询",
+        kjmb: "帮助中心",
         zhbz: "支持24H在线",
         kscb: "快速充币",
         bzzx: "快速提币",
@@ -89,6 +114,14 @@ module.exports = {
         zfb: "涨幅榜",
         cjeb: "成交额榜",
         xbb: "新币榜",
+        shens:'神兽',
+        cz:'充值',
+        niux:'牛熊大战',
+        sd:'闪兑',
+        jy:"交易",
+        hxtl:'环形套利',
+        qihuo:'期货',
+        gg:'公告'
     },
     // 设置
     seeting: {
@@ -103,30 +136,37 @@ module.exports = {
     },
     // 右侧弹窗
     headerPopup: {
+        qhhl:'切换汇率',
         yhm: "用户名",
         djdl: "点击登录",
-        hyld: "欢迎来到NASDAQ",
+        hyld: "欢迎来到KFC",
         cb: "充币",
         tb: "提币",
         hz: "划转",
         sfrz: "身份认证",
-        zhzx: "账户中心",
-        szzx: "设置中心",
+        zhzx: "安全中心",
+        szzx: "设置",
         skfs: "收款方式",
-        kfzx: "客服咨询",
+        kfzx: "帮助中心",
         bzzx: "帮助中心",
         gywm: "关于我们",
         fxyy: "分享应用",
         yqzc: "邀请注册",
+        qihuo:'期货',
+        niux:'牛熊大战',
+        shens:'神兽',
+        aqzx:'安全中心',
     },
     // 行情
     quotes: {
+        sc:'自选',
         hq: "行情",
         bb: "币币",
         hy: "合约",
         mc: "名称",
         zxj: "最新价",
         zdf: "涨跌幅",
+        z24h:'成交量'
     },
     // 交易
     transaction: {
@@ -218,7 +258,7 @@ module.exports = {
         tb: "提币",
         hz: "划转",
         bb: "币币",
-        hy: "合约",
+        hy: "期货",
         fb: "法币",
         ct: "充提",
         qt: "其他",
@@ -280,7 +320,7 @@ module.exports = {
 
 
         czslbn: '充值数量不能低于0或者等于0',
-        qsrczdz: '请输人充值地址',
+        qsrczdz: '请上传凭证',
         sqcg: '申请成功',
         sqsb: '申请失败',
     },
@@ -300,7 +340,7 @@ module.exports = {
         wjmm: "忘记密码",
         qsryx: "请输入邮箱",
         yx: "邮箱",
-        hmyzhyzc: "还没有Nasdap账号？赶快去手机pc",
+        hmyzhyzc: "还没有KFC账号？赶快去",
         qsrzqdyxgs: "请输入正确的邮箱格式",
         dlcg: "登录成功",
         yzm: "验证码",
@@ -311,7 +351,7 @@ module.exports = {
         qsryqm: "请输入邀请码（选填）",
         yydbty: "已阅读并同意",
         yhzcxy: "《用户注册协议》",
-        yjyzhydl: "已经有NASDAQ账号？赶快去",
+        yjyzhydl: "已经有KFC账号？赶快去",
         qsryxgs: "请输入正确的邮箱格式",
         qsryzmgs: "请输入正确的验证码格式",
         qzcsrmm: "请再次输入密码",
@@ -423,7 +463,7 @@ module.exports = {
     },
     // 账户中心
     accountCenter: {
-        title: "账户中心",
+        title: "安全中心",
         phone: "手机",
         mail: "邮箱",
         login_password: "登录密码",
@@ -592,6 +632,11 @@ module.exports = {
     },
     //活动
     activity: {
+        qb:'全部',
+        qrtl:'确认套利',
+        yjsy:'预计收益',
+        zrsy:'昨日总收益',
+        ljsy:'累计总收益',
         xmxq: '项目详情',
         ks: '开始',
         js: '结束',
@@ -617,7 +662,7 @@ module.exports = {
         sl: '数量',
         ze: '总额',
 
-        hd: '活动',
+        hd: '赚币',
         smjr: '私募记录',
         sm: '私募',
         zy: '质押',
@@ -647,13 +692,23 @@ module.exports = {
         zyzq: '质押周期',
         zyll: '质押利率',
         zysl: '质押数量',
-        t: '天'
+        t: '天',
+        zgkd:'最高可达',
+        lj:'累计收益',
+        qj:'期间',
+        tlzl:'套利总量',
+        zdtlzl:'最低套利总量',
+        jysj:'交易时间',
+        z:'至',
+        tldd:'赚币订单',
+        ky:'可用',
+        jxfs:'计息方式'
 
     },
     //期权
     qiquan: {
-        qiquan: "期权",
-        mhy: '秒合约',
+        qiquan: "牛熊大战",
+        mhy: '牛熊大战',
         kyye: '可用余额',
         kcsj: '开仓时间',
         kz: '看涨',
@@ -664,6 +719,7 @@ module.exports = {
         ycfx: '预测方向',
         ycjg: '预测结果',
         jjsl: '奖金数量',
+        gmsj: '购买时间',
     },
     //交易密码
     jymm: {
@@ -672,7 +728,7 @@ module.exports = {
         qrmm: '确认交易密码',
         zcsrmm: '请再次输入密码',
         szjymm: '设置交易密码',
-        fbzjmm: '法币资金密码',
+        fbzjmm: '资金密码',
         wsz: '未设置',
         qxg: '去修改',
     },
@@ -788,15 +844,9 @@ module.exports = {
         wdqbdz: '我的钱包地址',
         tjsh: '提交审核'
     },
-    quotes: {
-        l24h: '24H量',
-        hy: '合约',
-        bb: '币币',
-        yx: '永续'
-    },
     //密码设置
     mima: {
-        fbzjmm: '法币资金密码',
+        fbzjmm: '资金密码',
         szjymm: '设置交易密码',
         jymm: '交易密码',
         qsr6: '请输入6位数字字符',
@@ -806,7 +856,7 @@ module.exports = {
     },
     //帮助中心
     kef: {
-        kfzx: '客服咨询',
+        kfzx: '帮助中心',
         zhaq: '账户安全',
         cht: '充币和提币',
         jyxg: '交易相关',
@@ -909,7 +959,7 @@ module.exports = {
         zyj: '* 只有将资产划转到对应账户才可进行交易。账户间的划转不收取 手续费。',
         ctzh: '充提账户',
         bbzh: '币币账户',
-        hyzh: '合约账户',
+        hyzh: '期货账户',
         fbzh: '法币账户',
         bnxt: '转出账户和转入账户不能相同',
         qsrhz: '请输入划转金额',
@@ -1013,6 +1063,8 @@ module.exports = {
         gm: '购买',
         cs: '出售',
         gg: '公告',
+        qhhl:'切换汇率',
+        qhcg:'切换成功',
         ymm: '原密码',
         qsrymm: '请输入原密码',
         xmm: '新密码',

@@ -259,7 +259,7 @@
                     </div>
                 </div>
             </van-tab>
-        </van-tabs>
+        
     </div>
     <!-- 合约 -->
     <!-- <footer v-show="type=='contract'" class="footersBox" :style="{ paddingBottom: safeBottom+'px'}">
@@ -726,12 +726,12 @@ $white: #fff;
     }
 
     .van-tabs__line {
-        background-color: #fbc400;
+        background-color: #499C7A;
         height: 2px;
     }
 
     .van-tab--active {
-        color: #fbc400;
+        color: #499C7A;
     }
 
     .van-row {
@@ -954,8 +954,8 @@ $white: #fff;
 
             &.cur {
                 transition: border 1s;
-                border-bottom: 2px solid #fbc400;
-                color: #fbc400;
+                border-bottom: 2px solid #499C7A;
+                color: #499C7A;
                 font-weight: bold;
             }
 

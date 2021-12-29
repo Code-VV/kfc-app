@@ -1,6 +1,6 @@
 <template>
 <div class="trade-view-comp cont-box relative">
-    <div v-show="isk" id="trade-view-root"></div>
+    <div v-show="isk" id="chart-markup-table-view-root"></div>
 </div>
 </template>
 
@@ -12,9 +12,9 @@ import Datafeeds from "./../assets/myDatafeeds";
 export default {
     name: "kline-comp",
     computed: {
-        // klineSymbol() {
-        //   return this.$util.getSession("pairsName") || "UB/UCT"; // 根据交易对重新绘制K线，动态赋值
-        // },
+        klineSymbol() {
+          return this.$util.getSession("pairsName") || "UB/UCT"; // 根据交易对重新绘制K线，动态赋值
+        },
     },
     components: {
 

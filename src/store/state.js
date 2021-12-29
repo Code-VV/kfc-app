@@ -24,7 +24,7 @@ const state = {
     statusBar: window.localStorage.getItem('theme') == "night" ? 'light' : 'dark', //状态栏颜色，默认白色背景黑字
     // statusBar: 'light', //状态栏颜色，默认白色背景黑字
     countryName: '', //国家名字
-    countryCode: 1, //国家码
+    countryCode: 86, //国家码
     isShowHeadPopup: false, //首页弹框
     payType: '', //支付方式
 
@@ -32,5 +32,7 @@ const state = {
     // nowThemeInfo: 'night-theme',
     themes: ['default', 'night'], //所有主题
     resetUserinfo: 0, //调个人信息
+    qh:true,
+    xz:false
 }
 export default state

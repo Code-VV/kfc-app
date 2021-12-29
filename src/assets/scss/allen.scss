@@ -1,10 +1,10 @@
 // 全局颜色
-$blue:#fbc400; // 宽 高 行高 最小高
+$blue:#38BB96; // 宽 高 行高 最小高
 $red:#E8054C;
 $green:#38BB96;
 $fff6:rgba(255, 255, 255, 0.6);
 $color_day:#fff; //白天背景色值
-$color_night:#272A3F; // 夜晚背景色值
+$color_night:#171E28; // 夜晚背景色值
 // 白天
 .day_style {
     .defaultBg {
@@ -23,7 +23,7 @@ $color_night:#272A3F; // 夜晚背景色值
         }
     }
     .van-switch--on {
-        background-color: #fbc400 !important;
+        background-color: #38BB96 !important;
         .van-switch__node {
             background-color: #fff !important;
         }
@@ -89,7 +89,7 @@ $color_night:#272A3F; // 夜晚背景色值
         margin-right: -15px;
     }
     .bg_tabbar {
-        background-color: $color_day
+        background-color: #1C2530
     }
     // 头部
     .header_bg_style {
@@ -113,7 +113,7 @@ $color_night:#272A3F; // 夜晚背景色值
         color: #fff9
     }
     .c_blue {
-        color: $blue
+        color: #499C7A
     }
     .c_green {
         color: #38BB96
@@ -146,7 +146,7 @@ $color_night:#272A3F; // 夜晚背景色值
         color: #777
     }
     .c888 {
-        color: #888
+        color:#1C2530
     }
     .c999 {
         color: #999
@@ -212,7 +212,7 @@ $color_night:#272A3F; // 夜晚背景色值
         }
     }
     .van-switch--on {
-        background-color: #fbc400 !important;
+        background-color: #499C7A !important;
         .van-switch__node {
             background-color: #fff !important;
         }
@@ -248,7 +248,7 @@ $color_night:#272A3F; // 夜晚背景色值
         color: #fff
     }
     .bg_exit_btn {
-        background: #272A3F
+        background: #171E28
     }
     .bg_bg {
         background: $color_night;
@@ -281,13 +281,13 @@ $color_night:#272A3F; // 夜晚背景色值
     .darkLine {
         height: 6px;
         // background: #0f1d30e6;
-        background: rgb(39, 46, 72);
+        background: #1e2633;
         margin-left: -15px;
         margin-right: -15px;
     }
     .bg_tabbar {
         //底部菜单
-        background-color: rgba(15, 29, 48, .9);
+        background-color: #1C2530;
     }
     // 头部
     .header_bg_style {
@@ -308,7 +308,7 @@ $color_night:#272A3F; // 夜晚背景色值
         color: #fff9
     }
     .c_blue {
-        color: $blue
+        color: #499C7A
     }
     .c_green {
         color: #38BB96
@@ -536,7 +536,7 @@ $color_night:#272A3F; // 夜晚背景色值
 // vant 组件修改
 // 1.van-tabs 底部颜色
 .van-tabs__line {
-    background-color: #fbc400 !important
+    background-color: #499C7A !important
 }
 
 // 2. title  固定

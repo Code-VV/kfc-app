@@ -96,7 +96,6 @@ let wsBus = window.wsBus = new Vue({
 
             } catch (err) {
                 console.error(' >> buy error:', err)
-
             }
 
             // sell列表
@@ -112,7 +111,6 @@ let wsBus = window.wsBus = new Vue({
                     }
                 })
                 if (openup.length > 0) {
-
                     openup = openup.slice(0, 200);
                     openup = openup.sort((a, b) => {
                         return a.price - b.price

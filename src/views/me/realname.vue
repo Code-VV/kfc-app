@@ -404,8 +404,8 @@ export default {
     }
 
     .van-button--info {
-        background: #fbc400;
-        border: 1px solid #fbc400;
+        background: #499C7A;
+        border: 1px solid #499C7A;
     }
 
     .uploadgroup {
@@ -435,7 +435,7 @@ export default {
         display: flex;
         align-items: center;
         font-size: 14px;
-        color: #444444;
+       color: rgba(255, 255, 255, 0.8);
         padding: 12px 0;
 
         .leftIcon {

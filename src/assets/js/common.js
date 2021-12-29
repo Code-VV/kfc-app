@@ -144,26 +144,26 @@ util.confirmPer = function(perm, name) {
         var has = api.hasPermission({
             list: [perm]
         });
-        if (!has || !has[0] || !has[0].granted) {
-            //    api.confirm({
-            //         title: '提醒',
-            //         msg: '没有获得' + name + '权限,是否前往设置？',
-            //         buttons: [去设置, 存储]
-            //     }, function (ret, err) {
-            //         if (1 == ret.buttonIndex) {
-            //             util.reqPermission(perm);
-            //         }
-            //     });
-            Dialog.confirm({
-                title: '提醒',
-                message: '没有获得' + name + '权限,是否前往设置？',
-            }).then(() => {
-                util.reqPermission(perm);
-            }).catch(() => {
-
-            });
-            return false;
-        }
+        // if (!has || !has[0] || !has[0].granted) {
+        //     //    api.confirm({
+        //     //         title: '提醒',
+        //     //         msg: '没有获得' + name + '权限,是否前往设置？',
+        //     //         buttons: [去设置, 存储]
+        //     //     }, function (ret, err) {
+        //     //         if (1 == ret.buttonIndex) {
+        //     //             util.reqPermission(perm);
+        //     //         }
+        //     //     });
+        //     Dialog.confirm({
+        //         title: '提醒',
+        //         message: '没有获得' + name + '权限,是否前往设置？',
+        //     }).then(() => {
+        //         util.reqPermission(perm);
+        //     }).catch(() => {
+        //
+        //     });
+        //     return false;
+        //  }
         return true;
     }
     //设置权限

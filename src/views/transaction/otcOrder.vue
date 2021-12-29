@@ -192,12 +192,12 @@ export default {
       font-size: 15px;
     }
     .van-tabs__line {
-      background-color: #fbc400;
+      background-color: #499C7A;
       height: 2px;
       width: 37px !important;
     }
     .van-tab--active {
-      color: #fbc400;
+      color: #499C7A;
     }
     .van-hairline--top-bottom::after {
       border: none;

@@ -2,7 +2,7 @@
 // 默认主题
 $default-theme: ( base-color: #fff, border-color: #fff);
 //夜晚主题
-$night-theme: ( base-color: #272A3F, border-color:#272A3F);
+$night-theme: ( base-color: #171E28, border-color:#171E28);
 //定义映射集合
 $themes: ( default-theme: $default-theme, night-theme: $night-theme);
 @mixin base-background() {
@@ -18,7 +18,7 @@ $themes: ( default-theme: $default-theme, night-theme: $night-theme);
 // 默认主题
 $default-theme-sec: ( base-color: #fff, border-color: #fff);
 //夜晚主题
-$night-theme-sec: ( base-color: #272e48, border-color:#272e48);
+$night-theme-sec: ( base-color: #1E2633 , border-color:#1E2633 );
 //定义映射集合
 $themes1: ( default-theme: $default-theme-sec, night-theme: $night-theme-sec);
 @mixin base-background-second() {
@@ -49,7 +49,7 @@ $themes2: ( default-theme: $default-theme-serch, night-theme: $night-theme-serch
 //  设置页码背景
 $default-theme-exit: ( base-color: #f8f7fd, border-color: #f8f7fd);
 //夜晚主题
-$night-theme-exit: ( base-color: #272e48, border-color:#272e48);
+$night-theme-exit: ( base-color: #1E2633 , border-color:#1E2633 );
 //定义映射集合
 $themes4: ( default-theme: $default-theme-exit, night-theme: $night-theme-exit);
 @mixin base-background-exit() {

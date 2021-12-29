@@ -5,7 +5,7 @@
       <van-cell class="bor_b" v-if="isRenzhang">
         <span slot="title" class="size15 font1 c222">{{$t('sfrz.sfrz')}}</span>
         <div slot="default" class="flex align_center flex_end" v-if="isRenzhang">
-          <img src="../../assets/images/user/sures.png" alt srcset class="wid14 hei14 mar_r_5" />
+          <img src="../../assets/images/home/invitationIcon9.png" alt srcset class="wid14 hei14 mar_r_5" />
           <span class="c_blue font1">{{$t('sfrz.yrz')}}</span>
         </div>
       </van-cell>
@@ -31,7 +31,7 @@
           <div slot="default" class="font1 c222 flex align_center flex_end">
             <span>{{userInfo.uuid}}</span>
             <div class="pad_l_5 pad_t_b_5" @click="copythat(userInfo.uuid)">
-              <img src="../../assets/images/user/fuzhi.png" alt srcset class="wid11 hei12" />
+             
             </div>
           </div>
         </van-cell>
@@ -41,8 +41,8 @@
         </van-cell>
       </div>
       <div class="c999" v-else>
-        <div class="mar_t_15">{{$t('sfrz.cjrzhtx')}}</div>
-        <div class="mar_t_12">{{$t('sfrz.cjrzhhd')}}</div>
+        <!-- <div class="mar_t_15">{{$t('sfrz.cjrzhtx')}}</div>
+        <div class="mar_t_12">{{$t('sfrz.cjrzhhd')}}</div> -->
       </div>
     </div>
     <!-- 这个空的div不知道是干嘛用的 -->
@@ -64,8 +64,8 @@
         </div>
       </van-cell>
       <div class="size14 c999">
-        <div class="mar_t_15">{{$t('sfrz.gjrzh')}}</div>
-        <div class="mar_t_12">{{$t('sfrz.gjrztx')}}</div>
+        <!-- <div class="mar_t_15">{{$t('sfrz.gjrzh')}}</div>
+        <div class="mar_t_12">{{$t('sfrz.gjrztx')}}</div> -->
       </div>
     </div>
     <div class="items pad_b_15 size14" v-else>
@@ -77,8 +77,8 @@
         </div>
       </van-cell>
       <div class="size14 c999">
-        <div class="mar_t_15">{{$t('sfrz.gjrzh')}}</div>
-        <div class="mar_t_12">{{$t('sfrz.gjrztx')}}</div>
+        <!-- <div class="mar_t_15">{{$t('sfrz.gjrzh')}}</div>
+        <div class="mar_t_12">{{$t('sfrz.gjrztx')}}</div> -->
       </div>
     </div>
     <!-- <div @click="cs()">按钮</div> -->
@@ -200,8 +200,8 @@ export default {
     border-top: 0;
   }
   .van-button--info {
-    background: #fbc400;
-    border: 1px solid #fbc400;
+    background: #499C7A;
+    border: 1px solid #499C7A;
   }
 }
 </style>

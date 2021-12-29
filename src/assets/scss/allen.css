@@ -3,7 +3,7 @@
 }
 
 .day_style .focuseLine {
-    background: #272A3F;
+    background: #171E28;
 }
 
 .day_style .van-cell:not(:last-child)::after {
@@ -19,7 +19,7 @@
 }
 
 .day_style .van-switch--on {
-    background-color: #fbc400 !important;
+    background-color: #499C7A; !important;
 }
 
 .day_style .van-switch--on .van-switch__node {
@@ -68,7 +68,7 @@
 }
 
 .day_style .van-number-keyboard .van-key {
-    color: #272A3F;
+    color: #171E28;
 }
 
 .day_style .bg_exit_btn {
@@ -111,7 +111,7 @@
 }
 
 .day_style .bg_blue {
-    background-color: #fbc400;
+    background-color: #499C7A;
 }
 
 .day_style .bg_bg {
@@ -127,7 +127,7 @@
 }
 
 .day_style .c_blue {
-    color: #fbc400;
+    color: #499C7A;
 }
 
 .day_style .c_green {
@@ -171,7 +171,7 @@
 }
 
 .day_style .c888 {
-    color: #888;
+    color: #1C2530;
 }
 
 .day_style .c999 {
@@ -227,7 +227,7 @@
 }
 
 .night_style .van-number-keyboard {
-    background: #272A3F;
+    background: #171E28;
 }
 
 .night_style .van-number-keyboard .van-key {
@@ -235,7 +235,7 @@
 }
 
 .night_style .van-number-keyboard .van-key--gray {
-    background: #272A3F;
+    background: #171E28;
 }
 
 .night_style .van-switch {
@@ -247,7 +247,7 @@
 }
 
 .night_style .van-switch--on {
-    background-color: #fbc400 !important;
+    background-color: # !important;
 }
 
 .night_style .van-switch--on .van-switch__node {
@@ -267,7 +267,7 @@
 }
 
 .night_style .van-cell-group {
-    background-color: #272A3F;
+    background-color: #171E28;
 }
 
 .night_style .van-icon-arrow-left:before {
@@ -275,7 +275,7 @@
 }
 
 .night_style .van-password-input__security li {
-    background: #272A3F;
+    background: #171E28;
 }
 
 .night_style .stepItem .span {
@@ -287,25 +287,25 @@
 }
 
 .night_style .van-button--default {
-    background: #272A3F;
+    background: #171E28;
     color: #fff;
 }
 
 .night_style .bg_exit_btn {
-    background: #272A3F;
+    background: #171E28;
 }
 
 .night_style .bg_bg {
-    background: #272A3F;
+    background: #171E28;
 }
 
 .night_style .van-cell {
-    background: #272A3F;
+    background: #171E28;
     color: rgba(225, 225, 225, 0.8);
 }
 
 .night_style .van-action-sheet__cancel {
-    background-color: #272A3F;
+    background-color: #171E28;
 }
 
 .night_style .van-action-sheet__cancel::before {
@@ -313,7 +313,7 @@
 }
 
 .night_style .van-action-sheet__item {
-    background-color: #272A3F;
+    background-color: #171E28;
 }
 
 .night_style .van-action-sheet {
@@ -325,8 +325,7 @@
 }
 
 .night_style .van-tabs__nav {
-    background-color: #272A3F;
-}
+    background-color: #171E28
 
 .night_style .van-tab {
     color: #fff;
@@ -334,17 +333,17 @@
 
 .night_style .darkLine {
     height: 6px;
-    background: #272e48;
+    background: #1E2633  !important;
     margin-left: -15px;
     margin-right: -15px;
 }
 
 .night_style .bg_tabbar {
-    background-color: rgba(15, 29, 48, 0.9);
+    background-color:#1C2530;
 }
 
 .night_style .header_bg_style {
-    background-color: #272A3F;
+    background-color: #171E28
 }
 
 .night_style .bg_ededed {
@@ -352,7 +351,7 @@
 }
 
 .night_style .bg_blue {
-    background-color: #fbc400;
+    background-color: #499C7A;;
 }
 
 .night_style .bg_fff {
@@ -364,7 +363,7 @@
 }
 
 .night_style .c_blue {
-    color: #fbc400;
+    color: #499C7A;
 }
 
 .night_style .c_green {

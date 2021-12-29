@@ -104,7 +104,7 @@ module.exports = {
     // 右侧弹窗
     headerPopup: {
         clickLogin: 'Click to Login', //点击登录 
-        wecome: 'Welcome to NASDAQ', // 欢迎来到NASDAQ
+        wecome: 'Welcome to KFC', // 欢迎来到NASDAQ
         Deposit: 'Deposit', // 
         Withdraw: 'Withdraw', // 提币
         Transfer: 'Transfer', // 划转

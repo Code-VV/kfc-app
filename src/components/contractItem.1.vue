@@ -957,7 +957,7 @@ export default {
     .btn{
       width:60px;
       height:25px;
-      border:1px solid #fbc400;
+      border:1px solid #499C7A;
       border-radius:3px;
       text-align: center;
       line-height: 25px;

@@ -240,9 +240,9 @@ export default {
       justify-content: center;
       position: relative;
       &.cur {
-        color: #fbc400;
+        color: #499C7A;
         .borders {
-          background: #fbc400;
+          background: #499C7A;
           transition: all 0.5s;
         }
       }

@@ -21,7 +21,7 @@ module.exports = {
     // 通用
     common: {
         home: "首頁",
-        Markets: "行情",
+        Markets: "現貨",
         trading: "交易",
         activity: "活動",
         balance: "資產",
@@ -77,6 +77,7 @@ module.exports = {
     },
     // 首頁
     home: {
+        shens:'神獸',
         kjmb: "客服咨詢",
         zhbz: "支持24H在線",
         kscb: "快速充幣",
@@ -89,6 +90,13 @@ module.exports = {
         zfb: "漲幅榜",
         cjeb: "成交額榜",
         xbb: "新幣榜",
+        cz:'充值',
+        niux:'牛熊大戰',
+        sd:'閃兌',
+        jy:'交易',
+        hxtl:'環形套利',
+        qihuo:'期貨',
+        gg:'公告'
     },
     // 設置
     seeting: {
@@ -103,9 +111,10 @@ module.exports = {
     },
     // 右側彈窗
     headerPopup: {
+        qhhl:'切換匯率',
         yhm: "用戶名",
         djdl: "點擊登錄",
-        hyld: "歡迎來到NASDAQ",
+        hyld: "歡迎來到KFC",
         cb: "充幣",
         tb: "提幣",
         hz: "劃轉",
@@ -118,15 +127,21 @@ module.exports = {
         gywm: "關於我們",
         fxyy: "分享應用",
         yqzc: "邀請註冊",
+        qihuo:'期貨',
+        niux:'牛熊大戰',
+        shens:'神獸',
+        aqzx:'安全中心'
     },
     // 行情
     quotes: {
+        sc:'自选',
         hq: "行情",
         bb: "幣幣",
         hy: "合約",
         mc: "名稱",
         zxj: "最新價",
         zdf: "漲跌幅",
+        z24h:'成交量'
     },
     // 交易
     transaction: {
@@ -218,7 +233,7 @@ module.exports = {
         tb: "提幣",
         hz: "劃轉",
         bb: "幣幣",
-        hy: "合約",
+        hy: "期貨",
         fb: "法幣",
         ct: "充提",
         qt: "其他",
@@ -300,7 +315,7 @@ module.exports = {
         wjmm: "忘記密碼",
         qsryx: "請輸入郵箱",
         yx: "郵箱",
-        hmyzhyzc: "還沒有Nasdap賬號？趕快去手機pc",
+        hmyzhyzc: "還沒有KFC賬號？趕快去",
         qsrzqdyxgs: "請輸入正確的郵箱格式",
         dlcg: "登錄成功",
         yzm: "驗證碼",
@@ -360,7 +375,30 @@ module.exports = {
         enter_password: "請輸入密碼",
 
     },
-
+ // 神兽
+ shens:{
+    hzz:'合資者',
+    hyzh:'好友賬號',
+    fz:'復製',
+    yqm:"我的邀請碼",
+    yqlj:'我的邀請鏈接',
+    jysxf:'交易手續費',
+    jl:'好友獎勵提成',
+    dqhysm:'當前好友數目',
+    yrz:'已認證',
+    jysxf:'交易手續費',
+    hyjyjc:'好友獎勵加成',
+    tlhy:'認證套利好友',
+    wzzd:'王者之巅',
+    zjzd:'王者之巔',
+    bhwz:'白虎王者',
+    bj:'鉑金',
+    hj:'黃金',
+    by:'白銀',
+    qt:'青銅',
+    shens:'神獸',
+    pt:'普通',
+},
 
     //提示語
     toast: {
@@ -592,6 +630,10 @@ module.exports = {
     },
     //活動
     activity: {
+        qb:'全部',
+        qrtl:'確認套利',
+        yjsy:'預計收益',
+        zdtlzl:'最低套利總量',
         xmxq: '項目詳情',
         ks: '開始',
         js: '結束',
@@ -617,7 +659,7 @@ module.exports = {
         sl: '數量',
         ze: '總額',
 
-        hd: '活動',
+        hd: '賺幣',
         smjr: '私募記錄',
         sm: '私募',
         zy: '質押',
@@ -647,13 +689,24 @@ module.exports = {
         zyzq: '質押周期',
         zyll: '質押利率',
         zysl: '質押數量',
-        t: '天'
-
+        t: '天',
+        zgkd:'最高可達',
+        zwsy:'暫無收益',
+        zrsy:'昨日總收益',
+        ljsy:'累計總收益',
+        lj:'累計收益',
+        qj:'期間',
+        tlzl:'套利總量',
+        jysj:'交易時間',
+        z:'至',
+        tldd:'套利訂單',
+        ky:'可用',
+        jxfs:'計息方式'
     },
     //期權
     qiquan: {
         qiquan: "期權",
-        mhy: '秒合約',
+        mhy: '牛熊大戰',
         kyye: '可用余額',
         kcsj: '開倉時間',
         kz: '看漲',
@@ -787,12 +840,6 @@ module.exports = {
         qsrczsl: '請輸入錢包數量',
         wdqbdz: '我的錢包地址',
         tjsh: '提交審核'
-    },
-    quotes: {
-        l24h: '24H量',
-        hy: '合約',
-        bb: '幣幣',
-        yx: '永續'
     },
     //密碼設置
     mima: {
@@ -1013,6 +1060,8 @@ module.exports = {
         gm: '購買',
         cs: '出售',
         gg: '公告',
+        qhhl:'切換匯率',
+        qhcg:'切換成功',
         ymm: '原密碼',
         qsrymm: '請輸入原密碼',
         xmm: '新密碼',

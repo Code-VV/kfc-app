@@ -46,9 +46,18 @@ const mutations = { // 对象里挂载的是一些方法
     setPairsName2(state, PairsName) {
         state.pairsName2 = PairsName
     }, // 设置 当前交易对
-
-
-
+    // 收藏
+    sc(state, PairsName) {
+        if (state.sc) {
+            state.sc = false
+        } else {
+            state.sc = true
+        }
+    },
+    // 切换汇率
+    huilv(state, aaa) {
+        state.qh = aaa
+    },
     setnavBarBgColor(state, bgColor) { // 设置NavBar背景色
         state.bgColor = bgColor;
     },

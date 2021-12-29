@@ -497,7 +497,7 @@ export default {
 
             .copy {
                 font-size: 11px;
-                color: #fbc400;
+                color: #499C7A;
                 background: transparent;
                 padding: 0;
             }

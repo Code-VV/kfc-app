@@ -1,6 +1,7 @@
 <template>
 <div class="quotesDetail">
     <!-- header -->
+ 
     <header class="headers flex header_custom" :style="{ paddingTop: safeTop+'px'}">
         <div class="left_icon absolute">
             <van-icon name="arrow-left" @click="back()" />
@@ -28,10 +29,10 @@
             :class="currentCoinInfo.updown>0?'green_text':currentCoinInfo.updown<0?'orange_text':'dark_text'"
           >{{currentCoinInfo.nowPrice|toFixed(4)}}</h3>-->
                 <h3 class="h3" :class="currentCoinInfo.updown>0?'green_text':currentCoinInfo.updown<0?'orange_text':'dark_text'">{{currentCoinInfo_nowPrice|toFixed(6)}}</h3>
-                <p class="p">
-                    ≈ ¥ {{currentCoinInfo.chPrice|SubStringZreo(2)}}
+                <!-- <p class="p"> -->
+                    <!-- ≈ ¥ {{currentCoinInfo.chPrice|SubStringZreo(2)}} -->
                     <span :class="currentCoinInfo.updown>0?'green_text':currentCoinInfo.updown<0?'orange_text':'dark_text'">{{currentCoinInfo.updown*100|toFixedRate(2)}}%</span>
-                </p>
+                <!-- </p> -->
             </div>
             <ul class="item item2 bold">
                 <li class="quotationData">
@@ -712,12 +713,12 @@ $white: #fff;
     }
 
     .van-tabs__line {
-        background-color: #fbc400;
+        background-color: #169E78 !important;
         height: 2px;
     }
 
     .van-tab--active {
-        color: #fbc400;
+        color: #169E78;
     }
 
     .van-row {
@@ -940,8 +941,8 @@ $white: #fff;
 
             &.cur {
                 transition: border 1s;
-                border-bottom: 2px solid #fbc400;
-                color: #fbc400;
+                border-bottom: 2px solid #169E78;
+                color: #169E78;
                 font-weight: bold;
             }
 

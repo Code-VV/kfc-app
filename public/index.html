@@ -16,25 +16,25 @@
     <!-- <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=39cb9799-422b-4595-9a58-941383003c31"> -->
     </script>
 
-    <title>NASDAQ</title>
+    <title>11</title>
 </head>
 
 
 <body>
     <div id="app"></div>
     <script>
-        // if ('addEventListener' in document) {
-        //     document.addEventListener('DOMContentLoaded', function() {
-        //         FastClick.attach(document.body);
-        //     }, false);
-        //     // 解决fastclick  input获取焦点Bug
-        //     FastClick.prototype.onTouchEnd = function(event) {
-        //         if (event.target.hasAttribute("type") && event.target.getAttribute("type") == "date") {
-        //             return false;
-        //         }
-        //     }
-        // }
-        // ;
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+            // 解决fastclick  input获取焦点Bug
+             FastClick.prototype.onTouchEnd = function(event) {
+                if (event.target.hasAttribute("type") && event.target.getAttribute("type") == "date") {
+                    return false;
+                }
+            }
+        }
+        ;
         (function() {
             let touchStartEvent = null
             let isMove = false

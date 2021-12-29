@@ -1,6 +1,6 @@
 <template>
 <div id="NavBar" :style="{ paddingTop: safeTop+'px'}">
-    
+ 
     <van-nav-bar :title="navTitle" left-text right-text :left-arrow="isleftarrow" @click-left="onClickLeft" @click-right="onClickRight" :class="[bgColor||isNight=='night-theme'?'whiteIcons':'darkIcons']" class="headers">
         <div class="pad_r_15" v-if="isShowRight" slot="right">
             <img :src="bgColor||isNight=='night-theme'?require('../assets/images/home/xq_1.png'):require('../assets/images/home/xq.png')" alt srcset class="rightIcons" />
@@ -76,8 +76,8 @@ export default {
             } else { //根据当前 白天黑夜模式改变
 
                 if (this.isNight == 'night-theme') { //黑夜模式
-                    document.querySelector("#NavBar").style.backgroundColor = "#272A3F";
-                    document.querySelector(".van-nav-bar").style.backgroundColor = "#272A3F";
+                    document.querySelector("#NavBar").style.backgroundColor = "#171E28";
+                    document.querySelector(".van-nav-bar").style.backgroundColor = "#171E28";
                     document.querySelector(".van-nav-bar__title").style.color = "#fff";
                 } else { //白天模式
                     document.querySelector("#NavBar").style.backgroundColor = "#fff";

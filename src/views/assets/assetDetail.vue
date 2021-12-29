@@ -260,7 +260,7 @@ export default {
 <style lang="scss">
 .assetsDetail {
   .van-cell__value--alone {
-    color: #fbc400;
+    color: #39BB97;
     font-weight: 500;
     font-size: 16px;
   }

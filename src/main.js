@@ -3,6 +3,8 @@ import './plugins/axios'
 import App from './App.vue'
 import router from './router'
 import store from './store/index'
+import '@/assets/text/text.css'
+
 // 复制插件
 import VueClipboard from 'vue-clipboard2'
 
@@ -34,7 +36,7 @@ Vue.use(VueI18n) // 通过插件的形式挂载
 Vue.use(VueClipboard) //通过插件的形式挂载  复制代码插件
     // Vue.use(Dialog)
 const i18n = new VueI18n({
-    locale: localStorage.getItem('currentLangue') || 'en', // 语言标识, // 语言标识
+    locale: localStorage.getItem('currentLangue') || 'zh_f', // 语言标识, // 语言标识
     //this.$i18n.locale // 通过切换locale的值来实现语言切换
     messages: {
         'zh': require('./assets/lang/zh.js'), // 中文语言包
@@ -68,11 +70,11 @@ Vue.prototype.Dialog = Dialog
 Vue.prototype.$util = commons
 Vue.prototype.$hub = window.MV = new Vue();
 // 白天黑夜颜色值 主色调
-Vue.prototype.$bg_night = '#272A3F'
+Vue.prototype.$bg_night = '#171E28'
 Vue.prototype.$bg_day = '#fff'
 
 // 白天黑夜颜色值 副色调
-Vue.prototype.$bg_night_second = '#272e48'
+Vue.prototype.$bg_night_second = '#1E2633 '
 Vue.prototype.$bg_day_second = '#fff'
 Vue.prototype.$GLOBAL = global;
 

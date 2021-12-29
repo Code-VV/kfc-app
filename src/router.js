@@ -89,12 +89,12 @@ let routes = [{
         name: 'aboutAgreement',
         component: loadView('me/aboutAgreement'),
     },
-	 {
+    {
         path: '/otc365agreement', //365协议
         name: 'otc365agreement',
         component: loadView('transaction/otc365agreement'),
     },
-	
+
     {
         path: '/invitation', //邀请
         name: 'invitation',
@@ -104,6 +104,16 @@ let routes = [{
         path: '/helpCenter', //帮助中心
         name: 'helpCenter',
         component: loadView('me/helpCenter')
+    },
+    {
+        path: '/shenshou', //神兽
+        name: 'shenshou',
+        component: loadView('shenshou/index'),
+
+        meta: {
+            showTabbar: true
+        }
+
     },
     {
         path: '/helpCenterDetail1', //帮助中心新手攻略详情
@@ -189,7 +199,7 @@ let routes = [{
         meta: {
             keepAlive: true // 需要被缓存
         }
-    },{
+    }, {
         path: '/transaction/transactionFabi1', //法币交易
         name: 'transactionFabi1',
         component: loadView('transaction/transactionFabi1'),
@@ -214,6 +224,11 @@ let routes = [{
         meta: {
             keepAlive: true // 需要被缓存
         }
+    },
+    {
+        path: '/huilv', //商户协议
+        name: 'huilv',
+        component: loadView('huilv/huilv'),
     },
     {
         path: '/merchantAgreement', //商户协议
@@ -255,14 +270,14 @@ let routes = [{
         component: loadView('mortgage/mortgage'),
     },
     {
-        path:'/mort_record', //质押记录
-        name:'mortRecord',
-        component:loadView('mortgage/record')
+        path: '/mort_record', //质押记录
+        name: 'mortRecord',
+        component: loadView('mortgage/record')
     },
     {
-        path:'/redeem_record', //赎回记录
-        name:'redeemRecord',
-        component:loadView('redeem/record')
+        path: '/redeem_record', //赎回记录
+        name: 'redeemRecord',
+        component: loadView('redeem/record')
     },
     {
         path: '/activityDetails', //活动详情

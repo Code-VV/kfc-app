@@ -265,13 +265,13 @@ export default {
         }
 
         .btns {
-            color: $blue;
+            color: #38bb96;
             display: block;
             min-width: 60px;
             text-align: center;
             padding: 2px 4px;
             border-radius: 3px;
-            border: 1px solid $blue
+            border: 1px solid#38bb96
                 /*no*/
             ;
         }

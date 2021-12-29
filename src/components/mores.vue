@@ -246,4 +246,7 @@ export default {
     }
   }
 }
+.span{
+  color: #fff;
+}
 </style>

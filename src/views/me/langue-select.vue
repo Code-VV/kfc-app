@@ -47,7 +47,7 @@ export default {
         let current = window.localStorage.getItem('currentLangue');
         let lange = '';
         if (current == null) {
-            lange = 'en'
+            lange = 'zh'
         } else {
             lange = current;
         }
@@ -74,11 +74,12 @@ export default {
             "setnavBarArrow"
         ]),
         selLangue(item, i) {
+            console.log(item,i);
             if (item.active) {
                 return
             }
             let cun = item.lang;
-            // console.log(cun);
+            console.log(cun);
             this.list.forEach(ele => {
                 ele.active = false
             })
@@ -114,5 +115,9 @@ export default {
         align-items: center
     }
 
+}
+.hei14{
+    width: 18px;
+    height: 12.5px;
 }
 </style>

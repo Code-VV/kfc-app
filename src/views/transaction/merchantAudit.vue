@@ -310,8 +310,8 @@ export default {
 .payBox {
     .van-button--info {
         color: #fff;
-        background-color: #fbc400;
-        border: 1px solid #fbc400;
+        background-color: #499C7A;
+        border: 1px solid #499C7A;
     }
 }
 </style><style lang="scss" scoped>

@@ -522,12 +522,12 @@ export default {
     }
 
     .van-tabs__line {
-        background-color: #fbc400;
+        background-color: #499C7A;
         height: 2px;
     }
 
     .van-tab--active {
-        color: #fbc400;
+        color: #499C7A;
     }
 
     .submit {
@@ -600,8 +600,8 @@ export default {
 
     .van-button--info {
         color: #fff;
-        background-color: #fbc400;
-        border: 1px solid #fbc400;
+        background-color: #499C7A;
+        border: 1px solid #499C7A;
     }
 }
 </style><style lang="scss" scoped>
@@ -644,10 +644,10 @@ export default {
                 justify-content: center;
 
                 &.cur {
-                    color: #fbc400;
+                    color: #499C7A;
 
                     .borders {
-                        background: #fbc400;
+                        background: #499C7A;
                     }
                 }
 

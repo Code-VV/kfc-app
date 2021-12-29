@@ -41,8 +41,8 @@ export default {
   font-size: 12px;
 }
 .noconnet .refresh {
-  border: 1px solid #fbc400;
-  color: #fbc400;
+  border: 1px solid #499C7A;
+  color: #499C7A;
   font-size: 13px;
   height: 26px;
   line-height: 26px;

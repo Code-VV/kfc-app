@@ -259,7 +259,7 @@ export default {
         line-height: 50px;
         text-align: center;
         color: #fff;
-        background-color: #fbc400;
+        background-color: #499C7A;
         font-size: 16px;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;

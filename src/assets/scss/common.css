@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .bg_blue {
-    background-color: #fbc400;
+    background-color: #499C7A;
 }
 
 .bg_fff {
@@ -8,7 +8,7 @@
 }
 
 .c_blue {
-    color: #fbc400;
+    color: #499C7A;
 }
 
 .c_green {
@@ -52,7 +52,7 @@
 }
 
 .c888 {
-    color: #888;
+    color: #1C2530
 }
 
 .c999 {
@@ -5404,7 +5404,7 @@
 }
 
 .hei56 {
-    height: 56px;
+    height: 50px;
 }
 
 .minhei56 {
@@ -19364,7 +19364,7 @@
 }
 
 .van-tabs__line {
-    background-color: #fbc400 !important;
+    background-color: #169E78 !important;
 }
 
 img {
@@ -19388,7 +19388,7 @@ button {
 
 .darkLine {
     height: 6px;
-    background: #f8f7fd;
+    background: #1E2633;
     margin-left: -15px;
     margin-right: -15px;
 }
@@ -19410,7 +19410,7 @@ button {
 }
 
 .blue_text {
-    color: #fbc400;
+    color: #499C7A;
 }
 
 .green_bg {

@@ -29,10 +29,10 @@
             :class="currentCoinInfo.updown>0?'green_text':currentCoinInfo.updown<0?'orange_text':'dark_text'"
           >{{currentCoinInfo.nowPrice|toFixed(4)}}</h3>-->
                 <h3 class="h3" :class="currentCoinInfo.updown>0?'green_text':currentCoinInfo.updown<0?'orange_text':'dark_text'">{{currentCoinInfo_nowPrice|toFixed(6)}}</h3>
-                <p class="p">
-                    ≈ ¥ {{currentCoinInfo.chPrice|SubStringZreo(2)}}
+                <!-- <p class="p"> -->
+                    <!-- ≈ ¥ {{currentCoinInfo.chPrice|SubStringZreo(2)}} -->
                     <span :class="currentCoinInfo.updown>0?'green_text':currentCoinInfo.updown<0?'orange_text':'dark_text'">{{currentCoinInfo.updown*100|toFixedRate(2)}}%</span>
-                </p>
+                <!-- </p> -->
             </div>
             <ul class="item item2 bold">
                 <li class="quotationData">
@@ -186,7 +186,7 @@ export default {
             //选中数量
             selectQuantity:100,
             //使用货币
-            currency:'USTD',
+            currency:'USDT',
             //当前交易对
             trade:'',
 
@@ -315,7 +315,7 @@ export default {
             // }
             // name = this.$store.state.pairsName2;
             //记录
-            this.currentName = "BTC/USTD";
+            this.currentName = "BTC/USDT";
 
             clearInterval(this.timer);
             // this.getCoinInfo(name);
@@ -337,6 +337,12 @@ export default {
         switching(){
             alert("点击！")
         }
+    },
+     updated(){
+        setTimeout(() => {
+            this.$router.go(0)
+        }, 120000);
+        
     },
     mounted() {
         this.init();
@@ -618,15 +624,17 @@ div.Quantity{
     display: flex;
 }
 div.qiquan div.Quantity button{
-    width: 100px;
-    height: 50px;
+    width: 52px;
+    height: 25px;
     margin: 20px 0;
     border: 1px solid rgba(94, 88, 86, 0.753);
     background:#12192d;
+    border-radius: 5px;
 }
 div.qiquan div.Quantity button.selectQuantity{
-    border: 1px solid rgb(241, 223, 55);
-    color: rgb(241, 223, 55);
+    border: 1px solid #39BB97;
+    color: #fff;
+    background-color: #39BB97;
 }
 div.qiquan div.kc{
     text-align: center;
@@ -682,12 +690,12 @@ div.qiquan div.zd_btn button.kand{
     }
 
     .van-tabs__line {
-        background-color: #fbc400;
+        background-color: #499C7A;
         height: 2px;
     }
 
     .van-tab--active {
-        color: #fbc400;
+        color: #499C7A;
     }
 
     .van-row {
@@ -910,8 +918,8 @@ div.qiquan div.zd_btn button.kand{
 
             &.cur {
                 transition: border 1s;
-                border-bottom: 2px solid #fbc400;
-                color: #fbc400;
+                border-bottom: 2px solid #499C7A;
+                color: #499C7A;
                 font-weight: bold;
             }
 

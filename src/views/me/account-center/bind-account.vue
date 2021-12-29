@@ -11,7 +11,7 @@
         </van-cell-group>
 
         <div class="btn mar_t_100" @click="submit">
-            <van-button style="width:100%;background-color:#fbc400" type="info">{{$t("form.Next_step")}}</van-button>
+            <van-button style="width:100%;background-color:#499C7A" type="info">{{$t("form.Next_step")}}</van-button>
         </div>
     </div>
 

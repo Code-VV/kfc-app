@@ -19,7 +19,7 @@ module.exports = {
     },
     common: {
         home: 'Home',
-        Markets: 'Quotes',
+        Markets: 'Stock',
         trading: 'Trading',
         activity: 'Activity',
         balance: 'Assets',
@@ -73,7 +73,44 @@ module.exports = {
         MiningPools: 'Mining Pools',
         Cancel: 'Cancel'
     },
+    //神兽
+    shens:{
+        hzz:'Joint Venture',
+        hyzh:'Friends Account',
+        fz:'Copy',
+        yqm:"Invitation Code",
+        yqlj:'Invitation Link',
+        jysxf:'Transaction Fees',
+        jl:'FRC',
+        dqhysm:'Number of Current Friends',
+        yrz:'Verified',
+        hyjyjc:'FRC',
+        tlhy:'CAF',
+        wzzd:'Top Kings',
+        zjzd:'Ultim King',
+        bhwz:'White  King',
+        bj:'Platinum',
+        hj:'Gold',
+        by:'Silver',
+        qt:'Bronze',
+        shens:'Mythical Beast',
+        pt:'Ordi',
+    },
+    // 首页
     home: {
+        jy:"transaction",
+        hxtl:'Ring Arbitrage',
+        qihuo:'Futures',
+        gg:'Notice',
+        sd:'Flash Redemption',
+        niux:'TBandBF',
+        shens:'Mythical Beast',
+        cz:'Recharge',
+
+
+
+
+
         kjmb: "CSD",
         zhbz: "24H online",
         kscb: "Quick Deposit",
@@ -82,7 +119,7 @@ module.exports = {
         zxj: "Latest Price",
         zxjCNY: "Latest Price (CNY)",
         xjl24h: "24H Volume",
-        zdf: "Rise and fall",
+        zdf: "Rise fall",
         zfb: "Increase List",
         cjeb: "Sale List",
         xbb: "New Currency List",
@@ -97,10 +134,12 @@ module.exports = {
         greeUp: 'Green rises and reds fall',
         redUp: 'Red up and green down'
     },
+    //右侧弹窗
     headerPopup: {
+        qhhl:'Switch exchange rate',
         yhm: 'Username',
         djdl: 'Click to log in',
-        hyld: 'Welcome to NASDAQ',
+        hyld: 'Welcome to KFC',
         cb: 'Recharge',
         tb: 'Withdrawal',
         hz: 'Transfer',
@@ -112,15 +151,21 @@ module.exports = {
         bzzx: 'Help Center',
         gywm: 'About Us',
         fxyy: 'Share App',
-        yqzc: 'Invite to register'
+        yqzc: 'Invite to register',
+        niux:'The Bull and Bear Fight',
+        shens:'Mythical Beast',
+        qihuo:'Futures',
+        aqzx:'Security Center',
     },
     quotes: {
+        sc:'Optional',
         hq: 'Quotes',
         bb: 'Coins',
         hy: 'Contract',
         mc: 'Name',
         zxj: 'Latest Price',
-        zdf: 'Rise and fall'
+        zdf: 'Rise fall',
+        z24h:'Vol',
     },
     transaction: {
         jy: 'Transaction',
@@ -521,6 +566,23 @@ module.exports = {
         xysx2: 'If a clause in this agreement is deemed invalid or unenforceable, the clause is separable, and the validity of the remaining clauses in this agreement will not be affected. ',
     },
     activity: {
+        t: 'day',
+        zgkd:'Up to',
+        lj:'Cumulative Income',
+        qj:'Period',
+        tlzl:'Arbitrage',
+        zdtlzl:'Minimum Total Arbitrage',
+        jysj:'Trading time',
+        z:'to',
+        tldd:'Arbitrage Order',
+        ky:'Available',
+        jxfs:'Interest Calculation Method',
+        qb:'all',
+        qrtl:'Confirmed Arbitrage',
+        yjsy:'Estimated Income',
+        zrsy:'Yesterday Total Income',
+        ljsy:'Cumulative Total Income',
+
         xmxq: 'Project Details',
         ks: 'start',
         js: 'end',
@@ -706,12 +768,6 @@ module.exports = {
         qsrczsl: 'Please enter the number of wallets',
         wdqbdz: 'My wallet address',
         tjsh: 'Submit for review'
-    },
-    quotes: {
-        z24h: '24H amount',
-        hy: 'Contract',
-        bb: 'Coins',
-        yx: 'Sustainable'
     },
     mima: {
         fbzjmm: 'fiat currency funds password',
@@ -911,6 +967,8 @@ module.exports = {
         gm: 'Buy',
         cs: 'Sell',
         gg: 'Announcement',
+        qhhl:"Switch exchange rate",
+        qhcg:'Switching succeeded',
         ymm: 'original password',
         qsrymm: 'Please enter the original password',
         xmm: 'new password',

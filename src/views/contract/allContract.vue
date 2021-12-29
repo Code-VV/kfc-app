@@ -187,7 +187,7 @@ export default {
         setBgColor() {
 
             if (this.isNight == 'night-theme') { //黑夜模式
-                $('.allContract').find(".van-dialog").css('backgroundColor', '#272A3F');
+                $('.allContract').find(".van-dialog").css('backgroundColor', '#171E28');
                 $('.allContract').find(".van-popup").css('backgroundColor', 'none');
 
                 $('.allContract').find(".van-dialog__header").css('color', '#fff');
@@ -199,9 +199,9 @@ export default {
                 let dom2 = $('.allContract').find(".van-button__text");
                 let dom3 = $('.allContract').find(".van-dialog__confirm");
 
-                dom1.css('backgroundColor', "#272A3F")
+                dom1.css('backgroundColor', "#171E28")
                 dom1.css('color', "#fff")
-                dom3.css('backgroundColor', "#272A3F")
+                dom3.css('backgroundColor', "#171E28")
 
             } else { //白天模式
                 //  $('.allContract').find(".van-dialog").style.backgroundColor = "#fff";
@@ -511,7 +511,7 @@ export default {
         setDialogStyle() {
 
             if (this.isNight == 'night-theme') { //黑夜模式
-                let bg = '#272A3F';
+                let bg = '#171E28';
                 $(".van-dialog").css('backgroundColor', bg);
                 $(".van-popup").css('backgroundColor', 'none');
 
@@ -577,13 +577,13 @@ export default {
         }
 
         .van-tabs__line {
-            background-color: #fbc400;
+            background-color: #39BB97;
             height: 2px;
             width: 55px !important;
         }
 
         .van-tab--active {
-            color: #fbc400;
+            color: #39BB97;
         }
 
         .van-hairline--top-bottom::after {

@@ -166,8 +166,8 @@ export default {
 	  /*if (this.$store.state.nowThemeInfo != "night-theme") {
 		this.setnavBarBgColor("#4980E5");
       }else{
-		this.setnavBarBgColor("#272A3F");
-		 $(".topBox").css("background-color", "#272A3F");
+		this.setnavBarBgColor("#171E28");
+		 $(".topBox").css("background-color", "#171E28");
 	  }
 */
     
@@ -305,11 +305,11 @@ export default {
 <style lang="scss">
 .assets {
   .van-tabs__line {
-    background-color: #fbc400;
+    background-color: #499C7A;
     height: 2px;
   }
   .van-tab--active {
-    color: #fbc400;
+    color: #499C7A;
   }
   .contentBox {
     .van-cell {
@@ -324,8 +324,8 @@ export default {
   }
   .van-button--info {
     color: #fff;
-    background-color: #fbc400;
-    border: 1px solid #fbc400;
+    background-color: #499C7A;
+    border: 1px solid #499C7A;
   }
 }
 </style>
@@ -367,10 +367,10 @@ export default {
                 justify-content: center;
 
                 &.cur {
-                    color: #fbc400;
+                    color: #499C7A;
 
                     .borders {
-                        background: #fbc400;
+                        background: #499C7A;
                     }
                 }
 
@@ -446,7 +446,7 @@ export default {
         margin-top: 5px;
       }
       &.cur {
-        color: #fbc400;
+        color: #499C7A;
         font-size: 13px;
         font-weight: 500;
         .rename {
@@ -454,7 +454,7 @@ export default {
           margin-top: 2px;
         }
         .borderb {
-          background: #fbc400;
+          background: #499C7A;
           transition: all 0.5s;
         }
       }
@@ -491,9 +491,9 @@ export default {
       }
     }
     .cur {
-      color: #fbc400;
+      color: #499C7A;
       .borders {
-        background: #fbc400;
+        background: #499C7A;
       }
     }
   }
@@ -521,7 +521,7 @@ export default {
   .contentBox {
     .payBox {
       .rightBox {
-        color: #fbc400;
+        color: #499C7A;
       }
     }
 	 .leftBox {
@@ -535,15 +535,15 @@ export default {
                     margin-right: 12px;
 
                     &.cur {
-                        border-color: #fbc400;
-                        color: #fbc400;
+                        border-color: #499C7A;
+                        color: #499C7A;
                     }
                 }
             }
   }
 .c_blue{
-    border-color: #fbc400;
-    color: #fbc400;
+    border-color: #499C7A;
+    color: #499C7A;
 }
 }
 </style>

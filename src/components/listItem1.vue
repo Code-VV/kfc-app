@@ -1,38 +1,77 @@
 <template>
-  <div class="quot_listItem bor_b bold" :class="{'border_none':l-1-n==0}" @click="goQuotesDetail()">
-
+  <div
+    class="quot_listItem bor_b bold"
+    :class="{ border_none: l - 1 - n == 0 }"
+    @click="goQuotesDetail()"
+  >
     <van-row gutter="20" class="">
-      <van-col span="10">
+      <img
+        @click.stop="shoucang(list, n)"
+        v-if="xz"
+        class="wxz"
+        src="@/assets/images/home/wxz.png"
+        alt=""
+      />
+      <img
+        @click.stop="shoucang(list, n)"
+        v-else
+        class="wxz"
+        src="@/assets/images/home/xz.png"
+        alt=""
+      />
+
+      <img class="icon" :src="list.image" alt="" />
+      <van-col span="8">
         <div class="left_box">
-          <div class="title c222 " v-if="type=='contract'">
-            
-              <span>{{list.tokenCur}}</span>
-              <span class="size12 c999"> /{{list.mainCur}}{{$t('quotes.yx')}}</span>
+          <div class="title c222" v-if="type == 'contract'">
+            <span>{{ list.tokenCur }}</span>
+            <span class="size12 c999">
+              /{{ list.mainCur }}{{ $t("quotes.yx") }}</span
+            >
           </div>
-          <div class="title c222 " v-else>
-              <span>{{list.tokenCur}}</span>
-              <span class="size12 c999"> /{{list.mainCur}}</span>
+
+          <div class="title c222" v-else>
+            <span>{{ list.tokenCur }}</span>
+            <span class="size12 c999"> /{{ list.mainCur }}</span>
             <!-- <span class="marks">/ USDT</span> -->
           </div>
+
           <div class="detail">
-            <span class="span c999">{{$t('quotes.z24h')}} {{list.volume|SubString(0)}}</span>
+            <span class="span c999"
+              >{{ $t("quotes.z24h") }} {{ list.volume | SubString(0) }}</span
+            >
           </div>
         </div>
       </van-col>
       <van-col span="8">
-        <div class="left_box">
-          <div class="title c222">{{list.price|SubString3(2,4)}}</div>
+        <div v-if="qh" class="left_box">
+          <div class="title c222">{{ list.chPrice | SubString3(2, 4) }}</div>
           <div class="detail">
-            <span class="span c999">¥ {{list.chPrice|SubString(2)}}</span>
+            <span class="span c999">${{ list.price | SubString(2) }}</span>
+          </div>
+        </div>
+        <div v-else class="left_box">
+          <div class="title c222">{{ list.price | SubString3(2, 4) }}</div>
+          <div class="detail">
+            <span class="span c999">¥{{ list.chPrice | SubString(2) }}</span>
           </div>
         </div>
       </van-col>
       <van-col span="6">
         <div class="right_box">
           <button
-            class="button "
-            :class="list.updown>0?'green_bg':list.updown==0?'dark_bg':'orange_bg'"
-          >{{list.updown>0?'+':list.updown==0?'':''}}{{list.updown*100|SubString(2)}}%</button>
+            class="button"
+            :class="
+              list.updown > 0
+                ? 'green_bg'
+                : list.updown == 0
+                ? 'dark_bg'
+                : 'orange_bg'
+            "
+          >
+            {{ list.updown > 0 ? "+" : list.updown == 0 ? "" : ""
+            }}{{ (list.updown * 100) | SubString(2) }}%
+          </button>
         </div>
       </van-col>
     </van-row>
@@ -43,44 +82,91 @@ import { mapActions } from "vuex";
 export default {
   props: {
     list: {
-      type: Object
+      type: Object,
     },
+    list2: {
+      type: Array,
+    },
+    qh: {},
     type: {
       type: String,
-      default: ""
+      default: "",
     },
     n: {
       type: Number,
-      default: 0
+      default: 0,
     },
     l: {
-      type: Number
-    }
+      type: Number,
+    },
   },
   data() {
-    return {};
+    return {
+      xz: true,
+      price: "",
+      pairsList2: "",
+      tokenCur: [],
+      type2: "1",
+    };
   },
+
+  watch: {},
   methods: {
-    ...mapActions(["setPairsName","setPairsName1"]),
+    ...mapActions(["setPairsName", "setPairsName1"]),
+    init() {
+      let type = localStorage.getItem("type");
+      console.log(type);
+    },
+
     //行情详情
     goQuotesDetail() {
       if (this.type == "contract") {
         this.setPairsName(this.list.pairsName);
-      }else{
-         this.setPairsName1(this.list.pairsName);
+      } else {
+        this.setPairsName1(this.list.pairsName);
       }
 
       this.$router.push({
         // path: `/quotes/quotesDetail?id=${id}`
         path: `/quotes/quotesDetail`,
-        query: { type: this.type }
+        query: { type: this.type },
       });
-    }
+    },
+    shoucang(v, k) {
+      if (this.xz) {
+        let data = {
+          type: this.type2,
+          coin: v.tokenCur,
+          userId: this.$store.state.userId,
+        };
+        console.log(data);
+        this.$post1("/entrust/entrust/getCoinCollection", data).then((res) => {
+          console.log(res);
+        });
+      } else {
+        this.type2 = "0";
+        let data = {
+          type: this.type2,
+          coin: v.tokenCur,
+          userId: this.$store.state.userId,
+        };
+        console.log(data);
+        this.$post1("/entrust/entrust/getCoinCollection", data).then((res) => {
+          console.log(res);
+        });
+        this.type2 = "1";
+      }
+      this.xz = !this.xz;
+    },
   },
   computed: {},
-  created(){
-    // console.log(this.list)
-  }
+  created() {
+    if (this.type2 == "0") {
+      this.xz = this.$store.state.xz;
+    } else {
+      this.xz = !this.$store.state.xz;
+    }
+  },
 };
 </script>
 <style lang="scss">
@@ -98,9 +184,12 @@ export default {
   .left_box {
     .title {
       font-size: 16px;
-
+      font-family: "Din";
+      font-weight: 400;
       .marks {
         font-size: 12px;
+        font-family: "Din";
+        font-weight: 400;
       }
     }
     .detail {
@@ -116,12 +205,28 @@ export default {
     align-items: center;
     justify-content: flex-end;
     .button {
+      font-family: "Din";
+      font-weight: 400;
       font-size: 14px;
-      min-width: 65px;
+      width: 68px;
       padding: 5px 0;
       text-align: center;
       border-radius: 2px;
     }
   }
+}
+.icon {
+  width: 23px;
+  height: 23px;
+  margin-right: 10.5px;
+}
+.wxz {
+  width: 13px;
+  height: 13px;
+  margin-left: 15px;
+  margin-right: 6px;
+}
+.van-col--8 {
+  padding: 0 !important;
 }
 </style>

@@ -6,7 +6,7 @@
     </div>-->
     <div id="screen"></div>
     <van-popup position="left" :style="{ width:'81%'}" v-model="show" @closed="closed" get-container="#screen">
-        <div class="titles c000" :class="{'pad_b_21':type=='contract'}">{{type=='contract'?$y('quotes.hy'):$t('quotes.bb')}}</div>
+        <div class="titles c000" :class="{'pad_b_21':type=='contract'}">{{type=='contract'?$t('quotes.hy'):$t('quotes.bb')}}</div>
         <div class="subContent" v-if="true">
             <div class="subTabList">
                 <span class="items" v-for="(item,i) in subTabList" :key="i" :class="{'cur':curSubType==item.type}" @click="switchSubTab(item.type)">
@@ -264,10 +264,10 @@ export default {
     }
 
     .cur {
-        color: #fbc400;
+        color: #499C7A;
 
         .borders {
-            background: #fbc400;
+            background: #499C7A;
         }
     }
 }

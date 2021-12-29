@@ -8,10 +8,9 @@
           <span class="title">{{$t('qiquan.qiquan')}}</span>
       </div>
       <div class="conter">
-          <div class="Maincurrency">USTD</div>
           <div class="list" v-for=" (i,index) in currencys" @click="jump(i.symbol)" :key="index">
             <span class="life">{{i.coinSymbol}}</span>
-            <span class="conter"> / USTD</span>
+            <span class="conter"> / USDT</span>
             <span class="right"></span>
           </div>
       </div>
@@ -81,9 +80,10 @@ div.up i.icon{
     float: left;
 }
 div.up span.title{
-    font-size: 20px;
+    font-size: 18px;
     position: relative;
     left: -8px;
+    color: #fff;
     /* background: chartreuse; */
     /* text-align: center; */
 }
@@ -92,12 +92,12 @@ div.up div.fanhui{
 }
 div.conter div.Maincurrency{
     font-size: 15px;
-    color: #fbc400;
+    color: #499C7A;
     margin: 10px 0;
     /* padding-bottom: 10px; */
     display: inline-block;
     /* background:#fbc400; */
-    border-bottom: 2px  solid #fbc400;
+    border-bottom: 2px  solid #499C7A;
 }
 div.conter div.list{
     font-size: 15px;
@@ -105,9 +105,13 @@ div.conter div.list{
     padding: 15px 0;
     margin-right: 20px;
     border-bottom: 1px solid rgba(153, 153, 153, 0.521);
+    color: #fff;
 }
 div.conter div.list span.conter{
     font-size: 13px;
     color:rgb(153, 153, 153);
+}
+.conter{
+    margin-top: 20px;
 }
 </style>

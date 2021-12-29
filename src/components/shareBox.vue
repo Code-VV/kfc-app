@@ -53,11 +53,11 @@ export default {
     },
     props: {
         types: {
-            type: Number, //1首页弹框分享应用 2分享邀请注册
+            type: Number, //1弹框分享应用 2分享邀请注册
             default: ""
         },
         codeObj: {
-            type: Object, //1首页弹框分享应用
+            type: Object, //1弹框分享应用
             default: {}
         },
         isShow: {
@@ -115,7 +115,7 @@ export default {
         //获取邀请码和二维码
         getCode() {
             this.$get("member/member/code", {
-                memberId: this.userId
+                memberId: this.userId,
             }).then(res => {
                 if (res && res.status == "SUCCEED" && res.result) {
                     this.user = res.result;
@@ -135,6 +135,7 @@ export default {
             this.$util.showLoading(this.$t("shareBox.Poster_generation") + "...");
             var width =
                 ((parseFloat(window.getComputedStyle(m).fontSize) * 10) / 375) * 2;
+
             var canvas = document.getElementById("shareCanvas");
             canvas.width = 375 * width;
             canvas.height = 667 * width;
@@ -162,7 +163,6 @@ export default {
                 img1.onload = function () {
                     ctx.drawImage(img1, width * 9, width * 594, width * 62, width * 62);
                     var img2 = new Image();
-
                     // img2.src = require("../assets/images/home/qrcode1.png");
                     if (!_this.quickMark) {
                         _this.Toast.clear();
@@ -181,7 +181,6 @@ export default {
                             width * 55,
                             width * 55
                         );
-
                         _this.saveImg(canvas, type);
                     };
                 }; //图片加载完成再执行
@@ -190,12 +189,12 @@ export default {
         //保存图片
         saveImg(canvas, type) {
             var _this = this;
-
             var imgsrc = canvas.toDataURL("image/png");
             imgsrc = imgsrc.replace("data:image/png;base64,", "");
 
-            if (this.$util.confirmPer("photos", "存储")) {
+            /*if (this.$util.confirmPer("photos", "存储")) {*/
                 var trans = api.require("trans");
+            console.log(trans);
                 var imgName = "share" + Math.random() * 10 + ".png";
                 trans.saveImage({
                         base64Str: imgsrc,
@@ -203,8 +202,10 @@ export default {
                         album: true,
                         imgName: imgName
                     },
+
                     function (ret, err) {
                         _this.Toast.clear();
+                        console.log("1113333")
                         if (ret.status) {
                             if (type == 1) {
                                 _this.shareWxfriend(api.fsDir + "/BitFutres/" + imgName, 1);
@@ -216,18 +217,21 @@ export default {
                             }
                         } else {
                             if (type == 3) {
+                                console.log("111")
                                 // _this.Toast("保存图片失败，请重试");
                                 _this.Toast(_this.$t("shareBox.Failed_save_picture"));
                             } else {
+                                console.log("2222")
                                 // _this.Toast("海报生成失败，请重试");
                                 _this.Toast(_this.$t("shareBox.Poster_generation_failed"));
                             }
                         }
                     }
                 );
-            } else {
+            /*} else {
                 _this.Toast.clear();
-            }
+                console.log("shareBox.Invite_join");
+            }*/
         }
     },
 

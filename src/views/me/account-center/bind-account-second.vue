@@ -15,7 +15,7 @@
             </van-field>
         </van-cell-group>
         <div class="btn mar_t_100" @click="submit">
-            <van-button style="width:100%;background-color:#fbc400" type="info">完成</van-button>
+            <van-button style="width:100%;background-color:#499C7A" type="info">完成</van-button>
         </div>
     </div>
 </div>
@@ -41,7 +41,7 @@ export default {
             emailCode: '',
             phoneError: '',
             emailError: '',
-            countryCode: ''
+            countryCode: '86'
         };
     },
     mounted() {

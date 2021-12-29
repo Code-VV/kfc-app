@@ -64,10 +64,6 @@ export default class {
                     volume: obj.vol-0
                 })
             });
-            console.log(bars)
-          
-            
-
         }
         onHistoryCallback(bars, meta)
     }

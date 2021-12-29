@@ -200,8 +200,8 @@ export default {
 .googleAuthenticator {
   .van-button--info {
     color: #fff;
-    background-color: #fbc400;
-    border: 1px solid #fbc400;
+    background-color: #499C7A;
+    border: 1px solid #499C7A;
   }
   .van-button {
     font-size: 16px;
@@ -219,10 +219,10 @@ export default {
   .van-password-input__security {
     li {
       margin: 0 8px;
-      border-bottom: 1px solid #fbc400;
+      border-bottom: 1px solid #499C7A;
       font-weight: 500;
       font-size: 30px;
-      color: #fbc400;
+      color: #499C7A;
     }
   }
   .van-hairline--surround::after {
@@ -259,10 +259,10 @@ export default {
         line-height: 15px;
       }
       &.active {
-        color: #fbc400;
+        color: #499C7A;
         .span {
-          background: #fbc400;
-          color: #fbc400;
+          background: #499C7A;
+          color: #499C7A;
         }
       }
     }
@@ -271,7 +271,7 @@ export default {
       background: rgba(206, 206, 206, 0.7);
       height: 1px;
       &.cur {
-        background: #fbc400;
+        background: #499C7A;
       }
     }
   }
@@ -286,9 +286,9 @@ export default {
       }
       .downLoad {
         font-size: 14px;
-        color: #fbc400;
+        color:#499C7A;
         padding: 4px 12px;
-        border: 1px solid #fbc400;
+        border: 1px solid #499C7A;
         border-radius: 5px;
         background: transparent;
         font-weight: 600;
@@ -298,7 +298,7 @@ export default {
         align-items: center;
         font-size: 14px;
         .copyUid {
-          color: #fbc400;
+          color: #499C7A;
           font-size: 15px;
           background: transparent;
         }

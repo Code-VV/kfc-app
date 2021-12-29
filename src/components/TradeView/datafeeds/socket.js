@@ -48,7 +48,6 @@ class socket {
         }
         // 主动断掉scoket
     toClose() {
-        console.log('断开')
         this.destroy()
 
     }
@@ -112,8 +111,6 @@ class socket {
                     // }
                     openup = openup.slice(0, 200);
                     dataAll['openup'] = openup;
-
-
                 }
             } catch (err) {
                 console.error(' >> Data parsing error:', err)
@@ -250,18 +247,14 @@ class socket {
                 }
             })
             if (openup.length > 0) {
-
                 openup = openup.slice(0, 200);
                 openup = openup.sort((a, b) => {
                     return a.price - b.price
                 })
                 dataAll['opendown'] = openup
-
-
             }
         } catch (err) {
             console.error(' >> buy error:', err)
-
         }
 
 

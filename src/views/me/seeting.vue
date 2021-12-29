@@ -6,6 +6,7 @@
     <!-- <van-cell :title="$t('seeting.Valuation_method')" is-link :value="$t('seeting.chineseYuan')" /> -->
     <!-- <van-cell :title="$t('seeting.color')" is-link :value="$t('seeting.greeUp')" /> -->
     <div v-show="islogin" class="c_blue bg_exit_btn size16 a_center height40 linehei40 mar_t_6" @click="exit">{{$t('seeting.exit')}}</div>
+    
 </div>
 </template>
 
@@ -109,7 +110,7 @@ export default {
         setDialogStyle() {
             if (this.isNight == "night-theme") {
                 //黑夜模式
-                let bg = "#272A3F";
+                let bg = "#171E28";
                 $(".van-dialog").css("backgroundColor", bg);
                 $(".van-popup").css("backgroundColor", "none");
 

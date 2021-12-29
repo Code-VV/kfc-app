@@ -326,7 +326,7 @@ textarea {
 
 .nightTheme {
   .app_content {
-    background: #272a3f;
+    background: #171E28;
   }
 
   .van-stepper__minus,

@@ -158,13 +158,14 @@ export default {
             });
         },
         afterRead1(file){
+            console.log(file);
             console.log(this.imgs.img01);
             console.log("01");
             let form = new FormData();
             form.append('file', file.file);
             axios.post("/member/member/upload",form).then((res)=>{
                 this.imgs.img01=res.path
-                console.log("!!!!!!!!!!!!!");
+                console.log(res);
             })
             console.log(this.imgs.img01);
         //   axios.post({
@@ -349,8 +350,8 @@ export default {
     }
 
     .van-button--info {
-        background: #fbc400;
-        border: 1px solid #fbc400;
+        background: #499C7A;
+        border: 1px solid #499C7A;
     }
 
     .uploadgroup {
@@ -424,7 +425,8 @@ export default {
         }
 
         .imgs {
-            width: 269px;
+            width: 270px;
+            height: 170px;
         }
     }
 }

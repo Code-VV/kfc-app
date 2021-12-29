@@ -837,8 +837,8 @@ export default {
     border-top: 0;
   }
   .van-button--info {
-    background: #fbc400;
-    border: 1px solid #fbc400;
+    background: #499C7A;
+    border: 1px solid #499C7A;
   }
   .formBox {
     .van-cell:not(:last-child)::after {
