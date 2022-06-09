@@ -14,7 +14,8 @@
 
 
                 <div v-if="!imgs.img01">
-                    <van-uploader :after-read="afterRead1" :max-size="10*1024 * 1024" @oversize="onOversize">
+                    <!-- <img src="../../assets/images/home/realnameImg1.png" alt class="imgs hei194" onclick="choosephoto(this)" /> -->
+                    <van-uploader :after-read="afterRead1" :max-size="20*1024 * 1024" @oversize="onOversize">
                         <img src="../../assets/images/home/realnameImg1.png" alt class="imgs hei194" />    
                     </van-uploader>
                 </div>
@@ -28,7 +29,7 @@
 
                 <p class="span">{{$t('gjrz.zm')}}</p>
             </div>
-            <div class="flex_column align_center mar_t_15">
+            <!-- <div class="flex_column align_center mar_t_15">
                 <div v-if="imgBox.img2 " class="relative imgs hei194">
                     <van-image :src="imgBox.img2" v-if="imgBox.img2" class="hei194 border_radius imgs"></van-image>
                     <div v-if="imgBox.img2">
@@ -40,19 +41,16 @@
 
                 <div v-if="!imgs.img02">
                     <van-uploader :after-read="afterRead2" :max-size="10*1024 * 1024" @oversize="onOversize">
-                        <img src="../../assets/images/home/realnameImg2.png" alt class="imgs hei194" />    
+                        <img src="../../assets/images/home/realnameImg1.png" alt class="imgs hei194" />    
                     </van-uploader>
                 </div>
                 <div v-else class="relative">
                     
-                    <!-- <van-uploader> -->
                     <img :src="imgs.img02" alt class="imgs hei194" />    
-                    <!-- </van-uploader> -->
                     
-                    <!-- <getPicture class="absolute" style="top:0;right:0;bottom:0;left:0;z-index:99" @getImg="getImgSrc(arguments)" :index="2" /> -->
                 </div>
                 <p class="span">{{$t('gjrz.fm')}}</p>
-            </div>
+            </div> -->
             <div class="flex_column align_center mar_t_15">
                 <div v-if="imgBox.img3 " class="relative imgs hei194">
                     <van-image :src="imgBox.img3" v-if="imgBox.img3" class="hei194 border_radius imgs"></van-image>
@@ -107,6 +105,12 @@ import $ from "jquery";
 import { Dialog } from 'vant';
 export default {
     created() {
+        this.$mui.init();
+        if(window.plus){  
+            plusReady();  
+        }else{   
+            document.addEventListener("plusready", plusReady, false);  
+        }  
         this.init();
     },
     components: {
@@ -149,6 +153,9 @@ export default {
             "setCountryCode",
             "setCountryName"
         ]),
+        plusReady(){
+            this.$mui.init();
+        },
         onOversize(){
             Dialog.alert({
                 title: this.$t('gjrz.ts'),
@@ -158,16 +165,13 @@ export default {
             });
         },
         afterRead1(file){
-            console.log(file);
-            console.log(this.imgs.img01);
-            console.log("01");
+            alert(file);
+            alert(file.length);
             let form = new FormData();
             form.append('file', file.file);
             axios.post("/member/member/upload",form).then((res)=>{
                 this.imgs.img01=res.path
-                console.log(res);
             })
-            console.log(this.imgs.img01);
         //   axios.post({
         //     url: "/member/member/upload",
         //     headers:{
@@ -179,15 +183,11 @@ export default {
         //         })
         },
         afterRead2(file){
-            console.log(this.imgs.img01);
-            console.log("01");
             let form = new FormData();
             form.append('file', file.file);
             axios.post("/member/member/upload",form).then((res)=>{
                 this.imgs.img02=res.path
-                console.log("!!!!!!!!!!!!!");
             })
-            console.log(this.imgs.img01);
             // console.log("02");
             // let form = new FormData();
             // form.append('file', file.file);
@@ -196,15 +196,11 @@ export default {
             // })
         },
         afterRead3(file){
-            console.log(this.imgs.img01);
-            console.log("01");
             let form = new FormData();
             form.append('file', file.file);
             axios.post("/member/member/upload",form).then((res)=>{
                 this.imgs.img03=res.path
-                console.log("!!!!!!!!!!!!!");
             })
-            console.log(this.imgs.img01);
             // console.log("03");
             // let form = new FormData();
             // form.append('file', file.file);
@@ -263,14 +259,14 @@ export default {
                 this.Toast(this.$t('add.qsczm'));
                 return;
             }
-            if (!this.imgs.img02) {
-                this.Toast(this.$t('add.qscfm'));
-                return;
-            }
-            if (!this.imgs.img03) {
-                this.Toast(this.$t('add.qscsc'));
-                return;
-            }
+            // if (!this.imgs.img02) {
+            //     this.Toast(this.$t('add.qscfm'));
+            //     return;
+            // }
+            // if (!this.imgs.img03) {
+            //     this.Toast(this.$t('add.qscsc'));
+            //     return;
+            // }
             this.$util.showLoading();
             // 上传身份证照片
             var data = {
@@ -312,6 +308,16 @@ export default {
                     let data = res.result;
                     this.userInfo = data;
                 }
+            });
+        },
+        choosephoto(e){
+            plus.gallery.pick(function(p){
+                console.log(p)
+                plus.io.resolveLocalFileSystemURL(p, function(entry) { 
+                    compressImage(entry.toLocalURL(),entry.name); //压缩图片
+                }, function(e) { 
+                    plus.nativeUI.toast("读取相册文件错误：" + e.message); 
+                });
             });
         }
     },

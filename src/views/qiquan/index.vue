@@ -28,7 +28,7 @@
             class="h3"
             :class="currentCoinInfo.updown>0?'green_text':currentCoinInfo.updown<0?'orange_text':'dark_text'"
           >{{currentCoinInfo.nowPrice|toFixed(4)}}</h3>-->
-                <h3 class="h3" :class="currentCoinInfo.updown>0?'green_text':currentCoinInfo.updown<0?'orange_text':'dark_text'">{{currentCoinInfo_nowPrice|toFixed(6)}}</h3>
+                <h3 class="h3" :class="currentCoinInfo.updown>0?'green_text':currentCoinInfo.updown<0?'orange_text':'dark_text'">{{currentCoinInfo_nowPrice|toFixed(2)}}</h3>
                 <!-- <p class="p"> -->
                     <!-- ≈ ¥ {{currentCoinInfo.chPrice|SubStringZreo(2)}} -->
                     <span :class="currentCoinInfo.updown>0?'green_text':currentCoinInfo.updown<0?'orange_text':'dark_text'">{{currentCoinInfo.updown*100|toFixedRate(2)}}%</span>
@@ -37,11 +37,11 @@
             <ul class="item item2 bold">
                 <li class="quotationData">
                     <p class="name">High</p>
-                    <span class="num">{{currentCoinInfo.higPrice|SubStringZreo(4)}}</span>
+                    <span class="num">{{currentCoinInfo.higPrice|SubStringZreo(2)}}</span>
                 </li>
                 <li class="quotationData">
                     <p class="name">Low</p>
-                    <span class="num">{{currentCoinInfo.lowPrice|SubStringZreo(4)}}</span>
+                    <span class="num">{{currentCoinInfo.lowPrice|SubStringZreo(2)}}</span>
                 </li>
                 <li class="quotationData">
                     <p class="name">24h</p>
@@ -295,7 +295,6 @@ export default {
     },
     created() {
         this.trade=this.$route.query.trade
-        console.log(this.trade);
         // console.log(this.$route.query.bizhong);
         this.$hub.$on("fromRandomCurrentPrice", res => {
             // this.currentCoinInfo.nowPrice = res;  
@@ -384,8 +383,6 @@ export default {
     methods: {
         QuantityClick(i){
             this.selectQuantity=i;
-            console.log("测试！！！");
-            console.log(this.selectQuantity);
         },
         ...mapActions([
             "setnavTitle",
@@ -415,7 +412,6 @@ export default {
             }).then(res => {
                 if (res && res.status == "SUCCEED") {
                     this.pairsDetail = res.result;
-                    console.log(this.pairsDetail);
                 }
             });
         },

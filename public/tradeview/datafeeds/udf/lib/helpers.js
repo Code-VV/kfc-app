@@ -5,7 +5,6 @@ var isLoggingEnabled = false;
 export function logMessage(message) {
     if (isLoggingEnabled) {
         var now = new Date();
-        console.log(now.toLocaleTimeString() + "." + now.getMilliseconds() + "> " + message);
     }
 }
 export function getErrorMessage(error) {

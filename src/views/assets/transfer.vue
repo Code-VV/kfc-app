@@ -69,18 +69,18 @@
       $t("transfer.hz")
     }}</van-button>
     <van-popup class="popup" v-model="show">
-      <p>输入密码</p>
+      <p>{{i18n.srmm}}</p>
       <div class="inp">
-        <span>资金密码 </span
+        <span>{{i18n.zjmm}} </span
         ><input
           v-model="password"
           type="password"
-          placeholder="请输入资金密码"
+          :placeholder="i18n.qsrzj"
         />
       </div>
 
       <van-button type="primary" color="#171E28" @click="transferHandle()"
-        >确认提交</van-button
+        >{{i18n.qrtj}}</van-button
       >
     </van-popup>
 
@@ -157,6 +157,9 @@ export default {
     };
   },
   computed: {
+    i18n() {
+      return this.$t("coin");
+    },
     userId() {
       return this.$store.state.userId;
     },
@@ -179,12 +182,8 @@ export default {
       this.coinNum = "";
       this.transferInfo.amount =
         this.formType == 0
-          ? this.$util.SubString(this.assetsCount, 4)
-          : this.formType == 1
           ? this.$util.SubString(this.bCount, 4)
-          : this.formType == 2
-          ? this.$util.SubString(this.contract, 4)
-          : this.$util.SubString(this.fbCount, 4);
+          : this.$util.SubString(this.contract, 4);
     },
   },
   methods: {
@@ -207,10 +206,15 @@ export default {
       setTimeout(() => {
         this.setnavBarShowRight(true);
       }, 100);
+      this.transferInfo.amount =
+        this.formType == 0
+          ? this.$util.SubString(this.bCount, 4)
+          : this.$util.SubString(this.contract, 4);
     },
     showPopup() {
       this.show = true;
     },
+
     //选择弹框显示
     openPoup(type) {
       this.transferType = type;
@@ -234,7 +238,6 @@ export default {
       };
       this.$post1("/member/member/setToPayPass", data).then((res) => {
         if ((res.errorMessage = null)) {
-          this.Toast("666");
         }
         if (res.result) {
           console.log(res);
@@ -257,17 +260,17 @@ export default {
           }
           let moveType1 =
             this.formType == 0
-              ? "ASSETS"
-              : this.formType == 1
               ? "BALANCE"
+              : this.formType == 1
+              ? "TOKEN"
               : this.formType == 2
               ? "TOKEN"
               : "FB";
           let moveType2 =
             this.toType == 0
-              ? "ASSETS"
-              : this.toType == 1
               ? "BALANCE"
+              : this.toType == 1
+              ? "TOKEN"
               : this.toType == 2
               ? "TOKEN"
               : "FB";
@@ -278,8 +281,11 @@ export default {
             currency: this.currency,
             moveType: moveType,
           };
+          console.log(data);
           this.$util.showLoading();
           this.$post1("member/balance/transferBalances", data).then((res) => {
+            console.log(res);
+
             this.Toast.clear();
             if (res && res.status == "SUCCEED") {
               this.Toast(this.$t("transfer.hzcg"));
@@ -306,10 +312,10 @@ export default {
           });
         } else if (res.result == false) {
           console.log(res);
-          this.Toast("密码错误");
+          this.Toast(this.$t('coin.mmcw'));
           this.password = "";
         } else {
-          this.Toast("请设置资金密码");
+          this.Toast(this.$t('coin.qsz'));
           this.password = "";
         }
       });
@@ -342,6 +348,7 @@ export default {
       if (init) {
         this.$get("data/data/getIndexCoin?getCoinType=UPDOWN", data).then(
           (res) => {
+            console.log(res);
             if (res && res.status == "SUCCEED" && res.result) {
               // let iindex = "";
               // res.result.forEach((ele, i) => {
@@ -352,6 +359,7 @@ export default {
               //     iindex = i;
               // }
               // });
+
               this.currency = this.chooseCurrency || "USDT";
               // (res.result[iindex] && res.result[iindex].tokenCur ?
               //     res.result[iindex].tokenCur :
@@ -372,6 +380,8 @@ export default {
         };
       }
       this.$get("member/balance/getBalances", data).then((res) => {
+        console.log(res);
+
         if (res && res.status == "SUCCEED" && res.result) {
           let iindex = "";
           res.result.forEach((ele, i) => {
@@ -403,6 +413,10 @@ export default {
               ? this.$util.SubString(this.contract, 4)
               : this.$util.SubString(this.fbCount, 4);
         }
+        this.transferInfo.amount =
+          this.formType == 0
+            ? this.$util.SubString(this.bCount, 4)
+            : this.$util.SubString(this.contract, 4);
       });
     },
   },
@@ -584,14 +598,14 @@ export default {
 .popup {
   color: #fff;
   border-radius: 10px;
-  background: #171E28;
+  background: #171e28;
   .inp {
     margin-left: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
   }
   p {
-    background: #171E28;
+    background: #171e28;
     color: #fff;
     text-align: center;
     height: 30px;
@@ -604,14 +618,15 @@ export default {
   }
   input {
     margin: 0 auto;
-    background: #171E28;
+    background: #171e28;
     border-radius: 5px;
     height: 20px;
+    border: none;
   }
   .van-button {
     margin-top: 0;
     width: 232px;
-    background: #171E28;
+    background: #171e28;
     border-top: 1px solid #fff;
   }
 }

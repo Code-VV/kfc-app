@@ -113,7 +113,7 @@
             <!-- <div class="size18 bold">点击登录</div> -->
             <div class="size18 bold">{{ i18n.djdl }}</div>
             <div class="pad_t_8 pad_b_15 size12">
-              <!-- <span class="c999">欢迎来到NASDAQ/span> -->
+              <!-- <span class="c999">欢迎来到Meta Currency/span> -->
               <span class="c999">{{ i18n.hyld }}</span>
             </div>
             <!-- </router-link> -->
@@ -289,7 +289,7 @@
                 class="wid15 hei15"
               />
             </div>
-            <button class="tc" @click="tc">安全退出</button>
+            <button class="tc" @click="tc">{{ i18n.aqtc }}</button>
           </div>
         </div>
         <!-- 分享应用 -->

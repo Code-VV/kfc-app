@@ -150,6 +150,7 @@ export default {
       url = window.location.href.slice(
         window.location.href.indexOf("#") + 1
       );
+      console.log(url)
       this.$router.go(-1);
       // console.log(url);
       if (url == "/personalCenter" || url == "/accountCenter" || url == "/setting" || url == "/payment" || url == "/customer" || url == "/about") {
@@ -161,14 +162,14 @@ export default {
     //资金记录
     clickHandle() {
       // console.log(this.$store.state.navTitle);
-      let title = this.$store.state.navTitle;
-      if (title.indexOf("充币") != -1) {
+      let title = window.location.href;
+      if (title.indexOf("coinCharging") != -1) {
         this.$router.push({
           path: `/assets/capitalRecords?type=coinCharging`,
         });
         return;
       }
-      if (title.indexOf("提币") != -1) {
+      if (title.indexOf("withdrawCoin") != -1) {
         this.$router.push({
           path: `/assets/capitalRecords?type=withdrawCoin`,
         });

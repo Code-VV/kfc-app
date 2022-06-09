@@ -13,18 +13,18 @@
         </div>
       </div>
     </header>
-    <img src="@/assets/images/activity/banner.png" alt="" class="banner" />
+    <!-- <img src="@/assets/images/activity/banner.png" alt="" class="banner" /> -->
     <div
       class="list"
       v-for="(v, k) in dataList"
       :key="k"
       @click="xiangqing(v.id, v.currencyName)"
     >
-      <img src="@/assets/images/activity/t.png" alt="" />
+      <img :src="v.image" alt="" />
       <span class="span1">{{ v.currencyName }}</span>
       <div>
         <p class="p1">{{ i18n.zgkd }}</p>
-        <p class="p2">{{ v.timeF * 100 + ".00%" }}</p>
+        <p class="p2">{{ (v.timeF * 100 + "%") | capitalize }}</p>
       </div>
     </div>
 
@@ -131,6 +131,7 @@
 </template>
 
 <script>
+import { Toast } from "vant";
 import { mapActions, mapState } from "vuex";
 export default {
   computed: {
@@ -175,6 +176,12 @@ export default {
   },
   created() {},
   deactivated() {},
+  filters: {
+    capitalize: function (value) {
+      let realVal = parseFloat(value).toFixed(2);
+      return realVal+'%';
+    },
+  },
   methods: {
     ...mapActions([
       "setnavTitle",
@@ -202,10 +209,12 @@ export default {
       }
       if (this.$store.state.token != "") {
         this.$get("/entrust/arbirtage/getWealth", {}).then((res) => {
-          console.log(res);
           this.dataList = res.result.wList;
         });
       }
+      // if (this.$store.state.token == "") {
+      //   this.$router.push("/login");
+      // }
     },
     // 去质押
     goMortgage() {
@@ -252,6 +261,9 @@ export default {
     // 跳转需要登录的页面
     toViewLogin() {
       if (!this.$util.isLogin()) {
+          // this.$router.push({
+          //   path: "/login"
+          // });
         return;
       } else {
         this.$router.push("/activityHistory");
@@ -285,7 +297,7 @@ export default {
 
 .activity {
   @include base-background();
-  font-family: "JDZY";
+  font-family: Din;
   .dialog {
     .dialog-content {
       width: 100%;
@@ -435,7 +447,7 @@ export default {
       padding: 0 15px;
       width: 100%;
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
 
       .items {
         padding: 15px 0;

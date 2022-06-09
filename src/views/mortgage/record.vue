@@ -86,11 +86,9 @@ export default {
       this.$post1("member/pledge/selectPledgeRecord",{
         member:this.userId
       }).then((res)=>{
-        console.log(res);
         for(let i=0; i<res.result.length; i++){
           res.result[i].createTime=new Date(parseInt(res.result[i].createTime)).toLocaleString().replace(/:\d{1,2}$/,' ');  
           res.result[i].expireTime=new Date(parseInt(res.result[i].expireTime)).toLocaleString().replace(/:\d{1,2}$/,' ');  
-          console.log(res.result.createTime);
         // alert("a")
 
         }

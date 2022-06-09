@@ -19,6 +19,8 @@
 
 <script>
 import axios from 'axios';
+import Axios from 'axios';
+import config from '../../config';
 
 export default {
   // import引入的组件需要注入到对象中才能使用
@@ -31,12 +33,9 @@ export default {
   },
   methods:{
       onclick(){
-          console.log("！！！！！！！！！！！");
           this.$router.go(-1)
-          console.log("！！！！！！！！！！！");
       },
       jump(i){
-          console.log(i+"");
             this.$router.push({
                 path:'/qiquan/index',
                 query:{trade:i}
@@ -46,11 +45,17 @@ export default {
   },
   created(){
     //   console.log("进入改路由!!!!!!");
-      axios.post("/option/coin/coin-list").then((res)=>{
+    //   axios.post("/option/coin/coin-list").then((res)=>{
+    //       this.currencys=res.data
+    //       console.log(res);
+
+
+    //   })
+    //   Axios.post('http://Tokcrypt.com/option/coin/coin-list').then(res=>{
+    //       this.currencys=res.data
+    //   })
+      Axios.post(config.coinURL+'/option/coin/coin-list').then(res=>{
           this.currencys=res.data
-          console.log(res);
-
-
       })
   }
 }
@@ -104,7 +109,7 @@ div.conter div.list{
     /* background: darkseagreen; */
     padding: 15px 0;
     margin-right: 20px;
-    border-bottom: 1px solid rgba(153, 153, 153, 0.521);
+    border-bottom: 1px solid rgba(153, 153, 153, 0.1);
     color: #fff;
 }
 div.conter div.list span.conter{

@@ -180,10 +180,10 @@
             class="size10 mar_t_12 transerPrice"
             v-if="operationType == 'close'"
           >
-            {{ i18n.ky }} {{ assets.balance | SubString(8) }} {{ tokenCur }}
+            {{ i18n.ky }} {{ assets.balance | SubString(2) }} {{ tokenCur }}
           </div>
           <div class="size10 mar_t_12 transerPrice" v-else>
-            {{ i18n.ky }} {{ assets.balance | SubString(8) }} USDT
+            {{ i18n.ky }} {{ assets.balance | SubString(2) }} USDT
           </div>
         </div>
         <div class="pad_l_r_10" v-if="operationType == 'open'">
@@ -233,14 +233,14 @@
                 >{{ i18n.jye }}
                 {{
                   (transaction.marketPrice ? transaction.marketPrice : 0)
-                    | SubString(8)
+                    | SubString(2)
                 }}USDT</span
               >
               <span v-else
                 >{{ i18n.jye }}
                 {{
                   (currentCoinInfo.nowPrice * transaction.marketCount)
-                    | toNumber(8)
+                    | toNumber(2)
                 }}USDT</span
               >
             </div>
@@ -248,7 +248,7 @@
               <span
                 >{{ i18n.jye }}
                 {{
-                  (markPrice * transaction.marketCount) | toNumber(8)
+                  (markPrice * transaction.marketCount) | toNumber(2)
                 }}USDT</span
               >
             </div>
@@ -283,10 +283,10 @@
             >
               <van-col span="12" class="orange_text">{{
                 item.price
-                  | SubStringZreo(currentName.split("/")[0] == "HJGX" ? 8 : 4)
+                  | SubStringZreo(currentName.split("/")[0] == "HJGX" ? 2 : 2)
               }}</van-col>
               <van-col span="12 right_text">{{
-                item.num | SubString(4)
+                item.num | SubString(2)
               }}</van-col>
             </van-row>
             <div class="areaBox">
@@ -301,16 +301,17 @@
           <div class="pad_t_b_20">
             <div v-if="qh" class="price size11 c333">
               <span class="green_text size16 mar_r_11">{{
-                currentCoinInfo.nowPrice | SubString(4)
-              }}</span>
-              <p>≈ ¥{{ currentCoinInfo.chPrice | SubString(2) }}</p>
-            </div>
-            <div v-else class="price size11 c333">
-              <span class="green_text size16 mar_r_11">{{
-                currentCoinInfo.chPrice | SubString(4)
+                currentCoinInfo.chPrice | SubString(2)
               }}</span>
               <p>≈ ${{ currentCoinInfo.nowPrice | SubString(2) }}</p>
             </div>
+            <div v-else class="price size11 c333">
+              <span class="green_text size16 mar_r_11">{{
+                currentCoinInfo.nowPrice | SubString(2)
+              }}</span>
+              <p>≈ ¥{{ currentCoinInfo.chPrice | SubString(2) }}</p>
+            </div>
+
             <!-- <div class="size11 c333">
               <span>指数价格</span>
               <span class="mar_l_4">{{zhishuPrice|SubStringZreo(4)}}</span>
@@ -326,10 +327,10 @@
             >
               <van-col span="12" class="green_text">{{
                 item.price
-                  | SubStringZreo(currentName.split("/")[0] == "HJGX" ? 8 : 4)
+                  | SubStringZreo(currentName.split("/")[0] == "HJGX" ? 2 : 2)
               }}</van-col>
               <van-col span="12 right_text">{{
-                item.num | SubString(4)
+                item.num | SubString(2)
               }}</van-col>
             </van-row>
             <div class="areaBox">
@@ -474,6 +475,12 @@ export default {
       // 禁止点击
       disableClick: false,
     };
+  },
+  filters: {
+    capitalize: function (value) {
+      let realVal = parseFloat(value).toFixed(2);
+      return realVal + "%";
+    },
   },
   watch: {
     priceShow() {
@@ -1043,12 +1050,26 @@ export default {
         }
       });
     },
-    //买入卖出
-    submitHandle(type) {
+    submitHandle(type){
       // 禁止多次点击
       if (this.disableClick) {
         return;
       }
+      this.disableClick = true;
+      this.Dialog.confirm({
+        title: "remind",
+        message: "Confirm "+type + "?",
+        confirmButtonText: 'confirm',
+        cancelButtonText: 'cancel'
+      }).then(() => {
+        this.disableClick = false;
+        this.submitHandleConfirm(type)
+      }).catch(() => {
+        this.disableClick = false;
+      })
+    },
+    //买入卖出
+    submitHandleConfirm(type) {
       // 判断账号是否冻结
       this.changeData("Conins");
       let marketCount;
@@ -1113,15 +1134,11 @@ export default {
             : this.$util.toNumber(marketCount * this.markPrice),
       };
 
-      // this.$util.showLoading();
-      this.disableClick = true;
+      this.$util.showLoading();
+
+      
       this.$post("entrust/entrust/setEntrust", data)
         .then((res) => {
-          // 延迟启用点击
-          setTimeout(() => {
-            this.disableClick = false;
-          }, 300);
-          this.Toast.clear();
           if (res && res.status == "SUCCEED") {
             if (res.result == true) {
               this.transaction.marketCount = null;
@@ -1147,10 +1164,6 @@ export default {
           }
         })
         .catch((err) => {
-          // 延迟启用点击
-          setTimeout(() => {
-            this.disableClick = false;
-          }, 300);
           this.Toast.clear();
         });
     },
@@ -1219,7 +1232,8 @@ export default {
 // 交易
 .contract {
   @include base-background();
-
+  font-family: DIN;
+  font-weight: 400;
   .tabsList {
     display: flex;
 

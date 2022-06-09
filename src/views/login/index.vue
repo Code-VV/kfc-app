@@ -1,7 +1,6 @@
 <template>
   <div class="login a_title" id="login">
     <div class="Switchlanguage" @click="changeLogin()">
-      <!--  -->
       <span class="yuyan"
         ><img
           src="../../assets/images/home/qh.png"
@@ -17,7 +16,7 @@
         <img src="./../../assets/images/logo.png" alt="" />
       </div>
     </div>
-    <div class="title pad_l_r_60 a_center size16 c111">
+    <!-- <div class="title pad_l_r_60 a_center size16 c111">
       <van-row>
         <van-col span="12" class="a_re">
           <div
@@ -41,9 +40,9 @@
           <div :class="index == 2 ? 'bottom1' : ''"></div>
         </van-col>
       </van-row>
-    </div>
+    </div> -->
 
-    <div class="con pad_38" v-show="index == 1">
+    <!-- <div class="con pad_38" v-show="index == 1">
       <van-cell-group>
         <van-field
           v-model="phone"
@@ -53,7 +52,6 @@
           :error-message="phoneError"
         >
           <span slot="label" @click="chooseArea">+{{ countryCode }} ></span>
-          <!-- <span slot="label">+{{countryCode}} ></span> -->
         </van-field>
         <van-field
           @blur="passwordBlur(password)"
@@ -67,7 +65,6 @@
       <div class="size11 a_right pad_t_10">
         <router-link to="/forget?type=0">
           <span class="c_blue">{{ i18n.wjmm }}</span>
-          <!-- <span class="c_blue ">忘记密码</span> -->
         </router-link>
       </div>
       <div class="btn pad_t_60" @click="submit">
@@ -76,10 +73,9 @@
           type="info"
           >{{ i18n.dl }}</van-button
         >
-        <!-- 
-           <van-button style="width:100%;background-color:#fbc400" type="info">登录</van-button> -->
+        
       </div>
-    </div>
+    </div> -->
     <div class="con pad_38" v-show="index == 2">
       <van-cell-group>
         <van-field
@@ -131,7 +127,7 @@ export default {
   data() {
     return {
       isShowMore: false, //显示更多弹框
-      index: 1,
+      index: 2,
       phone: "", //账号
       email: "",
       password: "",
@@ -160,7 +156,6 @@ export default {
     },
 
     countryCode(v, k) {
-      console.log(v, k);
     },
 
     email(val) {
@@ -174,22 +169,23 @@ export default {
   created() {
     let account = window.localStorage.getItem("account");
     if (account != null) {
-      if (account.indexOf("@") == -1) {
-        //手机
-        if (account) {
-          this.index = 1;
-          this.phone = account;
-        }
-      } else {
-        //邮箱
-        if (account) {
-          this.index = 2;
-          this.email = account;
-        }
-      }
+      // if (account.indexOf("@") == -1) {
+      //   //手机
+      //   if (account) {
+      //     this.index = 1;
+      //     this.phone = account;
+      //   }
+      // } else {
+      //   //邮箱
+      //   if (account) {
+      //     this.index = 2;
+      //     this.email = account;
+      //   }
+      // }
+      this.index = 2;
+      this.email = account;
     } else {
       // alert("account为null!!!")
-      console.log("account为null!!!");
     }
     this.SET_THEMEINFO("night");
     this.setStatusBar("light");
@@ -253,7 +249,7 @@ export default {
       this.index = n;
     },
     onClickLeft() {
-      this.$router.go(-1);
+      this.$router.push('/login');
     },
     close1() {
       this.isShowMore = false;
@@ -262,7 +258,7 @@ export default {
     phoneBlur(val) {
       // uni.hideKeyboard()
       if (!val) {
-        this.phoneError = this.i18n.qsrzqdyxgs;
+        this.phoneError = this.i18n.qsrzqdyxgs2;
         return false;
       } else {
         this.phoneError = "";
@@ -323,7 +319,6 @@ export default {
         }
         // http://localhost:8765/member/login?password=123456&phMail=2414557757@qq.com
         this.$post1("member/member/login", params).then((res) => {
-          console.log(res);
           if (res.status == "NOLOGIN") {
             // 判断账号是否冻结
             this.changeData("NOLOGIN");

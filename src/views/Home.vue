@@ -13,13 +13,12 @@
       class="home_content"
       @init="mescrollInit"
     >
+   
       <!-- 首页轮播 -->
       <van-swipe :autoplay="3000" indicator-color="white" class="banner">
         <van-swipe-item v-for="(item, i) in bannerList" :key="i">
-          <!-- <van-image :src="item.bannerUrl" class="imgs" /> -->
-          <van-image :src="item.bannerUrl" class="imgs" />
-          <!-- <van-image  src="https://img.yzcdn.cn/vant/cat.jpeg" class="imgs"/> -->
-          <!-- <img :src="item.bannerUrl" alt srcset class="imgs" /> -->
+          <van-image :src="ip+item.bannerUrl" class="imgs" />
+       
         </van-swipe-item>
       </van-swipe>
       <!-- 公告 -->
@@ -177,25 +176,22 @@
         <div class="listDetail">
           <van-row gutter="20" class="tops flex c999">
             <van-col span="8">
-              <span class="leftBox flex a"
-                >{{ i18n.mc }} </span>
+              <span class="leftBox flex a">{{ i18n.mc }} </span>
             </van-col>
             <van-col span="8">
               <span v-if="curType == 'UPDOWN'" class="flex flex_center a"
-                >{{ i18n.zxj }} </span>
-              <span v-else-if="qh" class="flex flex_center a"
-                >{{ i18n.zxj }} USD </span>
-              <span v-else class="flex flex_center a"
-                >{{ i18n.zxj }} CNY
+                >{{ i18n.zxj }}
               </span>
+              <span v-else-if="qh" class="flex flex_center a"
+                >{{ i18n.zxj }} USD
+              </span>
+              <span v-else class="flex flex_center a">{{ i18n.zxj }} CNY </span>
             </van-col>
             <van-col span="8">
               <span class="flex flex_end" v-if="curType == 'VOLUME'">{{
                 i18n.xjl24h
               }}</span>
-              <span class="flex flex_end a" v-else
-                >{{ i18n.zdf }} </span
-              >
+              <span class="flex flex_end a" v-else>{{ i18n.zdf }} </span>
             </van-col>
           </van-row>
           <div class="listContent">
@@ -205,9 +201,10 @@
                 :type="curType"
                 :list="item"
                 :l="quotationsList.length"
-                :qh='qh'
+                :qh="qh"
               ></ListItem>
             </div>
+            <div v-show="xinbi == true" class="xinbi">{{i18n.zwsj}}</div>
           </div>
         </div>
       </div>
@@ -259,6 +256,9 @@ export default {
 
   data() {
     return {
+      ip:this.$store.state.target,
+      img: "http://10.0.40.16:9898/profile//2022/03/09/39df13d72d1361372305ed9b8d7f7cd0.jpg",
+      xinbi: false,
       qh: "",
       mescroll: null, // mescroll实例对象
       // bannerList: ['https://biyan888.oss-cn-beijing.aliyuncs.com/img/68140be0a0023e1c302631ece78db3a.jpg','https://biyan888.oss-cn-beijing.aliyuncs.com/img/c08434eaa37c115b21466eb8ef93c62.jpg'], //轮播图列表
@@ -320,7 +320,6 @@ export default {
       this.setnavBarShowRight(true);
       this.setCurrency("");
       this.qh = this.$store.state.qh;
-      console.log(this.qh);
     },
     //环形套利
     gohuan() {
@@ -339,12 +338,27 @@ export default {
     },
     // 初始化页面
     getBanner() {
+      console.log('11111111111111111111111111111111111')
+      console.log()
       let data = {
         bannerType: "DATA_BANNER", //DATA_BANNER主页,WEL_BANNER邀请返佣,PROJECT_BANNER项目方
         global: "CHINESE_SIM",
       };
+      let lan = window.localStorage.getItem('currentLangue');
+      if(lan){}else{
+        lan = 'en'
+      }
+      if(lan == 'en'){
+        data.global = "ENGLISH"
+      }else if(lan == 'zh_f'){
+        data.global = "CHINESE_TRAD"
+      }else if(lan == 'zh'){
+        data.global = "CHINESE_SIM"
+      }
+
       //获取轮播图
       this.$get("data/data/getBanners", data).then((res) => {
+        console.log(res);
         if (res && res.status == "SUCCEED") {
           this.bannerList = res.result || [];
         }
@@ -373,7 +387,11 @@ export default {
         if (res && res.status == "SUCCEED") {
           this.quotationsList = res.result || [];
         }
-        console.log( this.quotationsList);
+        if (this.quotationsList == 0) {
+          this.xinbi = true;
+        } else {
+          this.xinbi = false;
+        }
         set = setTimeout((res) => {
           this.getPairList();
         }, 5000);
@@ -381,7 +399,6 @@ export default {
     },
     //行情tab切换
     switchTab(type) {
-      console.log(type);
       if (type == this.curSubType) {
         return;
       }
@@ -408,7 +425,6 @@ export default {
         mainCur: "USDT",
         type: "SPOT",
       }).then((res) => {
-        console.log(res);
         if (res && res.status == "SUCCEED" && res.result) {
           res.result.map((item, i) => {
             if (i < 4) {
@@ -420,7 +436,6 @@ export default {
             }
           });
           this.pairsList = pairsList;
-          console.log(this.pairsList);
         }
         set1 = setTimeout((res) => {
           this.getPairsByMainCur();
@@ -442,7 +457,7 @@ export default {
         return;
       }
       this.$router.push({
-        path: "/transaction",
+        path: "/assets/transfer",
       });
     },
     //充币
@@ -521,6 +536,11 @@ export default {
     },
     //行情详情
     goQuotesDetail(name) {
+      if (this.quotationsList.length == 0) {
+        this.xinbi = true;
+      } else {
+        this.xinbi = false;
+      }
       this.setPairsName1(name);
 
       this.$router.push({
@@ -597,7 +617,8 @@ export default {
 .home {
   display: flex;
   flex-direction: column;
-  font-family: "JDZY";
+  font-family: Din;
+  font-weight: 400;
   .activitys {
     height: 55px;
 
@@ -738,6 +759,10 @@ export default {
 
       align-items: stretch;
       width: 100%;
+      img {
+        width: 28px;
+        height: 28px;
+      }
 
       // padding: 15px 0;
 
@@ -841,6 +866,7 @@ export default {
 
     .listDetail {
       padding: 0 15px;
+      min-height: 200px;
 
       .tops {
         padding-top: 15px;
@@ -881,5 +907,12 @@ export default {
 }
 .a {
   align-items: center;
+}
+.xinbi {
+  font-weight: 400;
+  margin-top: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: #e1e1e1;
 }
 </style>

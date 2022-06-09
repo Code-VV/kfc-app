@@ -36,8 +36,6 @@ class dataUpdater {
       const rangeStartTime = rangeEndTime - this.periodLengthSeconds(subscriptionRecord.resolution, 1)
       this.historyProvider.getBars(subscriptionRecord.symbolInfo, subscriptionRecord.resolution, rangeStartTime, rangeEndTime,
         bars => {
-          console.log('更新的数据')
-          console.log(bars)
           this.onSubscriberDataReceived(listenerGuid, bars)
           resolve()
         },

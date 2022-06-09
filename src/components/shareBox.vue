@@ -144,7 +144,7 @@ export default {
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.font = "bold normal " + 17 * width + "px sans-serif";
             ctx.fillStyle = "#222222";
-            ctx.fillText("NASDAQ", width * 80, 620 * width);
+            ctx.fillText("Meta Currency", width * 80, 620 * width);
             ctx.font = "normal " + 12 * width + "px sans-serif";
             ctx.fillStyle = "#666666";
             ctx.fillText(
@@ -194,7 +194,6 @@ export default {
 
             /*if (this.$util.confirmPer("photos", "存储")) {*/
                 var trans = api.require("trans");
-            console.log(trans);
                 var imgName = "share" + Math.random() * 10 + ".png";
                 trans.saveImage({
                         base64Str: imgsrc,
@@ -205,7 +204,6 @@ export default {
 
                     function (ret, err) {
                         _this.Toast.clear();
-                        console.log("1113333")
                         if (ret.status) {
                             if (type == 1) {
                                 _this.shareWxfriend(api.fsDir + "/BitFutres/" + imgName, 1);
@@ -217,11 +215,9 @@ export default {
                             }
                         } else {
                             if (type == 3) {
-                                console.log("111")
                                 // _this.Toast("保存图片失败，请重试");
                                 _this.Toast(_this.$t("shareBox.Failed_save_picture"));
                             } else {
-                                console.log("2222")
                                 // _this.Toast("海报生成失败，请重试");
                                 _this.Toast(_this.$t("shareBox.Poster_generation_failed"));
                             }
@@ -230,7 +226,6 @@ export default {
                 );
             /*} else {
                 _this.Toast.clear();
-                console.log("shareBox.Invite_join");
             }*/
         }
     },

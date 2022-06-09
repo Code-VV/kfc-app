@@ -7,7 +7,6 @@
 // import { widget as TvWidget } from "/../../../public/tradeview/charting_library/charting_library.min.js";
 // import { widget as TvWidget } from "../../../static/tradeview/charting_library/charting_library.min.js";
 var TvWidget = window.TradingView.widget;
-console.log(TvWidget)
 import socket from "./datafeeds/socket.js";
 import datafeeds from "./datafeeds/datafees.js";
 import $ from "jquery";
@@ -156,7 +155,6 @@ export default {
        
         // this.symbol = symbol;
     
-        console.log(this.widget);
         this.widget.onChartReady(() => {
           let chart = this.widget.activeChart();
           chart.createStudy("Moving Average", false, false, [5], null, {
@@ -238,7 +236,6 @@ export default {
             });
             let klineTime = this.interval;
             if (v.value == klineTime) {
-              console.log(btn);
               $(btn[0]).addClass("select");
             }
           });
@@ -257,8 +254,6 @@ export default {
     // 改变时间和交易对
     setSymbol(symbol, interval) {
       this.symbol = symbol;
-       console.log('改变时间和交易对')
-       console.log(symbol,interval)
       this.widget.setSymbol(symbol, interval);
     }, 
 
@@ -354,8 +349,6 @@ export default {
         this.lastTime = list[list.length - 1].time;
         this.subscribe(this.interval);
       }else if (data.method == "getKline") {    // 更新数据
-        console.log("请求来的实时K线数据");
-        console.log(data);
         const ticker = `${this.symbol}-${this.interval}`;
         const barsData = {
           time: data.time - 0,

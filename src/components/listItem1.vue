@@ -7,7 +7,7 @@
     <van-row gutter="20" class="">
       <img
         @click.stop="shoucang(list, n)"
-        v-if="xz"
+        v-if="!xz"
         class="wxz"
         src="@/assets/images/home/wxz.png"
         alt=""
@@ -20,7 +20,7 @@
         alt=""
       />
 
-      <img class="icon" :src="list.image" alt="" />
+      <img class="icon" :src="ip+list.image" alt="" />
       <van-col span="8">
         <div class="left_box">
           <div class="title c222" v-if="type == 'contract'">
@@ -87,6 +87,12 @@ export default {
     list2: {
       type: Array,
     },
+    l2: {
+      type: Number,
+    },
+    sc: {
+      type: Boolean,
+    },
     qh: {},
     type: {
       type: String,
@@ -102,6 +108,7 @@ export default {
   },
   data() {
     return {
+            ip:this.$store.state.target,
       xz: true,
       price: "",
       pairsList2: "",
@@ -109,15 +116,32 @@ export default {
       type2: "1",
     };
   },
-
-  watch: {},
+  created(){
+  },
+  watch: {
+    sc(a, b) {
+      if (this.list.walletAddress == 1) {
+        this.xz = true;
+      } else {
+        this.xz = false;
+      }
+    },
+  },
   methods: {
     ...mapActions(["setPairsName", "setPairsName1"]),
     init() {
       let type = localStorage.getItem("type");
-      console.log(type);
+      
     },
-
+    //pd
+    
+    pd() {
+      if (this.list.walletAddress == 1) {
+        this.xz = true;
+      } else {
+        this.xz = false;
+      }
+    },
     //行情详情
     goQuotesDetail() {
       if (this.type == "contract") {
@@ -133,15 +157,13 @@ export default {
       });
     },
     shoucang(v, k) {
-      if (this.xz) {
+      if (!this.xz) {
         let data = {
           type: this.type2,
           coin: v.tokenCur,
           userId: this.$store.state.userId,
         };
-        console.log(data);
         this.$post1("/entrust/entrust/getCoinCollection", data).then((res) => {
-          console.log(res);
         });
       } else {
         this.type2 = "0";
@@ -150,9 +172,7 @@ export default {
           coin: v.tokenCur,
           userId: this.$store.state.userId,
         };
-        console.log(data);
         this.$post1("/entrust/entrust/getCoinCollection", data).then((res) => {
-          console.log(res);
         });
         this.type2 = "1";
       }
@@ -165,6 +185,11 @@ export default {
       this.xz = this.$store.state.xz;
     } else {
       this.xz = !this.$store.state.xz;
+    }
+    if (this.list.walletAddress == 1) {
+      this.xz = true;
+    } else {
+      this.xz = false;
     }
   },
 };

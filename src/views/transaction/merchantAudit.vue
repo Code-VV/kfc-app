@@ -159,7 +159,6 @@ export default {
         },
         //上拉加载
         upCallback() {
-            console.log(222);
             if (this.noMores) {
                 return;
             }

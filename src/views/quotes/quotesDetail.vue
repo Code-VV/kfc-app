@@ -498,7 +498,6 @@ export default {
             }).then(res => {
                 if (res && res.status == "SUCCEED") {
                     this.pairsDetail = res.result;
-                    console.log(this.pairsDetail);
                 }
             });
         },

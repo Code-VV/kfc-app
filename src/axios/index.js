@@ -12,9 +12,9 @@ axios.defaults.headers['Content-Type'] = 'application/json';
 // axios.defaults.headers['userId'] = '44efcf605afad2f820da8ca9e007fdf6';
 // 响应拦截
 axios.interceptors.response.use((res) => {
-    setTimeout(() => {
-            Toast.clear();
-        }, 1000)
+    // setTimeout(() => {
+    //         Toast.clear();
+    //     }, 1000)
         // console.log(res)
     let data = res.data;
     let code = data.errorCode;

@@ -77,6 +77,8 @@
 import Qs from "qs";
 import axios from "axios";
 import { Dialog } from "vant";
+import Axios from "axios";
+import config from '../../config';
 
 export default {
   // import引入的组件需要注入到对象中才能使用
@@ -87,7 +89,7 @@ export default {
       //选中数量
       selectQuantity: 10,
       //使用货币
-      currency: "USTD",
+      currency: "USDT",
       //当前交易对
       Trade: "BTC/USDT",
       // 开仓时间
@@ -104,7 +106,11 @@ export default {
       lang: 12,
     };
   },
-  computed: {},
+  computed: {
+    i18n() {
+      return this.$t("common");
+    },
+  },
   components: {
     [Dialog.Component.name]: Dialog.Component,
   },
@@ -132,20 +138,29 @@ export default {
     //确认选择的数量
     QuantityClick(i) {
       this.selectQuantity = i;
-      console.log(this.selectQuantity);
     },
     // 发送请求 coin-list 能返回数组 每个数组里是每个交易对的信息   有可选的额度  交易对名称  交易对创建时间   当前的开盘时间 秒，收盘时间 秒
     coinList() {
       //不需要参数
-      this.$post("/option/coin/coin-list").then((res) => {
+      aoixs.post(config.coinURL+"/option/coin/coin-list").then((res) => {
         return res.data;
       });
     },
     // 发送请求coin-info：能返回可选择的额度，当前交易对，当前选择的期权合约，当前的开盘时间 秒，收盘时间 秒
     coinInfo(da) {
       //需要参数 参数是当前的交易对
-      return this.$post(
-        "/option/coin/coin-info?symbol=" + this.trade,
+      // return this.$post(
+      //   "/option/coin/coin-info?symbol=" + this.trade,
+      //   Qs.stringify(da)
+      // ).then((res) => {
+      //   let data = {
+      //     amount: res.data.amount,
+      //     closeTimeGap: res.data.closeTimeGap,
+      //   };
+      //   return data;
+      // });
+      return Axios.post(
+        config.coinURL+"/option/coin/coin-info?symbol=" + this.trade,
         Qs.stringify(da)
       ).then((res) => {
         let data = {
@@ -158,10 +173,26 @@ export default {
     // 发送请求 opening  可以获取开始时间从而计算出剩余时间  还有开盘价  还有一个ID  和当前交易对
     opening(da) {
       //需要参数
-      return this.$post(
-        "/option/option/opening?symbol=" + this.trade,
+      // return this.$post(
+      //   "/option/option/opening?symbol=" + this.trade,
+      //   Qs.stringify(da)
+      // ).then((res) => {
+      //   // let nowtime = new Date()
+      //   let data = {
+      //     //  开始到现在经过了多久d
+      //     time:
+      //       this.closeTimeGap -
+      //       (Date.parse(new Date()) - res.data[0].openTime) / 1000,
+      //   };
+      //   console.log("a");
+      //   return data;
+      // });
+      return Axios.post(
+        config.coinURL+"/option/option/opening?symbol=" + this.trade,
         Qs.stringify(da)
       ).then((res) => {
+        console.log('11111111111111111111111111111111111111')
+        console.log(res)
         // let nowtime = new Date()
         let data = {
           //  开始到现在经过了多久d
@@ -169,7 +200,6 @@ export default {
             this.closeTimeGap -
             (Date.parse(new Date()) - res.data[0].openTime) / 1000,
         };
-        console.log("a");
         return data;
       });
     },
@@ -215,11 +245,17 @@ export default {
         amount: this.selectQuantity, //控制买的数量
         // lang:this.lang,
       };
-      console.log(this.lang);
-      console.log(d.lang);
-      console.log("0" + this.lang);
+      // return axios({
+      //   url: "/option/order/add",
+      //   method: "post",
+      //   headers: {
+      //     "Content-Type": "application/x-www-form-urlencoded", //改这里就好了
+      //     lang: this.lang,
+      //   },
+      //   data: Qs.stringify(d), //这是处理请求参数
+      // });
       return axios({
-        url: "/option/order/add",
+        url: config.coinURL+"/option/order/add",
         method: "post",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded", //改这里就好了
@@ -246,23 +282,33 @@ export default {
       let d = {
         symbol: this.trade, //控制交易对
       };
-      return this.$get(
-        "/option/option/starting?symbol=" + this.trade,
-        Qs.stringify(d)
-      ).then((res) => {
-        let data = {
-          id: res.data[0].id,
-        };
-        return data;
-      });
+      // return this.$get(
+      //   "/option/option/starting?symbol=" + this.trade,
+      //   Qs.stringify(d)
+      // ).then((res) => {
+      //   let data = {
+      //     id: res.data[0].id,
+      //   };
+      //   return data;
+      // });
+      return axios
+        .get(
+          config.coinURL+"/option/option/starting?symbol=" +
+            this.trade,
+          Qs.stringify(d)
+        )
+        .then((res) => {
+          let data = {
+            id: res.data[0].id,
+          };
+          return data;
+        });
     },
     // 用来发送看涨请求
     kanz(direction) {
       this.starting().then((res) => {
         this.id = res.id;
-        console.log(res);
         this.add(direction).then((res) => {
-          console.log(res);
           // alert(res.message)
           // console.log(res.message);
           Dialog.alert({
@@ -275,11 +321,44 @@ export default {
           this.getBalances(window.localStorage.getItem("userId")).then(
             (res) => {
               this.Balances = res.balance;
-              console.log(res.balance);
-
               this.History().then((res) => {
                 this.history = res.data.content;
-                console.log(this.history);
+                for (let i = 0; i < this.history.length; i++) {
+                  switch (this.history[i].direction) {
+                    case "TIED":
+                      this.history[i].direction = this.$t("common.kp");
+                      break;
+                    case "SELL":
+                      this.history[i].direction = this.$t("common.kd");
+                      break;
+                    case "BUY":
+                      this.history[i].direction = this.$t("common.kz");
+                      break;
+                    default:
+                      break;
+                  }
+                  for (let i = 0; i < this.history.length; i++) {
+                    switch (this.history[i].result) {
+                      case "WAIT":
+                        this.history[i].result = this.$t("common.dks");
+                        break;
+                      case "WIN":
+                        this.history[i].result = this.$t("common.sl");
+                        break;
+                      case "LOSE":
+                        this.history[i].result = this.$t("common.sb");
+                        break;
+                      case "TIED":
+                        this.history[i].result = this.$t("common.pj");
+                        break;
+                      case "CANCELED":
+                        this.history[i].result = this.$t("common.cx");
+                        break;
+                      default:
+                        break;
+                    }
+                  }
+                }
               });
             }
           );
@@ -290,9 +369,7 @@ export default {
     kand(direction) {
       this.starting().then((res) => {
         this.id = res.id;
-        console.log(res);
         this.add(direction).then((res) => {
-          console.log(res);
           // alert(res.message)
           Dialog.alert({
             message: res.message,
@@ -304,21 +381,19 @@ export default {
           this.getBalances(window.localStorage.getItem("userId")).then(
             (res) => {
               this.Balances = res.balance;
-              console.log(res.balance);
 
               this.History().then((res) => {
                 this.history = res.data.content;
-                console.log(this.history);
                 for (let i = 0; i < this.history.length; i++) {
                   switch (this.history[i].direction) {
                     case "TIED":
-                      this.history[i].direction = "看平";
+                      this.history[i].direction = this.$t("common.kp");
                       break;
                     case "SELL":
-                      this.history[i].direction = "看跌";
+                      this.history[i].direction = this.$t("common.kd");
                       break;
                     case "BUY":
-                      this.history[i].direction = "看涨";
+                      this.history[i].direction = this.$t("common.kz");
                       break;
                     default:
                       break;
@@ -326,19 +401,19 @@ export default {
                   for (let i = 0; i < this.history.length; i++) {
                     switch (this.history[i].result) {
                       case "WAIT":
-                        this.history[i].result = "待开始";
+                        this.history[i].result = this.$t("common.dks");
                         break;
                       case "WIN":
-                        this.history[i].result = "胜利";
+                        this.history[i].result = this.$t("common.sl");
                         break;
                       case "LOSE":
-                        this.history[i].result = "失败";
+                        this.history[i].result = this.$t("common.sb");
                         break;
                       case "TIED":
-                        this.history[i].result = "平局";
+                        this.history[i].result = this.$t("common.pj");
                         break;
                       case "CANCELED":
-                        this.history[i].result = "撤销";
+                        this.history[i].result = this.$t("common.cx");
                         break;
                       default:
                         break;
@@ -358,10 +433,20 @@ export default {
         pageNo: 0,
         pageSize: 10,
       };
-      console.log("a");
-      return axios({
+      // return axios({
+      //   url:
+      //     "/option/order/history?symbol=" +
+      //     this.trade +
+      //     "&pageNo=0&pageSize=10",
+      //   method: "get",
+      //   // headers:{
+      //   // "Content-Type":"application/x-www-form-urlencoded" //改这里就好了
+      //   // },
+      //   data: Qs.stringify(d),
+      // });
+      return Axios({
         url:
-          "/option/order/history?symbol=" +
+          config.coinURL+"/option/order/history?symbol=" +
           this.trade +
           "&pageNo=0&pageSize=10",
         method: "get",
@@ -400,17 +485,16 @@ export default {
 
         this.History().then((res) => {
           this.history = res.data.content;
-          console.log(this.history);
           for (let i = 0; i < this.history.length; i++) {
             switch (this.history[i].direction) {
               case "TIED":
-                this.history[i].direction = "看平";
+                this.history[i].direction = this.$t("common.kp");
                 break;
               case "SELL":
-                this.history[i].direction = "看跌";
+                this.history[i].direction = this.$t("common.kd");
                 break;
               case "BUY":
-                this.history[i].direction = "看涨";
+                this.history[i].direction = this.$t("common.kz");
                 break;
               default:
                 break;
@@ -418,19 +502,19 @@ export default {
             for (let i = 0; i < this.history.length; i++) {
               switch (this.history[i].result) {
                 case "WAIT":
-                  this.history[i].result = "待开始";
+                  this.history[i].result = this.$t("common.dks");
                   break;
                 case "WIN":
-                  this.history[i].result = "胜利";
+                  this.history[i].result = this.$t("common.sl");
                   break;
                 case "LOSE":
-                  this.history[i].result = "失败";
+                  this.history[i].result = this.$t("common.sb");
                   break;
                 case "TIED":
-                  this.history[i].result = "平局";
+                  this.history[i].result = this.$t("common.pj");
                   break;
                 case "CANCELED":
-                  this.history[i].result = "撤销";
+                  this.history[i].result = this.$t("common.cx");
                   break;
                 default:
                   break;
@@ -440,14 +524,13 @@ export default {
         });
         this.getBalances(window.localStorage.getItem("userId")).then((res) => {
           this.Balances = res.balance;
-          console.log(res.balance);
         });
       }
       if (this.Time < 0) {
         this.opening(data).then((res) => {
           // 开始了多久
           this.Time = res.time;
-          // console.log(res.time,"!!!!!!!!!!!!!!!");
+          console.log(res.time,"!!!!!!!!!!!!!!!");
         });
       }
     },
@@ -481,21 +564,19 @@ export default {
     if (this.$store.state.isLogin) {
       this.getBalances(window.localStorage.getItem("userId")).then((res) => {
         this.Balances = res.balance;
-        console.log(res.balance);
       });
       this.History().then((res) => {
         this.history = res.data.content;
-        console.log(this.history);
         for (let i = 0; i < this.history.length; i++) {
           switch (this.history[i].direction) {
             case "TIED":
-              this.history[i].direction = "看平";
+              this.history[i].direction = this.$t("common.kp");
               break;
             case "SELL":
-              this.history[i].direction = "看跌";
+              this.history[i].direction = this.$t("common.kd");
               break;
             case "BUY":
-              this.history[i].direction = "看涨";
+              this.history[i].direction = this.$t("common.kz");
               break;
             default:
               break;
@@ -503,19 +584,19 @@ export default {
           for (let i = 0; i < this.history.length; i++) {
             switch (this.history[i].result) {
               case "WAIT":
-                this.history[i].result = "待开始";
+                this.history[i].result = this.$t("common.dks");
                 break;
               case "WIN":
-                this.history[i].result = "胜利";
+                this.history[i].result = this.$t("common.sl");
                 break;
               case "LOSE":
-                this.history[i].result = "失败";
+                this.history[i].result = this.$t("common.sb");
                 break;
               case "TIED":
-                this.history[i].result = "平局";
+                this.history[i].result = this.$t("common.pj");
                 break;
               case "CANCELED":
-                this.history[i].result = "撤销";
+                this.history[i].result = this.$t("common.cx");
                 break;
               default:
                 break;

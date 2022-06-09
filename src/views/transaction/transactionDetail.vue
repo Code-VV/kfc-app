@@ -179,7 +179,6 @@ export default {
 
         this.type = this.$route.query.type || "buy";
         this.priceOrderId = this.$route.query.orderPriceId || "";
-        console.log(this.priceOrderId + "测试");
         this.getOrderDetails();
         this.getOrderEndTime(); //获取订单结束时间
         if (this.isNight == "night-theme") {
@@ -237,7 +236,6 @@ export default {
         }, // 初始化页面
         //选择支付方式
         onSelect(item) {
-            console.log(item);
             if (item.name == this.payType) {
                 return;
             }
@@ -296,7 +294,6 @@ export default {
             }).then(res => {
                 if (res && res.status == "SUCCEED" && res.result) {
                     this.time = res.result.orderEndTime - res.result.nowTime || 0;
-                    console.log(this.time);
                 }
             });
         },
@@ -388,7 +385,6 @@ export default {
         },
         //定时器停止事件
         countDownFinish() {
-            console.log("定时器停止");
             if (this.orderInfo.status == "PAYMENT") {
                 this.Toast("当前订单已取消，请重新下单");
                 setTimeout(res => {

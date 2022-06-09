@@ -1,22 +1,18 @@
 <template>
   <div class="account_center a_title">
-    <van-cell
+    <!-- <van-cell
       @click="topathName('bind',{type:'phone'})"
       v-if="phone ==''"
       :title="$t('accountCenter.phone')"
       is-link
       value
     >
-      <!-- <van-cell @click="topathName('bind',{type:'phone'})" v-if="phone ==''" title="手机" is-link value="" > -->
       <span class="c_red">{{$t('accountCenter.Unbound')}}</span>
-      <!-- <span class="c_red">未绑定</span> -->
     </van-cell>
 
     <van-cell v-else :title="$t('accountCenter.phone')" is-link value>
-      <!-- <van-cell v-else title="手机" is-link value="" > -->
       <span>{{$t('accountCenter.Bound')}}</span>
-      <!-- <span >已绑定</span> -->
-    </van-cell>
+    </van-cell> -->
 
     <van-cell
       @click="topathName('bind',{type:'email'})"

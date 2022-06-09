@@ -367,7 +367,6 @@ class socket {
                 }
             } catch (error) {
                 console.error('解压出错')
-                console.log(error)
             }
         }
     }

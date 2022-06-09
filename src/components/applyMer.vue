@@ -37,7 +37,7 @@
           <span class="c_blue pad_l_r_5">《成为商户条款》</span>
           <!-- <span class="c_blue">《用户注册协议》</span> -->
         </router-link>
-        <span class="c666">并冻结1000USTD作为保证金。</span>
+        <span class="c666">并冻结1000USDT作为保证金。</span>
       </div>
     </div>
   </div>

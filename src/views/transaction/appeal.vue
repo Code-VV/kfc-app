@@ -130,7 +130,6 @@ export default {
       //   idx,
       //   this.countyList[idx]
       // );
-      console.log(this.bankList[idx]);
       this.index = idx;
     },
     //选择国家

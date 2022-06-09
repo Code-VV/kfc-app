@@ -28,7 +28,7 @@ export default {
             list: [{
                     lang: 'zh',
                     name: '简体中文',
-                    active: true
+                    active: false
                 },
                 {
                     lang: 'en',
@@ -37,8 +37,8 @@ export default {
                 },
                 {
                     lang: 'zh_f',
-                    name: '繁体',
-                    active: false
+                    name: '繁體中文',
+                    active: true
                 }
             ]
         };
@@ -47,7 +47,7 @@ export default {
         let current = window.localStorage.getItem('currentLangue');
         let lange = '';
         if (current == null) {
-            lange = 'zh'
+            lange = 'en'
         } else {
             lange = current;
         }
@@ -74,12 +74,10 @@ export default {
             "setnavBarArrow"
         ]),
         selLangue(item, i) {
-            console.log(item,i);
             if (item.active) {
                 return
             }
             let cun = item.lang;
-            console.log(cun);
             this.list.forEach(ele => {
                 ele.active = false
             })
@@ -97,6 +95,7 @@ export default {
             this.setnavBarState(true);
             this.settabBarState(false);
             this.setnavBarArrow(true);
+            console.log(this.list);
         } // 初始化页面
     }
 };

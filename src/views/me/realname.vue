@@ -21,52 +21,7 @@
                 <img src="../../assets/images/home/realnameIcon3.png" alt srcset slot="left-icon" class="leftIcon" />
             </van-field>
         </van-cell-group>
-        <!-- <div class="uploadBox size14">
-          <p class="titles pad_t_15 pad_b_12 center_text">上传身份证正反面</p>
-          <div class="uploadgroup flex-between">
-            <div class="wid161 relative">
-              <van-image :src="imgBox.img1" v-if="imgBox.img1" class="wid161 hei116 border_radius"></van-image>
-              <img
-                @click="addImgs(1)"
-                src="../../assets/images/home/realnameImg1.png"
-                alt
-                class="imgs wid161 hei116"
-                v-else
-              />
-              <van-icon name="cross" class="close" v-if="imgBox.img1" @click="close(1)" />
-              <p class="span">点击上传带头像的一面</p>
-            </div>
-            <div class="relative mar_r_7">
-              <van-image :src="imgBox.img2" v-if="imgBox.img2" class="wid161 hei116 border_radius"></van-image>
-              <img
-                @click="addImgs(2)"
-                src="../../assets/images/home/realnameImg2.png"
-                alt
-                class="imgs wid161 hei116"
-                v-else
-              />
-              <van-icon name="cross" class="close" v-if="imgBox.img2" @click="close(2)" />
-              <p class="span">点击上传带国徽的一面</p>
-            </div>
-          </div>
-        </div>
-        <div class="uploadBox size14">
-          <p class="titles pad_t_15 pad_b_12 center_text">上传手持身份证照片</p>
-          <div class="uploadgroup flex flex_center">
-            <div class="wid161 relative">
-              <van-image :src="imgBox.img3" v-if="imgBox.img3" class="wid161 hei116 border_radius"></van-image>
-              <img
-                @click="addImgs(3)"
-                src="../../assets/images/home/realnameImg3.png"
-                alt
-                class="imgs wid161 hei116"
-                v-else
-              />            
-              <van-icon name="cross" class="close" v-if="imgBox.img3" @click="close(3)" />
-              <p class="span">点击上传手持身份证照片</p>
-            </div>
-          </div>
-      </div>-->
+   
         <van-button class="hei42 size16 mar_t_100" type="info" block @click="submit">{{$t("form.submit")}}</van-button>
     </div>
             </div>

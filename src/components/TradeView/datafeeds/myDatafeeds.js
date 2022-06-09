@@ -87,7 +87,6 @@ export default class {
     intervalBack :数 量 
     */
     calculateHistoryDepth(resolution, resolutionBack, intervalBack) {
-        console.log(resolution)
         switch (resolution) {
             case '1':  return { resolutionBack: 'D', intervalBack: 1};
             case '5':  return { resolutionBack: 'D', intervalBack: 1};

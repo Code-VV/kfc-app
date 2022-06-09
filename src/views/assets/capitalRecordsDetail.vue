@@ -8,19 +8,19 @@
             <span>{{list.coin}}</span>
         </van-cell>
         <van-cell title="TO" @click="copythat(list.to)">
-            <span v-if="list.to==''">{{list.to}}</span>
+            <span v-if="list.to!=''">{{list.to}}</span>
             <span v-else>{{list.toAddress}}</span>
         </van-cell>
         <van-cell title="FROM" @click="copythat(list.from)">
-            <span v-if="list.from==''">{{list.from}}</span>
+            <span v-if="list.from!=''">{{list.from}}</span>
             <span v-else>{{list.fromAddress}}</span>
         </van-cell>
-        <van-cell :title="$t('hzjr.hydz')" @click="copythat(list.contract)">
+        <!-- <van-cell :title="$t('hzjr.hydz')" @click="copythat(list.contract)">
             <span>{{list.contract}}</span>
         </van-cell>
         <van-cell :title="$t('hzjr.qkgd')">
             <span>{{list.blockNumber}}</span>
-        </van-cell>
+        </van-cell> -->
         <van-cell :title="$t('hzjr.jyha')">
             <span>{{list.hash}}</span>
         </van-cell>

@@ -3,9 +3,9 @@
     <p class="title">{{ i18n2.Markets }}</p>
     <!-- Allen 测试环境 放开此处 -->
 
-    <!-- <div class="tabList " v-if='!this.$no_bb'>
+    <div class="tabList " v-if='!this.$no_bb'>
         <span class="items bold" v-for="(item,i) in tabList" :key="i" :class="{'cur':curType==item.type}" @click="switchTab(item.type)">{{item.name}}</span>
-    </div> -->
+    </div>
 
     <!-- Allen 测试环境 放开此处 -->
     <div class="subContent bor_b" v-if="subTabList.length > 0">
@@ -34,16 +34,17 @@
         :key="i"
         :span="i == 0 ? 10 : i == 1 ? 8 : 6"
       >
-        <div
-          @click="switchSortType(item.type)"
+      <!-- @click="switchSortType(item.type)"
           :class="
-            sortType == item.type ? (isSort ? 'cur upper' : 'cur lower') : ''
+            item.type == 0?'':sortType == item.type ? (isSort ? 'cur upper' : 'cur lower') : ''
           "
-          class="items"
+
           :style="{
             'justify-content':
               i == sortList.length - 1 ? 'flex-end' : 'flex-star',
-          }"
+          }" -->
+        <div
+          
         >
           <span class="bold size12"> {{ item.name }}</span>
           <span class="icons"></span>
@@ -58,13 +59,17 @@
     >
       <div v-show="sc" v-for="(item, i) in pairsList" :key="i">
         <ListItems
+          ref="list1"
           :n="i"
           :l="pairsList.length"
           :type="curType"
           :list="item"
           :list2="pairsList2"
+          :l2="pairsList2.length"
           :qh="qh"
           @getPairsByMainCur2="getPairsByMainCur2"
+          :sc="sc"
+          :xz2="xz"
         >
         </ListItems>
       </div>
@@ -97,6 +102,7 @@ export default {
   },
   data() {
     return {
+      xz: false,
       ceshi: false,
       hl: "",
       price: "",
@@ -182,8 +188,7 @@ export default {
       this.setCurrency("");
 
       this.qh = this.$store.state.qh;
-      console.log(this.qh);
-      if (this.sc == false || this.$store.state.token == "") {
+      if (this.sc == false && this.$store.state.token == "") {
         Toast("请登录");
         setTimeout(() => {
           this.$router.push("/login");
@@ -210,17 +215,25 @@ export default {
     switchSubTab2(v) {
       if (v == 1) {
         this.sc = true;
+        this.getPairsByMainCur2();
+        this.getPairsByMainCur();
       } else {
         this.sc = false;
         this.getPairsByMainCur2();
+        this.getPairsByMainCur();
+        if (this.sc == false && this.$store.state.token == "") {
+          Toast("请登录");
+          setTimeout(() => {
+            this.$router.push("/login");
+          }, 2000);
+        } else {
+          this.getPairsByMainCur2();
+        }
       }
     },
     //筛选分类
     switchSortType(type) {
-      console.log(this.sc);
       if (this.sc == true) {
-        console.log(type);
-        console.log(this.sortType);
         if (type == this.sortType) {
           this.isSort = !this.isSort;
         } else {
@@ -231,9 +244,9 @@ export default {
         if (set) {
           clearTimeout(set);
         }
+
         this.getPairsByMainCur();
       } else {
-        console.log(type);
         if (type == this.sortType) {
           this.isSort = !this.isSort;
         } else {
@@ -245,7 +258,9 @@ export default {
           clearTimeout(set);
         }
         this.getPairsByMainCur2();
+        this.getPairsByMainCur();
       }
+      this.getPairsByMainCur();
     },
     //获取交易对主币列表
     getMainCurs() {
@@ -290,9 +305,9 @@ export default {
         coinType: this.curType == "contract" ? "CONTRACT" : "SPOT",
       }).then((res) => {
         if (res && res.status == "SUCCEED") {
+          console.log(res);
           this.pairsList = res.result || [];
         }
-        console.log(this.pairsList);
         set = setTimeout((res) => {
           this.getPairsByMainCur();
         }, 5000);
@@ -301,7 +316,6 @@ export default {
 
     // 收藏列表
     getPairsByMainCur2() {
-      console.log(132);
       let getCoinSort =
         this.sortType == 0
           ? this.isSort
@@ -321,7 +335,6 @@ export default {
       this.$get("/entrust/entrust/getCoinCollectionList", data).then((res) => {
         this.pairsList2 = res.result || [];
 
-        console.log(res);
         set = setTimeout((res) => {
           this.getPairsByMainCur2();
         }, 5000);

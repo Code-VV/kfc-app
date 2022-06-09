@@ -72,7 +72,7 @@
       </van-col>
       <van-col span="6">
         <div>{{ i18n.zjgg }}</div>
-        <div class="mar_t_10">{{ risk.moneyLever | SubString(4) }}</div>
+        <div class="mar_t_10">{{ risk.moneyLever | SubString(2) }}</div>
         <!-- risk:'',
         moneyLever:'',
         moneyRate:'',-->
@@ -302,7 +302,7 @@
           </div>
         </div>
         <div v-if="operationType == 'open'" class="size11 c777 mar_t_5 bold">
-          = {{ (contractMul * handerNan(shouNum)) | SubString(4)
+          = {{ (contractMul * handerNan(shouNum)) | SubString(2)
           }}{{ currentName.split("/")[0] }}
         </div>
         <div v-else class="hei20"></div>
@@ -363,7 +363,7 @@
         <div class="balanceBox c222">
           <div class="items">
             <span>{{ i18n.kyzc }}</span>
-            <span>{{ assets.tokenBalance | SubStringZreo(4) }}</span>
+            <span>{{ assets.tokenBalance | SubStringZreo(2) }}</span>
           </div>
           <div class="items" v-if="operationType == 'open'">
             <span>{{ i18n.kkss }}</span>
@@ -377,7 +377,7 @@
             <span>{{ i18n.dqzc }}</span>
             <span>{{
               (assets.tokenBalance - 0 + (assets.tokenBlockedBalance - 0))
-                | SubStringZreo(4)
+                | SubStringZreo(2)
             }}</span>
           </div>
         </div>
@@ -398,7 +398,7 @@
           <div class="items green_bg" @click="submit(3)">{{ i18n.pd }}</div>
           <!-- <div v-show="currentPingduoBtn" class="items orange_bg1">平空</div>  -->
           <!-- 平空 -->
-          <div class="items orange_bg" @click="submit(4)">{{ i18n.pk }}</div>
+          <div class="items orange_bg" @click="submit(2)">{{ i18n.pk }}</div>
           <!-- <div v-show="currentPingduoBtn==false" class="items green_bg1" >平多</div> -->
         </div>
       </div>
@@ -416,10 +416,10 @@
               class="size11 flex1 items pad_r_5 c777"
             >
               <van-col span="12" class="orange_text">{{
-                item.price | SubStringZreo(4)
+                item.price | SubStringZreo(2)
               }}</van-col>
               <van-col span="12 right_text">{{
-                item.num | SubString(4)
+                item.num | SubString(2)
               }}</van-col>
             </van-row>
             <div class="areaBox">
@@ -434,18 +434,40 @@
 
           <!-- 当前价格 -->
           <div class="pad_t_b_20">
-            <div class="price size11 c333">
+            <div class="price size11 c333" v-if="qh">
               <!-- <div
                 :class="currentPrice>=prevePrice?'green_text':'orange_text'"
                 class="size16 mar_r_6"
               >{{currentPrice1|SubStringZreo(4)}}</div>-->
+
               <div
                 :class="
                   currentPrice >= prevePrice ? 'green_text' : 'orange_text'
                 "
                 class="size16 mar_r_6"
               >
-                {{ currentPrice | SubStringZreo(4) }}
+                {{ currentChPrice | SubStringZreo(2) }}
+              </div>
+              <!-- <div
+                :class="currentPrice>=prevePrice?'green_text':'orange_text'"
+                class="size16 mar_r_6"
+              >{{currentPrice2|SubStringZreo(4)}}</div>-->
+
+              <div>≈ ${{ currentPrice | SubStringZreo(2) }}</div>
+            </div>
+            <div class="price size11 c333" v-else>
+              <!-- <div
+                :class="currentPrice>=prevePrice?'green_text':'orange_text'"
+                class="size16 mar_r_6"
+              >{{currentPrice1|SubStringZreo(4)}}</div>-->
+
+              <div
+                :class="
+                  currentPrice >= prevePrice ? 'green_text' : 'orange_text'
+                "
+                class="size16 mar_r_6"
+              >
+                {{ currentPrice | SubStringZreo(2) }}
               </div>
               <!-- <div
                 :class="currentPrice>=prevePrice?'green_text':'orange_text'"
@@ -457,7 +479,7 @@
             <div class="size11 mar_t_6 price c333">
               <span>{{ i18n.zsjg }}</span>
               <span class="span mar_l_4 c222">{{
-                zhishuPrice | SubStringZreo(4)
+                zhishuPrice | SubStringZreo(2)
               }}</span>
             </div>
           </div>
@@ -470,10 +492,10 @@
               class="size11 items pad_r_5 c777"
             >
               <van-col span="12" class="green_text">{{
-                item.price | SubStringZreo(4)
+                item.price | SubStringZreo(2)
               }}</van-col>
               <van-col span="12 right_text">{{
-                item.num | SubString(4)
+                item.num | SubString(2)
               }}</van-col>
             </van-row>
             <div class="areaBox">
@@ -575,7 +597,7 @@ contractMulId: "537b5f5cb0ca0ae7ff2a5af8af59cdfd"
           <van-row class="hei22 linehei22">
             <van-col :span="12" class="c999">{{ i18n.jg }}</van-col>
             <van-col :span="12" class="c333 a_right">{{
-              currentDta.price | SubStringZreo(4)
+              currentDta.price | SubStringZreo(2)
             }}</van-col>
           </van-row>
 
@@ -601,7 +623,7 @@ contractMulId: "537b5f5cb0ca0ae7ff2a5af8af59cdfd"
             <van-col :span="12" class="c333 a_right">{{
               ((currentDta.contractHands * contractMul * currentDta.price) /
                 currentGangganType)
-                | SubStringZreo(4)
+                | SubStringZreo(2)
             }}</van-col>
           </van-row>
         </div>
@@ -628,6 +650,7 @@ import socket from "./../../components/TradeView/datafeeds/socket.js";
 
 export default {
   created() {
+    this.qh = this.$store.state.qh;
     let _this = this;
     this.init();
     this.setBgColor();
@@ -671,6 +694,7 @@ export default {
   },
   data() {
     return {
+      qh: "",
       currentPingduoBtn: null,
       duodanData: {},
       kongdanData: {},
@@ -1877,7 +1901,6 @@ export default {
 
         let data = this.currentDta;
 
-        // console.log(data);
         this.$post("contract/contract/setContractOrder", data).then((res) => {
           if (res && res.status == "SUCCEED") {
             let data = res.result;
@@ -2510,6 +2533,6 @@ export default {
   }
 }
 .blue_text[data-v-307fabaf] {
-  color: #499c7a 
+  color: #499c7a;
 }
 </style>

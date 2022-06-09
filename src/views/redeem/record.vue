@@ -51,7 +51,6 @@ export default {
       this.$post1("otc/ieo/redeemHistory", {
         member: this.$store.state.userId,
       }).then((res) => {
-        console.log(res);
         if (res.result.length == 0) {
           this.isShow = true;
         } else {

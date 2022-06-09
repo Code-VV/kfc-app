@@ -15,11 +15,13 @@
       </div>
     </header>
 
-    <img src="@/assets/images/activity/banner.png" alt="" class="banner" />
-    <!-- <van-grid :column-num="5" class="top">
-      <van-grid-item :text="v.currencyName"  v-for="(v, k) in dataList " :key="k"/>
-    </van-grid> -->
+    <!-- <img src="@/assets/images/activity/banner.png" alt="" class="banner" /> -->
+
     <div class="top">
+      <div @click="bz(-1)" :class="{ action: -1 == active }" class="cen">
+        {{i18n.zx}}
+      </div>
+
       <div
         v-for="(v, k) in dataList"
         :key="k"
@@ -45,12 +47,12 @@
     <div class="xiangqing" v-for="(v, k) in coinList" :key="k">
       <div class="top">
         <div class="name">{{ v.coin }}</div>
-        <div class="zt">{{ v.status == 0 ? "进行中" : "已完成" }}</div>
+        <div class="zt">{{ v.status == 0 ? jxz : ywc }}</div>
       </div>
       <div class="centent">
         <div>
           <p class="text">{{ i18n.lj }}</p>
-          <p class="num">{{ estimated }}%</p>
+          <p class="num">{{ v.totalsNum*100 }}%</p>
         </div>
         <div>
           <p class="text">{{ i18n.qj }}</p>
@@ -96,7 +98,9 @@ export default {
 
   data() {
     return {
-      active: 0,
+      jxz:this.$t("activity.jxz"),
+      ywc:this.$t("activity.ywc"),
+      active: -1,
       indexSel: -1,
       dataList: [],
       ctime: "",
@@ -107,8 +111,8 @@ export default {
       arbitrage: "",
       estimated: "",
       coinList: "",
-      totalsY: "暂无收益",
-      totals: "暂无收益",
+      totalsY: this.$t("add.zwsy"),
+      totals:this.$t("add.zwsy"),
       mescroll: null, // mescroll实例对象
       mescrollDown: {
         offset: 46,
@@ -142,7 +146,6 @@ export default {
   },
   watch: {
     day(v, k) {
-      console.log(v, k);
     },
   },
   methods: {
@@ -177,17 +180,16 @@ export default {
         this.dataList = res.result.wList;
         let params = {
           userId: this.$store.state.userId,
-          coin: this.dataList[0].currencyName,
+          coin: "1",
         };
         this.$get("/entrust/arbirtage/getCoinList", params).then((res) => {
-          console.log(res);
           this.coinList = res.result.lists;
           for (let i = 0; i < this.coinList.length; i++) {
             this.arbitrage = this.coinList[i].arbitrage;
             this.ctime = this.coinList[i].ctime;
             this.ftime = this.coinList[i].ftime;
             this.day = (this.ftime - this.ctime) / 86400000;
-            console.log(this.day);
+            this.estimated = this.coinList[i].totalsNum * 100;
           }
 
           // if ((this.day = 7)) {
@@ -208,7 +210,7 @@ export default {
         // 累计总收益
         this.$get("/entrust/arbirtage/getTotals", params).then((res) => {
           if (res.result.totals == null) {
-            this.totals = "暂无收益";
+            this.totals = this.$t("add.zwsy");
           } else {
             this.totals = res.result.totals;
           }
@@ -241,36 +243,36 @@ export default {
     },
 
     bz(a) {
-      this.active = a;
+      if (a == -1) {
+      } else {
+        this.active = a;
+      }
+      if (a == -1) {
+      }
+      this.coinList.length = 0;
       let params = {
         userId: this.$store.state.userId,
-        coin: this.dataList[a].currencyName,
+        coin: a != -1 ? this.dataList[a].currencyName : "1",
       };
       this.$get("/entrust/arbirtage/getCoinList", params).then((res) => {
-        console.log(res);
-        console.log(res.result.lists);
-this.estimated=res.result.lists[0].totalsNum*100
         this.coinList = res.result.lists;
-        this.arbitrage = this.coinList[0].arbitrage;
-        this.ctime = this.coinList[0].ctime;
-        this.ftime = this.coinList[0].ftime;
-        this.day = (this.ftime - this.ctime) / 86400000;
-        let params2 = {
-          userId: this.$store.state.userId,
-          coin: this.dataList[a].currencyName,
-          // day: this.day,
-        };
-
+        for (let i = 0; i < this.coinList.length; i++) {
+          this.arbitrage = this.coinList[i].arbitrage;
+          this.ctime = this.coinList[i].ctime;
+          this.ftime = this.coinList[i].ftime;
+          this.day = (this.ftime - this.ctime) / 86400000;
+          this.estimated = this.coinList[i].totalsNum * 100;
+        }
       });
+      this.active = a;
       this.$get("/entrust/arbirtage/getTotals", params).then((res) => {
         if (res.result.totals == null) {
-          this.totals = "暂无收益";
+          this.totals = this.$t("add.zwsy");
         } else {
           this.totals = res.result.totals;
         }
       });
       this.$get("/entrust/arbirtage/getYesterday", params).then((res) => {
-        console.log(res);
         if (!res.result.totalsY === 0) {
           this.totalsY = res.result.totalsY;
         }

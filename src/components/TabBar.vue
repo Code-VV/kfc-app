@@ -118,6 +118,12 @@ export default {
         });
         return;
       }
+      if (index == "activity" && !this.isLogin) {
+        this.$router.push({
+          path: `login`,
+        });
+        return;
+      }
       // if (index == "transaction") {
       //   this.Toast("敬请期待");
       //   return;

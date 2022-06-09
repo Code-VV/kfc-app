@@ -1,15 +1,29 @@
 <template>
   <div class="container_common1 allContract">
-    <van-tabs v-model="active" class="allContract_tabBar bor_b" @change="changeTab">
+    <van-tabs
+      v-model="active"
+      class="allContract_tabBar bor_b"
+      @change="changeTab"
+    >
       <van-tab :title="$t('add.qbwt')"></van-tab>
       <van-tab :title="$t('add.lsjr')"></van-tab>
     </van-tabs>
     <!-- 列表 -->
-    <mescroll-vue ref="mescroll" :down="mescrollDown" class="list" @init="mescrollInit">
-      <div v-if="type=='entrust'">
-        <div v-if="entrustList.length>0">
-          <div v-for="(item,i) in entrustList" :key="i">
-            <transactionItem :type="type" :list="item" :n="i" @cancelorder="cancelorder" />
+    <mescroll-vue
+      ref="mescroll"
+      :down="mescrollDown"
+      class="list"
+      @init="mescrollInit"
+    >
+      <div v-if="type == 'entrust'">
+        <div v-if="entrustList.length > 0">
+          <div v-for="(item, i) in entrustList" :key="i">
+            <transactionItem
+              :type="type"
+              :list="item"
+              :n="i"
+              @cancelorder="cancelorder"
+            />
           </div>
         </div>
         <div v-else>
@@ -17,8 +31,8 @@
         </div>
       </div>
       <div v-else>
-        <div v-if='historyEntrust.length>0'>
-          <div v-for="(item,i) in historyEntrust" :key="i">
+        <div v-if="historyEntrust.length > 0">
+          <div v-for="(item, i) in historyEntrust" :key="i">
             <transactionItem :type="type" :list="item" :n="i" />
           </div>
         </div>
@@ -39,12 +53,12 @@ export default {
     this.getEntrustList(1);
   },
   components: {
-    transactionItem
+    transactionItem,
   },
   computed: {
     pairsName() {
       return this.$store.state.pairsName;
-    }
+    },
   },
   data() {
     return {
@@ -53,13 +67,13 @@ export default {
       mescrollDown: {
         offset: 46,
         callback: this.downCallback,
-        textInOffset:this.$t('add.xlsx'),
-        textOutOffset:this.$t('add.sfgx'),
-        textLoading:this.$t('add.jzz'),
-        auto: false //是否在初始化完毕之后自动执行下拉回调callback; 默认true
+        textInOffset: this.$t("add.xlsx"),
+        textOutOffset: this.$t("add.sfgx"),
+        textLoading: this.$t("add.jzz"),
+        auto: false, //是否在初始化完毕之后自动执行下拉回调callback; 默认true
       }, //下拉刷新的配置. (如果下拉刷新和上拉加载处理的逻辑是一样的,则mescrollDown可不用写了)
       entrustList: [], //委托列表
-      historyEntrust: [] //历史记录
+      historyEntrust: [], //历史记录
     };
   },
   methods: {
@@ -68,10 +82,10 @@ export default {
       "setnavBarState",
       "settabBarState",
       "setbackRouter",
-      "setnavBarArrow"
+      "setnavBarArrow",
     ]),
     init() {
-      this.setnavTitle(this.$t('add.qb'));
+      this.setnavTitle(this.$t("add.qb"));
       this.setbackRouter("");
       this.setnavBarState(true);
       this.settabBarState(false);
@@ -99,12 +113,12 @@ export default {
     },
     //下拉刷新
     downCallback() {
-      if(this.type=='entrust'){
-         this.getEntrustList(); //委托列表
-      }else{
+      if (this.type == "entrust") {
+        this.getEntrustList(); //委托列表
+      } else {
         this.getHistoryEntrust(); //历史列表
       }
-      setTimeout(res => {
+      setTimeout((res) => {
         this.mescroll.endSuccess(); //无参. 注意结束下拉刷新是无参的
       }, 1000);
     },
@@ -116,16 +130,16 @@ export default {
       }
       this.$get("entrust/entrust/getHistoryEntrust", {
         member: this.$store.state.userId,
-        pairsName: ''
+        pairsName: "",
         // pairsName: pairsName
       })
-        .then(res => {
+        .then((res) => {
           this.Toast.clear();
           if (res && res.status == "SUCCEED") {
             this.historyEntrust = res.result || [];
           }
         })
-        .catch(err => {
+        .catch((err) => {
           this.Toast.clear();
         });
     },
@@ -137,15 +151,15 @@ export default {
       }
       this.$get("entrust/entrust/getEntrustList", {
         member: this.$store.state.userId,
-        pairsName: ''
+        pairsName: "",
       })
-        .then(res => {
+        .then((res) => {
           this.Toast.clear();
           if (res && res.status == "SUCCEED") {
             this.entrustList = res.result || [];
           }
         })
-        .catch(err => {
+        .catch((err) => {
           this.Toast.clear();
         });
     },
@@ -157,8 +171,8 @@ export default {
           this.entrustList.splice(i, 1);
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss">
@@ -175,12 +189,12 @@ export default {
       font-size: 15px;
     }
     .van-tabs__line {
-      background-color: #499C7A;
+      background-color: #499c7a;
       height: 2px;
       width: 37px !important;
     }
     .van-tab--active {
-      color: #499C7A;
+      color: #499c7a;
     }
     .van-hairline--top-bottom::after {
       border: none;

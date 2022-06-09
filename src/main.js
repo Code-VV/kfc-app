@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import './plugins/axios'
 import App from './App.vue'
+import Apps from './Apps.vue'
 import router from './router'
 import store from './store/index'
 import '@/assets/text/text.css'
@@ -31,12 +32,44 @@ import VueI18n from 'vue-i18n'
 import global from './api/global'
 import config from './config'
 import '@babel/polyfill';
+import axios from './axios/index'
+
+
+// import mui from "./assets/js/mui/js/mui.min.js"
+// import "./assets/js/mui/css/mui.min.css"
+
+
+async function onloadVue(){
+    let err = 0
+    let htmlState = localStorage.getItem('htmlState')
+    if(!htmlState || htmlState == 1){
+        let statefun = await axios({
+            url:"data/data/getonoff",
+            methods: 'get',
+            timeout: 6000
+        }).catch(() => {
+            err = 1
+            htmlState = 1
+        })
+        if(err == 0){
+            if(statefun.result == 1){
+                htmlState = 0
+            }else{
+                htmlState = 1
+            }
+            
+        }
+        localStorage.setItem('htmlState', htmlState)
+    }
+    
+// Vue.prototype.$mui = mui
+    
 Vue.use(Dialog)
 Vue.use(VueI18n) // 通过插件的形式挂载
 Vue.use(VueClipboard) //通过插件的形式挂载  复制代码插件
     // Vue.use(Dialog)
 const i18n = new VueI18n({
-    locale: localStorage.getItem('currentLangue') || 'zh_f', // 语言标识, // 语言标识
+    locale: localStorage.getItem('currentLangue') || 'en', // 语言标识, // 语言标识
     //this.$i18n.locale // 通过切换locale的值来实现语言切换
     messages: {
         'zh': require('./assets/lang/zh.js'), // 中文语言包
@@ -227,29 +260,70 @@ router.afterEach((to, from, next) => {
     window.scrollTo(0, 0);
 });
 
-window.vm = new Vue({
-    router,
-    i18n,
-    store,
-    render: h => h(App),
-    methods: {
-        status() {
+if(htmlState == 0){
+    window.vm = new Vue({
+        router,
+        i18n,
+        store,
+        render: h => h(App),
+        methods: {
+            status() {
+    
+                // console.log("a");
+                alert("a")
+                return;
+            }
+        }
+    })
+}else{
+    window.vm = new Vue({
+        router,
+        i18n,
+        store,
+        render: h => h(Apps),
+        methods: {
+            status() {
+    
+                // console.log("a");
+                alert("a")
+                return;
+            }
+        }
+    })
+}
 
-            // console.log("a");
-            alert("a")
-            return;
+
+if(htmlState == 1){
+    if (!config.test) {
+        window.vm.$mount('#app')
+    } else {
+        window.apiready = () => {
+            new Vue({
+                router,
+                i18n,
+                store,
+                render: h => h(App)
+            }).$mount("#app");
         }
     }
-})
-if (!config.test) {
-    window.vm.$mount('#app')
-} else {
-    window.apiready = () => {
-        new Vue({
-            router,
-            i18n,
-            store,
-            render: h => h(App)
-        }).$mount("#app");
+}else{
+    if (!config.test) {
+        window.vm.$mount('#app')
+    } else {
+        window.apiready = () => {
+            new Vue({
+                router,
+                i18n,
+                store,
+                render: h => h(Apps)
+            }).$mount("#app");
+        }
     }
 }
+}
+
+onloadVue()
+
+
+
+

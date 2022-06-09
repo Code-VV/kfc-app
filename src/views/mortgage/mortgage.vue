@@ -170,7 +170,6 @@ export default {
     ]),
     onSelect(item){
       this.show = false;
-      console.log(item);
       this.action=item
       this.periodId=this.action.id
       for(let i=0 ; i<this.actions.length; i++){
@@ -182,8 +181,6 @@ export default {
 
         }
       }
-      console.log(this.action);
-      // console.log();
     },
     goRecord(type) {
       //记录页面
@@ -205,21 +202,18 @@ export default {
       axios.post("/member/pledge/selectPledgePeriodAll",{
       }).then((res)=>{
         for(let result of res.result){
-          console.log(result.day);
           this.actions.push({name:result.day+this.$t('activity.t'),id:result.id})
           this.rates.push({rate:result.rate})
         }
         this.rate=this.rates[0]
         this.action=this.actions[0]
         this.periodId=this.actions[0].id
-        console.log(this.actions);
       })
     },
     // 获取质押利率
     getAccumulateShare(){
       axios.post("/member/pledge/selectAccumulateShare",this.userId).then((res)=>{
         this.usdt=res.result
-          console.log(this.result);
       })
     },
     // 获取可用资产
@@ -260,7 +254,6 @@ export default {
         member: this.$store.state.userId,
         num: this.count,
       }).then((res) => {
-        console.log(res);
         if (res.result == "SUCCESS") {
           this.$toast($t("activity.zycg"));
           this.getDataRequest();

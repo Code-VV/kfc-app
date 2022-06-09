@@ -2,12 +2,7 @@
   <div class="coinCharging container_common">
     <form id="audit">
       <div class="chooseCoin c222">
-        <van-cell
-          :title="i18n.bz"
-          is-link
-          :value="currency"
-          to="/assets/chooseCoin"
-        />
+        <van-cell :title="i18n.bz" :value="currency" />
       </div>
 
       <div class="addressPic1" v-if="currency == 'USDT'">
@@ -173,6 +168,7 @@ import vueQr from "vue-qr";
 import axios from "../../axios/index";
 import { hbmd5 } from "../../plugins/md5";
 import { ImagePreview } from "vant";
+import Axios from "axios";
 export default {
   components: {
     assetItem,
@@ -198,7 +194,7 @@ export default {
       fromAddress: "", //FORM充值地址   后修改为img地址
       saveImg: "",
       isSelect: false, // 弹框
-      names: "ERC20",
+      names: "TRC20",
       actions: [
         //   {
         //   name: 'OMNI'
@@ -254,6 +250,22 @@ export default {
       return this.$store.state.chooseCurrency;
     },
   },
+  created() {
+    let data = {
+      cname: "TRC20",
+      member: this.$store.state.userId,
+    };
+
+    this.$get("/member/balance/getWalletPackage", data).then((res) => {
+      console.log(res);
+      if (res && res.status == "SUCCEED" && res.result) {
+        this.copyAddress = res.result.address || "";
+        console.log(this.copyAddress);
+      
+       
+      }
+    });
+  },
   methods: {
     ...mapActions([
       "setnavTitle",
@@ -272,21 +284,16 @@ export default {
       this.show = true;
     },
     afterRead(file) {
-      console.log(file);
       let form = new FormData();
       // console.log("这里可以进行处理");
       form.append("file", file.file);
       axios.post("/member/member/upload", form).then((res) => {
-        console.log(res);
         this.img = res.path;
-        console.log(this.img);
         this.fromAddress = res.path;
         this.imgshow = true;
       });
-      console.log(this.img);
     },
     showbigimg() {
-      console.log("s");
       this.bigImgShow = true;
     },
     //拷贝成功
@@ -341,7 +348,6 @@ export default {
             // this.fromAddress=''
           });
         } else if (res.result == false) {
-          console.log(res);
           this.Toast("密码错误");
           this.password = "";
         } else {
@@ -415,14 +421,14 @@ export default {
           this.copyAddress = res.result || ''
         }
       })*/
-      let data = {
-        type: this.names,
-      };
-      this.$get("member/balance/getAccountUsdtWallet", data).then((res) => {
-        if (res && res.status == "SUCCEED" && res.result) {
-          this.copyAddress = res.result.walletAddress || "";
-        }
-      });
+      // let data = {
+      //   type: this.names,
+      // };
+      // this.$get("member/balance/getAccountUsdtWallet", data).then((res) => {
+      //   if (res && res.status == "SUCCEED" && res.result) {
+      //     this.copyAddress = res.result.walletAddress || "";
+      //   }
+      // });
     },
     // 获取充币地址
     initData() {
@@ -526,6 +532,17 @@ export default {
       this.isSelect = false;
     },
     onSelect(item) {
+       let data = {
+      cname: item.name,
+      member: this.$store.state.userId,
+    };
+
+    this.$get("/member/balance/getWalletPackage", data).then((res) => {
+      console.log(res);
+      if (res && res.status == "SUCCEED" && res.result) {
+        this.copyAddress = res.result.address || "";
+      }
+    });
       this.isSelect = false;
       if (this.names == item.name) {
         return;
@@ -561,10 +578,12 @@ export default {
   // }
 
   .chooseCoin {
+    padding: 0 14px;
     .van-cell {
       display: flex;
       align-items: center;
       background: #f8f7fd;
+      justify-content: space-between;
     }
   }
 
@@ -620,7 +639,8 @@ export default {
   }
 
   .num {
-    font-size: 14px;
+    margin-top: 20px;
+    font-size: 12px;
     word-break: break-all;
     width: 100%;
     border: none;
@@ -708,14 +728,14 @@ export default {
 .popup {
   color: #fff;
   border-radius: 10px;
-  background: #171E28;
+  background: #171e28;
   .inp {
     margin-left: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
   }
   p {
-    background: #171E28;
+    background: #171e28;
     color: #fff;
     text-align: center;
     height: 30px;
@@ -728,14 +748,14 @@ export default {
   }
   input {
     margin: 0 auto;
-    background: #171E28;
+    background: #171e28;
     border-radius: 5px;
     height: 20px;
   }
   .van-button {
     margin-top: 0;
     width: 232px;
-    background: #171E28;
+    background: #171e28;
     border-top: 1px solid #fff;
   }
 }

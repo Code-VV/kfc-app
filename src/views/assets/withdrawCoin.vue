@@ -64,26 +64,23 @@
       class="submit"
       >{{ i18n.tb }}</van-button
     >
-     <van-popup class="popup" v-model="show">
-        <p>输入密码</p>
-        <div class="inp">
-          <span>资金密码 </span
-          ><input
-            v-model="password"
-            type="password"
-            placeholder="请输入资金密码"
-          />
-        </div>
+    <van-popup class="popup" v-model="show">
+      <p>{{ i18n.srmm }}</p>
+      <div class="inp">
+        <span>{{ i18n.zjmm }} </span
+        ><input v-model="password" type="password" :placeholder="i18n.qsrzj" />
+      </div>
 
-        <van-button type="primary" color="#171E28" @click="submit()"
-          >确认提交</van-button
-        >
-      </van-popup>
+      <van-button type="primary" color="#171E28" @click="submit()">{{
+        i18n.qrtj
+      }}</van-button>
+    </van-popup>
     <div class="tipDetail">
       <p>{{ $t("coin.zxtbsl") }}{{ min_withdraw_value + currency }}</p>
       <!-- <p>{{i18n.txsxf}}{{wallets.fee+currency}}。</p>
         <p>{{i18n.zxtxje}}{{ disableWithdrawCoin ? "0.00" : min_withdraw_value+currency }}。</p>
         <p>{{i18n.zjaq}}</p> -->
+      <p class="tsy">{{ i18n.tsy }}</p>
     </div>
     <!-- 联系客服 -->
     <!-- <div class="customer-service c222">
@@ -304,9 +301,13 @@ export default {
             }
           });
 
+          // this.wallets.money =
+          //   res.result[0] && res.result[0].assetsBalance
+          //     ? res.result[0].assetsBalance
+          //     : 0; //可提币金额
           this.wallets.money =
-            res.result[0] && res.result[0].assetsBalance
-              ? res.result[0].assetsBalance
+            res.result[0] && res.result[0].balance
+              ? res.result[0].balance
               : 0; //可提币金额
           this.wallets.money = this.$util.SubString(this.wallets.money, 4);
         }
@@ -497,13 +498,13 @@ export default {
               this.Toast(res.errorMessage);
             }
           });
-        } else if(res.result==false){
-           console.log(res);
-          this.Toast("密码错误");
+        } else if (res.result == false) {
+          console.log(res);
+          this.Toast(this.$t("coin.mmcw"));
           this.password = "";
-        }else{
-          this.Toast('请设置资金密码')
-           this.password = "";
+        } else {
+          this.Toast(this.$t("coin.qsz"));
+          this.password = "";
         }
       });
     },
@@ -758,14 +759,14 @@ export default {
 .popup {
   color: #fff;
   border-radius: 10px;
-  background: #171E28;
+  background: #171e28;
   .inp {
     margin-left: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
   }
   p {
-    background: #171E28;
+    background: #171e28;
     color: #fff;
     text-align: center;
     height: 30px;
@@ -778,15 +779,21 @@ export default {
   }
   input {
     margin: 0 auto;
-    background: #171E28;
+    background: #171e28;
     border-radius: 5px;
     height: 20px;
+    border: none;
   }
   .van-button {
     margin-top: 0;
     width: 232px;
-    background: #171E28;
+    background: #171e28;
     border-top: 1px solid #fff;
   }
+}
+.tsy{
+  margin-top: 20px;
+  color: #666;
+  font-size: 10px;
 }
 </style>

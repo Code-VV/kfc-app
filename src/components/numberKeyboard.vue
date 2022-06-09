@@ -63,7 +63,6 @@ export default {
                 // if (this.type == "bank") {
 
                 // } else if (this.type == "weixin") {
-                //   // console.log("微信");
                 // }
             }
         }
@@ -103,7 +102,6 @@ export default {
             if (this.type == "bank") {
                 this.$refs.mychild.send(this.phone, "OTCBANK");
             } else if (this.type == "weixin") {
-                // console.log("微信");
                 this.$refs.mychild.send(this.phone, "OTCWECHAT");
             } else {
                 this.$refs.mychild.send(this.phone, "OTCALIAY");
@@ -112,7 +110,6 @@ export default {
         //点击input获取焦点
         getFocuse() {
             this.isFocuse = true;
-            // console.log(this.isFocuse);
         }
     }
 };

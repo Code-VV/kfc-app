@@ -33,6 +33,9 @@ const state = {
     themes: ['default', 'night'], //所有主题
     resetUserinfo: 0, //调个人信息
     qh:true,
-    xz:false
+    xz:false,
+    // target: 'http://admin.xxqq.top'
+    // target: 'http://localhost:9898'
+    target: 'http://m.metacurrency.trade'
 }
 export default state

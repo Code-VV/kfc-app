@@ -14,9 +14,9 @@
         </div>
       </van-col>
       <van-col span="8">
-        <div v-if="qh" class="center_text">{{ list.price | SubString(4) }}</div>
+        <div v-if="qh" class="center_text">{{ list.price | SubString(2) }}</div>
         <div v-else class="center_text">
-          {{ list.chPrice | SubString3(2, 4) }}
+          {{ list.chPrice | SubString3(2, 2) }}
         </div>
       </van-col>
       <van-col span="8">
@@ -66,6 +66,7 @@ export default {
   },
   data() {
     return {
+        ip:this.$store.state.target,
     };
   },
   methods: {

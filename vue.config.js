@@ -18,11 +18,13 @@ module.exports = {
         https: false,
         hotOnly: false,
         proxy: {
-            // 设置代理
+            // 设置代理nvm
             '/api': {
-                //target: 'https://api.sytog.me/', //线上SYTOG',
-                target: 'http://192.168.1.115:8765', //本地测试',
-                //target: 'http://192.168.1.115:8760', //本地测试',
+                //target: 'https://api.sytog.me/', //线上SYTOG'
+                // target: 'http://ceshi1.zzyf0809:8765', //本地测试'
+                // target: 'http://api.xxqq.top', //线上测试'
+                target: 'http://m.metacurrency.trade/api', // 线上测试'
+                // target: 'http://127.0.0.1:8090', //本地测试'
                 ws: true,
                 changeOrigin: false,
                 pathRewrite: {

@@ -58,7 +58,7 @@
       </div>
     </div>
     <van-row gutter="20" class="accountBox bor_b">
-      <van-col offset="2" span="4">
+      <van-col offset="2" span="8">
         <div
           class="items c444"
           :class="{ cur: curType == 1 }"
@@ -68,7 +68,7 @@
           <i class="borders"></i>
         </div>
       </van-col>
-      <van-col span="4">
+      <van-col span="8">
         <div
           class="items c444"
           :class="{ cur: curType == 2 }"
@@ -273,6 +273,7 @@ export default {
           }
           this.assetList = res.result || {};
           this.assetList.balances.reverse();
+
         }
       });
     },
@@ -381,7 +382,7 @@ export default {
     // margin: 0 -15px !important;
     padding: 0 15px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 
     // border-bottom: 1px solid rgba(227, 227, 227, 0.2);
     .items {

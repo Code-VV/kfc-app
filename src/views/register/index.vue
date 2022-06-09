@@ -1,6 +1,6 @@
 <template>
 <div class="register a_title">
-    <div class="title pad_l_r_60 a_center size16 c111">
+    <!-- <div class="title pad_l_r_60 a_center size16 c111">
         <van-row>
             <van-col span="12" class="a_re">
                 <div @click="sec(1)" class="item" :class="index==1?'c_blue size17':''">{{i18n.sj}}</div>
@@ -12,7 +12,7 @@
                 <div :class="index==2?'bottom1':''"></div>
             </van-col>
         </van-row>
-    </div>
+    </div> -->
 
     <div class="con pad_38" v-show="index==1">
         <van-cell-group>
@@ -151,7 +151,7 @@ export default {
             passwordError: "",
             passwordOkError: "",
 
-            index: 1,
+            index: 2,
             showPicker: false,
             columns: ["杭州", "宁波", "温州", "嘉兴", "湖州"]
         };

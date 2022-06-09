@@ -50,7 +50,7 @@
         v-if="type!='entrust'&&type!='history'"
       />
     </div>
-    <div class="listContent bor_b">
+    <div class="bor_b">
       <div v-if="type=='entrust'||type=='history'">
         <van-row gutter="20" class="lists c666">
           <van-col span="8" class="markers">

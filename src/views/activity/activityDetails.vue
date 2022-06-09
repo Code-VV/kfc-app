@@ -8,11 +8,11 @@
         >
           <van-icon name="arrow-left" @click="$router.go(-1)" />
         </div>
-        <div class="center nav-title">套利</div>
+        <div class="center nav-title">{{ i18n.tl }}</div>
       </div>
     </header>
     <div>
-      <img src="@/assets/images/activity/btb.png" alt="" class="btb" />
+      <img :src="profit.image" alt="" class="btb" />
       <p class="btc">{{ name }}</p>
     </div>
     <div class="qj">
@@ -26,7 +26,7 @@
     <div class="text">
       <div class="divd">
         <div class="r">{{ i18n.lj }}:</div>
-        <p>{{ profit.totalYear * 100 + "%年收益" }}</p>
+        <p>{{ profit.totalYear * 100 + "%" }}{{ i18n.nsy }}</p>
       </div>
       <div class="divd">
         <div class="r">{{ i18n.ky }}{{ name }}:</div>
@@ -34,11 +34,13 @@
       </div>
       <div class="divd">
         <div class="r">{{ i18n.jxfs }}:</div>
-        <p>{{ profit.accrueInterest }}</p>
+        <p>
+          {{ i18n.jx }}
+        </p>
       </div>
       <div class="divd">
         <div class="r">{{ i18n.gxsj }}:</div>
-        <p>{{ profit.updateTime }}</p>
+        <p>{{ i18n.sjh }}</p>
       </div>
       <div class="divd">
         <div class="r">{{ i18n.zdtlzl }}:</div>
@@ -49,7 +51,7 @@
         <div class="ss">
           <input
             type="text"
-            placeholder="请输入套利总量"
+            :placeholder="i18n.qsrtl"
             style="padding-left: 11px"
             v-model="val"
           />
@@ -58,25 +60,21 @@
       </div>
       <div class="divd">
         <div class="r">{{ i18n.yjsy }}:</div>
-        <p>{{ val*profit.totalYear  }} {{ name }}</p>
+        <p>{{ val * profit.totalYear }} {{ name }}</p>
       </div>
       <van-button type="primary" color="#169E78" @click="showPopup">{{
         i18n.qrtl
       }}</van-button>
       <van-popup class="popup" v-model="show">
-        <p>输入密码</p>
+        <p>{{ i18n.srmm }}</p>
         <div class="inp">
-          <span>资金密码 </span
-          ><input
-            v-model="password"
-            type="password"
-            placeholder="请输入资金密码"
-          />
+          <span>{{ i18n.zjmm }} </span
+          ><input v-model="password" type="password" :placeholder="i18n.qsr" />
         </div>
 
-        <van-button type="primary" color="#171E28" @click="taoli"
-          >确认提交</van-button
-        >
+        <van-button type="primary" color="#171E28" @click="taoli">{{
+          i18n.qrtj
+        }}</van-button>
       </van-popup>
     </div>
   </div>
@@ -84,7 +82,7 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import { Slider, Checkbox } from "vant";
+import { Slider, Checkbox, Toast } from "vant";
 import { hbmd5 } from "../../plugins/md5";
 export default {
   name: "detail",
@@ -128,7 +126,6 @@ export default {
   created() {
     this.id = this.$route.query.id;
     this.name = this.$route.query.name;
-    console.log(this.name, this.id);
     this.type = this.$route.query.type;
     // this.getPeList();
     let params = {
@@ -142,6 +139,10 @@ export default {
       if (res.result != null) {
         this.profit = res.result;
       } else {
+        Toast(res.errorMessage);
+        setTimeout(() => {
+          this.$router.go(-1);
+        }, 2000);
       }
       let params1 = {
         id: this.id,
@@ -149,11 +150,9 @@ export default {
         userId: this.$store.state.userId,
         estimates: this.profit.lowest,
       };
-      console.log(this.profit.lowest);
       this.active = 1;
       // 预估收益
       this.$post1("/entrust/arbirtage/getEstimated", params1).then((res) => {
-        console.log(res);
         if (res.result != null) {
           this.predict = res.result.predict;
         } else {
@@ -186,8 +185,12 @@ export default {
         member: this.$store.state.userId,
         password: hbmd5(this.password),
       };
-      console.log(hbmd5(this.password));
+      if(this.val <= 0){
+        this.Toast(this.$t("activity.amountmin"));
+        return
+      }
       this.$post1("/member/member/setToPayPass", data).then((res) => {
+        console.log(res);
         if (res.result) {
           let params2 = {
             id: this.id,
@@ -196,21 +199,20 @@ export default {
             estimates: this.val,
             predict: this.predict,
           };
-          console.log(this.val);
           if (this.$refs.ky.innerHTML < params2.estimates) {
-            this.Toast("余额不足");
+            this.Toast(this.$t("activity.yebz"));
 
             this.val = "";
             return;
           }
           this.$post1("/entrust/arbirtage/payForCoin", params2).then((res) => {
             console.log(res);
-            if (res.errorMessage === "该币种已购买,处于收益状态") {
+            if (res.errorMessage == "該幣種已購買,處于收益狀態") {
               this.Toast(res.errorMessage);
               this.password = "";
               return;
             }
-            this.Toast("购买成功");
+            this.Toast(this.$t("activity.gmcg"));
             this.profit.coinBalances = this.profit.coinBalances - this.val;
             this.password = "";
             this.val = "";
@@ -221,11 +223,10 @@ export default {
             }, 1000);
           });
         } else if (res.result == false) {
-          console.log(res);
-          this.Toast("密码错误");
+          this.Toast(this.$t("activity.mmcw"));
           this.password = "";
         } else {
-          this.Toast("请设置资金密码");
+          this.Toast(this.$t("activity.qszzj"));
           this.password = "";
         }
       });
@@ -234,7 +235,6 @@ export default {
       this.val = this.profit.coinBalances;
     },
     color(v) {
-      console.log(v);
       this.active = v;
       let params1 = {
         id: this.id,
@@ -360,8 +360,8 @@ export default {
 
 .activity {
   @include base-background();
-  font-family: "JDZY";
-  background-color: #171E28 !important;
+  font-family: "DIN";
+  background-color: #171e28 !important;
 }
 .qj .data .action {
   background-color: #169e78;
@@ -653,7 +653,7 @@ export default {
         font-size: 16px;
         border: 1px solid #979797;
         color: #666c71;
-        background-color: #171E28;
+        background-color: #171e28;
       }
       .inp {
         width: 70px;
@@ -674,14 +674,14 @@ export default {
 .popup {
   color: #fff;
   border-radius: 10px;
-  background: #171E28;
+  background: #171e28;
   .inp {
     margin-left: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
   }
   p {
-    background: #171E28;
+    background: #171e28;
     color: #fff;
     text-align: center;
     height: 30px;
@@ -694,14 +694,16 @@ export default {
   }
   input {
     margin: 0 auto;
-    background: #171E28;
+    background: #171e28;
     border-radius: 5px;
     height: 20px;
+    border: none;
+    border-bottom: 1px solid #fff;
   }
   .van-button {
     margin-top: 0;
     width: 232px;
-    background: #171E28;
+    background: #171e28;
     border-top: 1px solid #fff;
   }
 }

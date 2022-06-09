@@ -65,7 +65,6 @@
      //权限类型有
      //calendar日历，camera相机，contacts通讯录，location位置信息，microphone麦克风
      //phone电话，sensor身体传感器，sms短信，storage存储空间，photos相册
-     console.log(perm);
 
      //ios系统直接跳过
      if (api.systemType == 'ios') {
@@ -81,7 +80,6 @@
 
      //判断是否持有该数组中的权限
      let has = hasPermission(perms);
-     console.log(JSON.stringify(has));
      if (!has.status) {
          //获取权限
          reqPermission(has.perms, callback);
